@@ -1,21 +1,14 @@
 require 'rails_helper'
 
-feature "Accounts", :type => :feature do
-  pending "add some scenarios (or delete) #{__FILE__}"
-end
+feature 'Signing in' do
+  given(:user) { FactoryGirl.create(:user) }
 
-describe "the signin process", :type => :feature do
-  before :each do
-    User.make(:email => 'user@example.com', :password => 'password')
+  scenario 'Signing in with correct credentials' do
+    visit new_user_session_path
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Log in'
+    expect(page).to have_content 'Welcome'
   end
 
-  it "signs me in" do
-    visit '/sessions/new'
-    within("#session") do
-      fill_in 'Email', :with => 'user@example.com'
-      fill_in 'Password', :with => 'password'
-    end
-    click_button 'Sign in'
-    expect(page).to have_content 'Success'
-  end
 end
