@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 feature 'Signing in' do
-  given(:user) { FactoryGirl.create(:user) }
+  given(:account) { FactoryGirl.create(:account) }
 
   scenario 'Signing in with correct credentials' do
-    visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
+    visit new_account_session_path
+    fill_in 'Email', with: account.email
+    fill_in 'Password', with: account.password
     click_button 'Log in'
     expect(page).to have_content 'Welcome'
   end
