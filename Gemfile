@@ -5,6 +5,7 @@ gem 'haml'
 
 #Bourbon/Neat/Bitters
 gem 'bourbon'
+gem 'neat'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
