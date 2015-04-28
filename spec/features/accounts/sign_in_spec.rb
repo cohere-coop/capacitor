@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Signing in' do
+feature 'Sign in' do
   given(:account) { FactoryGirl.create(:account) }
 
   scenario 'with correct credentials' do
