@@ -17,8 +17,4 @@
 @import "home";
 @import "users";
 @import "neat";
-<<<<<<< HEAD
-@import ""
-=======
-@import "base";
->>>>>>> ae7e08b6476a07d5e16e096e59f40911bd6255a5
+@import "base"
