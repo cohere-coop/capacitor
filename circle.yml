@@ -2,4 +2,4 @@ deployment:
   production:
     branch: primary
     heroku:
-      appname: capacitor
+      appname: capacitor-prod
