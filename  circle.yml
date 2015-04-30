@@ -1,0 +1,5 @@
+deployment:
+  production:
+    branch: primary
+    heroku:
+      appname: capacitor
