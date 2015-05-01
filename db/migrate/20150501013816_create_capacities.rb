@@ -10,6 +10,6 @@ class CreateCapacities < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_foreign_key :capacities, :projects
-    add_foreign_key :capacities, :workers
+    add_foreign_key :capacities, :accounts, column: :worker_id
   end
 end
