@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :project do
-    name "test"
+    sequence(:name) { |i| "Project #{i}" }
     client
   end
 end
