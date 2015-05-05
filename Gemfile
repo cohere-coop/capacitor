@@ -45,6 +45,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara'
+  gem 'capybara-screenshot', '~> 1.0'
   gem 'factory_girl_rails'
   gem 'rspec-given', '~> 3.5'
 

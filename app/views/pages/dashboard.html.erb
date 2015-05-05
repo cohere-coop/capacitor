@@ -1,1 +1,5 @@
 <h1>Welcome to Capacitor!</h1>
+
+<%- current_account.available_projects.each do |project| %>
+  <%= link_to project.name, new_project_capacity_path(project) %>
+<%- end %>
