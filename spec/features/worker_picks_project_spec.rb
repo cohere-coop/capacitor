@@ -12,9 +12,9 @@ feature 'worker picks project' do
 
   When { click_link_or_button project_to_work_on.name }
 
-  Then { expect(page).to have_content("Track Capacity For #{project_to_work_on.name}") }
-    
+  When { select("1 half-day", from: "Amount") }
+  When { select("4", from: "Quality") }
+  When { click_link_or_button "Log Capacity" }
+  Then { expect(Capacity.find_by(worker: current_account, amount: 4, quality: 4, project: project_to_work_on)).to be_present }
 
-
-	
 end

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: "pages#dashboard"
 
   resources :projects, only: [:index] do
-    resources :capacities, only: [:new]
+    resources :capacities, only: [:new, :create]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
