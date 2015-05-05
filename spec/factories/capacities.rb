@@ -5,7 +5,7 @@ FactoryGirl.define do
     amount 1
     quality 1
     worked_at "2015-04-30"
-    project nil
-    worker nil
+    project
+    worker
   end
 end
