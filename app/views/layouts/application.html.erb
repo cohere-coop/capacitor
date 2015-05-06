@@ -2,16 +2,26 @@
 <html>
 <head>
   <title>Capacitor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<header>
+  <header>
+    <%= link_to root_path do %>
+      <%= image_tag 'logo-large.png' %>
+    <%- end %>
     <%= render 'layouts/navigation' %>
   </header>
 
-	<%= yield %>
+  <main>
+    <%= yield %>
+  </main>
+
+  <footer>
+    Copyright © 2015 Zinc Technology Inc
+  </footer>
 
 </body>
 </html>
