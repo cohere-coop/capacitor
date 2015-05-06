@@ -16,7 +16,7 @@ feature 'Sign in' do
 	  fill_in 'Email', with: account.email
 	  fill_in 'Password', with: '654321'
 	  click_button 'Log in'
-	  expect(page).to have_content 'Log in'
+	  expect(page).to have_content 'Sign in'
   end
 
 end
