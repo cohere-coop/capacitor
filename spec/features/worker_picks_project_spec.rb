@@ -14,7 +14,8 @@ feature 'worker picks project' do
 
   When { select("1 half-day", from: "Amount") }
   When { select("4", from: "Quality") }
+  When { fill_in("Worked at", with: "2015-05-06") }
   When { click_link_or_button "Log Capacity" }
-  Then { expect(Capacity.find_by(worker: current_account, amount: 4, quality: 4, project: project_to_work_on)).to be_present }
+  Then { expect(Capacity.find_by(worker: current_account, amount: 4, quality: 4, worked_at: "2015-05-06", project: project_to_work_on)).to be_present }
 
 end
