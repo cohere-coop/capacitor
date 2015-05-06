@@ -12,7 +12,7 @@ class CapacitiesController < ApplicationController
   private
 
   def capacity_params
-    params.require(:capacity).permit(:quality, :amount)
+    params.require(:capacity).permit(:quality, :amount, :worked_at)
   end
 
 end
