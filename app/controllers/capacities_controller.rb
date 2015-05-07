@@ -1,8 +1,8 @@
 class CapacitiesController < ApplicationController
 
-	def new
-		@project = Project.find(params[:project_id])
-	end
+  def new
+    @project = Project.find(params[:project_id])
+  end
 
   def create
     capacity = current_account.capacities.create(capacity_params.merge(project_id: params[:project_id]))
