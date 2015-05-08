@@ -2,7 +2,7 @@
 
 <%= form_for([ @project, Capacity.new]) do |f| %>
   <%= f.label :amount  %>
-  <%= f.select :amount, options_for_select([['1 eighth-day', 1], ['1 quarter-day', 2],['3 eighth-days', 3], ['1 half-day',4], ['5 eighth-days', 5], ['3 quarter-days', 6],['7 eight-days', 7],['1 whole day',8]]) %>
+  <%= f.select :amount, options_for_project_amount %>
   <%= f.label :quality %>
   <%= f.select :quality, options_for_select([1, 2, 3, 4, 5]) %>
 
