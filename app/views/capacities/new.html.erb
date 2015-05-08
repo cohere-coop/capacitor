@@ -1,0 +1,14 @@
+<h1>Track Capacity For <%= @project.name %> </h1>
+
+<%= form_for([ @project, Capacity.new]) do |f| %>
+  <%= f.label :amount  %>
+  <%= f.select :amount, options_for_project_amount %>
+  <%= f.label :quality %>
+  <%= f.select :quality, options_for_select([1, 2, 3, 4, 5]) %>
+
+  <%= f.label :worked_at %>
+  <%= f.date_field :worked_at %>
+
+
+  <%= f.submit "Log Capacity" %>
+<%- end %>
