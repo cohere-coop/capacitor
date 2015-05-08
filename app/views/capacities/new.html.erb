@@ -2,12 +2,17 @@
 
 <%= form_for([ @project, Capacity.new]) do |f| %>
   <%= f.label :amount  %>
-  <%= f.select :amount, options_for_project_amount %>
+  <%= f.select :amount, options_for_select(ProjectHelper::AMOUNT_OPTIONS) %>
+
   <%= f.label :quality %>
-  <%= f.select :quality, options_for_select([1, 2, 3, 4, 5]) %>
+  <%= f.select :quality, options_for_select(ProjectHelper::QUALITY_OPTIONS) %>
 
   <%= f.label :worked_at %>
   <%= f.date_field :worked_at %>
+
+  <label>
+    <%= f.check_box :do_not_bill %> Do Not Bill
+  </label>
 
 
   <%= f.submit "Log Capacity" %>
