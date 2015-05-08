@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150428030134) do
+ActiveRecord::Schema.define(version: 20150501013816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,9 +30,35 @@ ActiveRecord::Schema.define(version: 20150428030134) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.string   "username"
   end
 
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true, using: :btree
   add_index "accounts", ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true, using: :btree
 
+  create_table "capacities", force: :cascade do |t|
+    t.integer  "amount"
+    t.integer  "quality"
+    t.date     "worked_at"
+    t.integer  "project_id"
+    t.integer  "worker_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "capacities", ["project_id"], name: "index_capacities_on_project_id", using: :btree
+  add_index "capacities", ["worker_id"], name: "index_capacities_on_worker_id", using: :btree
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "client_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "projects", ["client_id"], name: "index_projects_on_client_id", using: :btree
+
+  add_foreign_key "capacities", "accounts", column: "worker_id"
+  add_foreign_key "capacities", "projects"
+  add_foreign_key "projects", "accounts", column: "client_id"
 end

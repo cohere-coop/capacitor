@@ -10,15 +10,20 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
  */
 @import "bourbon";
-@import "home";
-@import "users";
+
+
+@import "variables";
+@import "grid-settings";
 @import "neat";
-<<<<<<< HEAD
-@import ""
-=======
-@import "base";
->>>>>>> ae7e08b6476a07d5e16e096e59f40911bd6255a5
+@import "base/base";
+@import "nav";
+
+body {
+  background-color: $red;
+}
+body > header, body > main, body > footer {
+  @include outer-container;
+}
