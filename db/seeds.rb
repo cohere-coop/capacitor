@@ -6,11 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+unless Rails.env.production?
 
+  client = Account.create_with(password: "password", name: "Client", username: "client").find_or_create_by(email: "client@example.com")
+  worker = Account.create_with(password: "password", name: "Worker", username: "worker").find_or_create_by(email: "worker@example.com")
 
-client = Account.create_with(password: "password", name: "Client", username: "client").find_or_create_by(email: "client@example.com")
-worker = Account.create_with(password: "password", name: "Worker", username: "worker").find_or_create_by(email: "worker@example.com")
-
-
-
-arpa = client.owned_projects.find_or_create_by(name: "ARPANet")
+  arpa = client.owned_projects.find_or_create_by(name: "ARPANet")
+end
