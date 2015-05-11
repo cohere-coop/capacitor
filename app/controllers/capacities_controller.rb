@@ -13,6 +13,7 @@ class CapacitiesController < ApplicationController
     if @capacity.valid?
       redirect_to root_path
     else
+      @project = @capacity.project
       render :new
       @capacity.errors.full_messages
     end
