@@ -4,9 +4,9 @@
   <% end %>
 <% end %>
 
-<h1>Track Capacity For <%= @project.name %> </h1>
+<h1>Track Capacity For <%= @capacity.project %> </h1>
 
-<%= form_for([ @project, Capacity.new]) do |f| %>
+<%= form_for([@capacity.project, Capacity.new]) do |f| %>
   <%= f.label :amount  %>
   <%= f.select :amount, options_for_select(ProjectHelper::AMOUNT_OPTIONS) %>
 
