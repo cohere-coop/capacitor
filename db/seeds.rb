@@ -13,4 +13,4 @@ worker = Account.create_with(password: "password", name: "Worker", username: "wo
 
 
 
-arpa = client.owned_projects.find_or_create_by(name: "ARPANet")
+arpa = client.owned_projects.find_or_create_by(name: "ARPANet", total_capacity_owed: 10)
