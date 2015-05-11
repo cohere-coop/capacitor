@@ -8,6 +8,7 @@ class CapacitiesController < ApplicationController
   end
 
   def create
+    @project = Project.find(params[:project_id])
     @capacity = current_account.capacities.create(capacity_params.merge(project_id: params[:project_id]))
 
     if @capacity.valid?
