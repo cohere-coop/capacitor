@@ -3,22 +3,22 @@
 <%= form_for([ @project, @capacity]) do |f| %>
   <%= f.label :amount  %>
   <%= f.select :amount, options_for_select(ProjectHelper::AMOUNT_OPTIONS) %>
-  <%= render partial: "shared/error_for_field", locals: { model: @capacity, field: :amount } %>
+  <%= render partial: "error_for_field", locals: { model: @capacity, field: :amount } %>
 
   <%= f.label :quality %>
   <%= f.select :quality, options_for_select(ProjectHelper::QUALITY_OPTIONS) %>
-  <%= render partial: "shared/error_for_field", locals: { model: @capacity, field: :quality } %>
+  <%= render partial: "error_for_field", locals: { model: @capacity, field: :quality } %>
 
   <%= f.label :worked_at %>
   <%= f.date_field :worked_at %>
-  <%= render partial: "shared/error_for_field", locals: { model: @capacity, field: :worked_at } %>
+  <%= render partial: "error_for_field", locals: { model: @capacity, field: :worked_at } %>
 
 
   <label>
     <%= f.check_box :do_not_bill %>Do Not Bill
   </label>
 
-  <%= render partial: "shared/error_for_field", locals: { model: @capacity, field: :do_not_bill } %>
+  <%= render partial: "error_for_field", locals: { model: @capacity, field: :do_not_bill } %>
 
 
   <%= f.submit "Log Capacity" %>
