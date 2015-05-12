@@ -1,6 +1,6 @@
 (function() {
   function clean(string) {
-    return string.replace('+', ' ').trim();
+    return string.replace(/\+/g, ' ').trim();
   }
 
   function trackAnalyticsEvents() {
