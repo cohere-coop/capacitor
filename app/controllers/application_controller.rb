@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     # Cookies must always be stored as strings.
     analytics = (cookies[:analytics] ? JSON.parse(cookies[:analytics], symbolize_names: true) : {})
 
-    # analytics[:uuid] = current_account.uuid if current_account
+    analytics[:uuid] = current_account.uuid if current_account
     analytics[:events] ||= []
     analytics[:events].push({ name: event_name })
 
