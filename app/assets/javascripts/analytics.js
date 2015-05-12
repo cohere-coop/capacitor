@@ -1,4 +1,8 @@
 (function() {
+  function clean(string) {
+    return string.replace('+', ' ').trim();
+  }
+
   function trackAnalyticsEvents() {
 
     var analyticsToTrack = JSON.parse(decodeURIComponent(monster.get('analytics')));
@@ -8,10 +12,11 @@
     }
 
     analyticsToTrack.events.forEach(function(analytics_event) {
-      analytics.track(analytics_event.name);
+      analytics.track(clean(analytics_event.name));
     });
 
     analyticsToTrack.events = []
+
     monster.set('analytics', JSON.stringify(analyticsToTrack));
   }
 
