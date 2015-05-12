@@ -77,6 +77,9 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    dotenv (2.0.1)
+    dotenv-rails (2.0.1)
+      dotenv (= 2.0.1)
     erubis (2.7.0)
     execjs (2.5.2)
     factory_girl (4.4.0)
@@ -225,6 +228,7 @@ DEPENDENCIES
   capybara-screenshot (~> 1.0)
   coffee-rails (~> 4.1.0)
   devise
+  dotenv-rails (= 2.0.1)
   factory_girl_rails
   haml
   jbuilder (~> 2.0)
