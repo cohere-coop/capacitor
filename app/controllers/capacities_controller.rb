@@ -6,6 +6,11 @@ class CapacitiesController < ApplicationController
 
   def create
     capacity = current_account.capacities.create(capacity_params.merge(project_id: params[:project_id]))
+    if capacity.persisted?
+      track_event("Capacity logged")
+    else
+      track_event("Capacity logging failed")
+    end
     redirect_to root_path
   end
 
