@@ -1,22 +1,21 @@
 class CapacitiesController < ApplicationController
 
   def new
-    @capacity.project = Project.find(params[:project_id])
-
-    # Had to add this so that we could call errors on @capacity. But now getting error about undefined method for nilClass on project
+    @project = Project.find(params[:project_id])
     @capacity = Capacity.new
   end
 
   def create
     @project = Project.find(params[:project_id])
-    @capacity = current_account.capacities.create(capacity_params.merge(project_id: params[:project_id]))
+    @capacity = Capacity.new(capacity_params)
+    @capacity.worker = current_account
+    @capacity.project = @project
 
     if @capacity.valid?
+      @capacity.save
       redirect_to root_path
     else
-      @project = @capacity.project
       render :new
-      @capacity.errors.full_messages
     end
   end
 
