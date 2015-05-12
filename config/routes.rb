@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  devise_for :accounts
+
+  devise_for :accounts, controllers: {
+    registrations: 'account/registrations',
+    sessions: 'account/sessions'
+  }
+
   root to: "pages#dashboard"
 
   resources :projects, only: [:index] do
