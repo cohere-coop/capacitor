@@ -2,7 +2,7 @@ class Capacity < ActiveRecord::Base
   belongs_to :project
   belongs_to :worker, class_name: "Account"
 
-  validates :amount, :quality, :worked_at, :do_not_bill, presence: true
+  validates :amount, :quality, :worked_at, presence: true
 
   after_create :update_capacity_remaining
 

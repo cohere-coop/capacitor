@@ -42,9 +42,9 @@ ActiveRecord::Schema.define(version: 20150510040128) do
     t.date     "worked_at"
     t.integer  "project_id"
     t.integer  "worker_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.boolean  "do_not_bill"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "do_not_bill", default: false
   end
 
   add_index "capacities", ["project_id"], name: "index_capacities_on_project_id", using: :btree
