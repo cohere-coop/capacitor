@@ -2,11 +2,21 @@ class CapacitiesController < ApplicationController
 
   def new
     @project = Project.find(params[:project_id])
+    @capacity = Capacity.new
   end
 
   def create
-    capacity = current_account.capacities.create(capacity_params.merge(project_id: params[:project_id]))
-    redirect_to root_path
+    @project = Project.find(params[:project_id])
+    @capacity = Capacity.new(capacity_params)
+    @capacity.worker = current_account
+    @capacity.project = @project
+
+    if @capacity.valid?
+      @capacity.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   private

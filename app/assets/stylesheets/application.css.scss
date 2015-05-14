@@ -27,3 +27,7 @@ body {
 body > header, body > main, body > footer {
   @include outer-container;
 }
+
+.field_with_errors {
+  display: inline-block;
+}
