@@ -14,6 +14,6 @@ class ApplicationController < ActionController::Base
     # Convert the analytics object back into a string so it can stay in the
     # cookie
     # { uuid: 1234, events: [ { name: "awesome event" } ] }
-    cookies[:analytics] = JSON.dump(analytics)
+    cookies[:analytics] = analytics.to_json
   end
 end
