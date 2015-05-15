@@ -4,10 +4,7 @@ class Capacity < ActiveRecord::Base
 
   validates :amount, :quality, :worked_at, presence: true
 
-
-
-
-
-
-
+  after_save do
+    project.calculate_remaining_capacity
+  end
 end

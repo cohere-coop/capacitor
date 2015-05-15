@@ -3,9 +3,7 @@ class Project < ActiveRecord::Base
 	has_many :capacities
 	has_many :workers, through: :capacities
 
-
   def calculate_remaining_capacity
-    update(capacity_remaining: total_capacity_owed-capacities.pluck(:amount).sum)
+    update(capacity_remaining: total_capacity_owed - capacities.pluck(:amount).sum)
   end
-
 end
