@@ -11,8 +11,7 @@ class CapacitiesController < ApplicationController
     @capacity.worker = current_account
     @capacity.project = @project
 
-    if @capacity.valid?
-      @capacity.save
+    if @capacity.save
       redirect_to root_path
     else
       render :new
