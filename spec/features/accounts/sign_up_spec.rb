@@ -12,5 +12,4 @@ feature "Sign up" do
     click_button "Sign up"
     expect(page).to have_content "Welcome"
   end
-
 end

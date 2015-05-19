@@ -11,5 +11,4 @@ feature "Sign out" do
     click_on "Sign out"
     expect(page).to have_content "Sign in"
   end
-
 end
