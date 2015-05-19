@@ -1,5 +1,6 @@
 deployment:
   production:
     branch: primary
-    heroku:
-      appname: capacitor-prod
+    commands:
+      - git push git@heroku.com:capacitor-prod.git $CIRCLE_SHA1:master
+      - heroku run rake db:migrate --app capacitor-prod
