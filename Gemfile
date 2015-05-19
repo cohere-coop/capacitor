@@ -1,22 +1,23 @@
 source 'https://rubygems.org'
 
-#Use wih html
-gem 'haml'
+gem 'rails', '4.2.0'
 
 #Bourbon/Neat/Bitters
 gem 'bourbon'
 gem 'neat'
 gem 'bitters'
-gem "bugsnag"
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'bugsnag'
+
+gem 'devise'
+
 # Use postgresql as the database for Active Record
 gem 'pg'
+
+gem 'haml'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -28,10 +29,13 @@ gem 'jquery-rails'
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
+
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
+
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'devise'
 
 group :production do
   gem 'rails_12factor'
@@ -47,12 +51,18 @@ end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'dotenv-rails', '2.0.1'
   gem 'byebug'
+
+  gem 'dotenv-rails', '2.0.1'
+
   gem 'rspec-rails', '~> 3.0'
+
   gem 'capybara'
+
   gem 'capybara-screenshot', '~> 1.0'
+
   gem 'factory_girl_rails'
+
   gem 'rspec-given', '~> 3.5'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
