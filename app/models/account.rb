@@ -11,5 +11,4 @@ class Account < ActiveRecord::Base
   def available_projects
     Project.all
   end
-
 end
