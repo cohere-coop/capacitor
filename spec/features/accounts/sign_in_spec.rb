@@ -1,22 +1,22 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Sign in' do
+feature "Sign in" do
   given(:account) { FactoryGirl.create(:account) }
 
-  scenario 'with correct credentials' do
+  scenario "with correct credentials" do
     visit new_account_session_path
-    fill_in 'Email', with: account.email
-    fill_in 'Password', with: account.password
-    click_button 'Log in'
-    expect(page).to have_content 'Welcome'
+    fill_in "Email", with: account.email
+    fill_in "Password", with: account.password
+    click_button "Log in"
+    expect(page).to have_content "Welcome"
   end
 
-  scenario 'with incorrect credentials' do
+  scenario "with incorrect credentials" do
 	  visit new_account_session_path
-	  fill_in 'Email', with: account.email
-	  fill_in 'Password', with: '654321'
-	  click_button 'Log in'
-	  expect(page).to have_content 'Sign in'
+	  fill_in "Email", with: account.email
+	  fill_in "Password", with: "654321"
+	  click_button "Log in"
+	  expect(page).to have_content "Sign in"
   end
 
 end
