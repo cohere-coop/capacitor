@@ -48,6 +48,8 @@ GEM
     bourbon (4.2.2)
       sass (~> 3.4)
       thor
+    bugsnag (2.8.6)
+      multi_json (~> 1.0)
     builder (3.2.2)
     byebug (4.0.5)
       columnize (= 0.9.0)
@@ -223,6 +225,7 @@ PLATFORMS
 DEPENDENCIES
   bitters
   bourbon
+  bugsnag
   byebug
   capybara
   capybara-screenshot (~> 1.0)
