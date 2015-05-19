@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
 
-  devise_for :accounts
+
+  devise_for :accounts, controllers: {
+    registrations: 'account/registrations',
+    sessions: 'account/sessions'
+  }
+
   root to: "pages#dashboard"
+
+  resources :projects, only: [:index] do
+    resources :capacities, only: [:new, :create]
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

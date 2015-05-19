@@ -11,18 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150501013816) do
+ActiveRecord::Schema.define(version: 20150519180259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
   create_table "accounts", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",                   null: false
+    t.string   "encrypted_password",     default: "",                   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,                    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -31,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150501013816) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "username"
+    t.uuid     "uuid",                   default: "uuid_generate_v4()"
   end
 
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true, using: :btree
@@ -42,8 +44,9 @@ ActiveRecord::Schema.define(version: 20150501013816) do
     t.date     "worked_at"
     t.integer  "project_id"
     t.integer  "worker_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "do_not_bill", default: false
   end
 
   add_index "capacities", ["project_id"], name: "index_capacities_on_project_id", using: :btree
@@ -52,8 +55,11 @@ ActiveRecord::Schema.define(version: 20150501013816) do
   create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.integer  "client_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "total_capacity_owed", default: 0
+    t.integer  "capacity_used",       default: 0
+    t.integer  "capacity_remaining",  default: 0
   end
 
   add_index "projects", ["client_id"], name: "index_projects_on_client_id", using: :btree

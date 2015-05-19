@@ -1,0 +1,12 @@
+nav {
+  @include media($large-screen-up) {
+    @include shift(3);
+    @include span-columns(4);
+  }
+  text-align: center;
+  a {
+    padding-left: $base-spacing;
+    padding-right: $base-spacing;
+  }
+}
+
