@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Logging time' do
+feature "Logging time" do
   include_context "account login"
 
   Given!(:project_to_work_on) { FactoryGirl.create(:project) }
@@ -14,12 +14,26 @@ feature 'Logging time' do
 
   context "when tracking time as billable" do
     When { click_link_or_button "Log Capacity" }
-    Then { expect(Capacity.find_by(worker: current_account, amount: 4, quality: 4, worked_at: "2015-05-06", do_not_bill: false, project: project_to_work_on)).to be_present }
+    Then do
+      expect(Capacity.find_by(worker: current_account,
+                              amount: 4,
+                              quality: 4,
+                              worked_at: "2015-05-06",
+                              do_not_bill: false,
+                              project: project_to_work_on)).to be_present
+    end
   end
 
   context "when tracking time as do not bill" do
-    When { check("Do Not Bill")}
+    When { check("Do Not Bill") }
     When { click_link_or_button "Log Capacity" }
-    Then { expect(Capacity.find_by(worker: current_account, amount: 4, quality: 4, worked_at: "2015-05-06", do_not_bill: true, project: project_to_work_on)).to be_present }
+    Then do
+      expect(Capacity.find_by(worker: current_account,
+                              amount: 4,
+                              quality: 4,
+                              worked_at: "2015-05-06",
+                              do_not_bill: true,
+                              project: project_to_work_on)).to be_present
+    end
   end
 end
