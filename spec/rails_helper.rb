@@ -1,14 +1,14 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV["RAILS_ENV"] ||= 'test'
-require 'spec_helper'
+ENV["RAILS_ENV"] ||= "test"
+require "spec_helper"
 require File.expand_path("../../config/environment", __FILE__)
-require 'rspec/rails'
-require 'capybara/rails'
-require 'capybara-screenshot/rspec'
+require "rspec/rails"
+require "capybara/rails"
+require "capybara-screenshot/rspec"
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
-require_relative 'support/shared_context'
+require_relative "support/shared_context"
 
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
