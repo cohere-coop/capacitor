@@ -11,15 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519180259) do
+ActiveRecord::Schema.define(version: 20150520171142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
-  create_table "accounts", force: :cascade do |t|
+  create_table "accounts", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "name",                   default: "",                   null: false
+    t.string   "username",               default: "",                   null: false
     t.string   "email",                  default: "",                   null: false
-    t.string   "encrypted_password",     default: "",                   null: false
+    t.uuid     "uuid",                   default: "uuid_generate_v4()"
+    t.string   "encrypted_password",                                    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -28,43 +31,53 @@ ActiveRecord::Schema.define(version: 20150519180259) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
-    t.string   "username"
-    t.uuid     "uuid",                   default: "uuid_generate_v4()"
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
   end
 
+  add_index "accounts", ["created_at"], name: "index_accounts_on_created_at", using: :btree
+  add_index "accounts", ["current_sign_in_at"], name: "index_accounts_on_current_sign_in_at", using: :btree
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true, using: :btree
+  add_index "accounts", ["last_sign_in_at"], name: "index_accounts_on_last_sign_in_at", using: :btree
+  add_index "accounts", ["remember_created_at"], name: "index_accounts_on_remember_created_at", using: :btree
+  add_index "accounts", ["reset_password_sent_at"], name: "index_accounts_on_reset_password_sent_at", using: :btree
   add_index "accounts", ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true, using: :btree
+  add_index "accounts", ["updated_at"], name: "index_accounts_on_updated_at", using: :btree
+  add_index "accounts", ["username"], name: "index_accounts_on_username", unique: true, using: :btree
 
-  create_table "capacities", force: :cascade do |t|
-    t.integer  "amount"
-    t.integer  "quality"
-    t.date     "worked_at"
-    t.integer  "project_id"
-    t.integer  "worker_id"
+  create_table "capacities", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.integer  "amount",      default: 0,     null: false
+    t.integer  "quality",                     null: false
+    t.boolean  "do_not_bill", default: false, null: false
+    t.uuid     "project_id",                  null: false
+    t.uuid     "account_id",                  null: false
+    t.datetime "worked_at",                   null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.boolean  "do_not_bill", default: false
   end
 
+  add_index "capacities", ["account_id"], name: "index_capacities_on_account_id", using: :btree
+  add_index "capacities", ["amount"], name: "index_capacities_on_amount", using: :btree
+  add_index "capacities", ["created_at"], name: "index_capacities_on_created_at", using: :btree
   add_index "capacities", ["project_id"], name: "index_capacities_on_project_id", using: :btree
-  add_index "capacities", ["worker_id"], name: "index_capacities_on_worker_id", using: :btree
+  add_index "capacities", ["quality"], name: "index_capacities_on_quality", using: :btree
+  add_index "capacities", ["updated_at"], name: "index_capacities_on_updated_at", using: :btree
+  add_index "capacities", ["worked_at"], name: "index_capacities_on_worked_at", using: :btree
 
-  create_table "projects", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "client_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.integer  "total_capacity_owed", default: 0
-    t.integer  "capacity_used",       default: 0
-    t.integer  "capacity_remaining",  default: 0
+  create_table "projects", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "name",                default: "", null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "total_capacity_owed", default: 0,  null: false
+    t.integer  "capacity_used",       default: 0,  null: false
+    t.integer  "capacity_remaining",  default: 0,  null: false
   end
 
-  add_index "projects", ["client_id"], name: "index_projects_on_client_id", using: :btree
+  add_index "projects", ["capacity_remaining"], name: "index_projects_on_capacity_remaining", using: :btree
+  add_index "projects", ["capacity_used"], name: "index_projects_on_capacity_used", using: :btree
+  add_index "projects", ["created_at"], name: "index_projects_on_created_at", using: :btree
+  add_index "projects", ["name"], name: "index_projects_on_name", using: :btree
+  add_index "projects", ["total_capacity_owed"], name: "index_projects_on_total_capacity_owed", using: :btree
+  add_index "projects", ["updated_at"], name: "index_projects_on_updated_at", using: :btree
 
-  add_foreign_key "capacities", "accounts", column: "worker_id"
-  add_foreign_key "capacities", "projects"
-  add_foreign_key "projects", "accounts", column: "client_id"
 end
