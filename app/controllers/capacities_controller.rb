@@ -7,7 +7,7 @@ class CapacitiesController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @capacity = Capacity.new(capacity_params)
-    @capacity.worker = current_account
+    @capacity.account = current_account
     @capacity.project = @project
 
     if @capacity.save
