@@ -1,6 +1,8 @@
 require: rubocop-rspec
 AllCops:
   Exclude:
+    # Default ignore for circle ci
+    - "vendor/**/*"
     - "db/schema.rb"
     - "bin/**"
     # Silly thing is "too big"
