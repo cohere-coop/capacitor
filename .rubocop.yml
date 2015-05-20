@@ -1,10 +1,10 @@
 AllCops:
   Exclude:
-    - 'db/schema.rb'
-    - 'bin/**'
+    - "db/schema.rb"
+    - "bin/**"
 
 Style/StringLiterals:
-  EnforcedStyle: 'double_quotes'
+  EnforcedStyle: "double_quotes"
 
 Style/Documentation:
   Enabled: false
