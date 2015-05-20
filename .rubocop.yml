@@ -11,12 +11,20 @@ AllCops:
     # REVIEW: Could be better, deal with later.
     - "app/controllers/application_controller.rb"
   RunRailsCops: true
+  DisplayCopNames: true
+  DisplayStyleGuide: true
 
 Style/StringLiterals:
   EnforcedStyle: "double_quotes"
 
 Style/Documentation:
   Enabled: false
+
+Style/ExtraSpacing:
+  Enabled: true
+
+Style/MethodCalledOnDoEndBlock:
+  Enabled: true
 
 Metrics/LineLength:
   Max: 120
