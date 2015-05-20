@@ -1,3 +1,3 @@
 <%- if model.errors.has_key?(field)%>
-  <p class="error"><%=field.to_s.humanize%> <%=model.errors[field].join('<br />')%></p>
+  <p class="error"><%=field.to_s.humanize%> <%=model.errors[field].join("<br />")%></p>
 <%- end %>
