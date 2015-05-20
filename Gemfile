@@ -82,4 +82,5 @@ group :development, :test do
 
   # Catches style issues
   gem "rubocop", require: false
+  gem "rubocop-rspec", require: false
 end
