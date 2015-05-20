@@ -17,9 +17,10 @@ class CapacitiesController < ApplicationController
     end
   end
 
-  private
+
 
   def capacity_params
     params.require(:capacity).permit(:quality, :amount, :worked_at, :do_not_bill)
   end
+  private "capacity_params"
 end
