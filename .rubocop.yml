@@ -3,6 +3,7 @@ AllCops:
   Exclude:
     - "db/schema.rb"
     - "bin/**"
+  RunRailsCops: true
 
 Style/StringLiterals:
   EnforcedStyle: "double_quotes"
