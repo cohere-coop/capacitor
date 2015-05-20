@@ -1,5 +1,4 @@
 class Account::SessionsController < Devise::SessionsController
-
   # POST /resource/sign_in
   def create
     super do |account_login|
