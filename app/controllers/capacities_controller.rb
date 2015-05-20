@@ -1,5 +1,4 @@
 class CapacitiesController < ApplicationController
-
   def new
     @project = Project.find(params[:project_id])
     @capacity = Capacity.new
