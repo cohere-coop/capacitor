@@ -81,6 +81,6 @@ group :development, :test do
   gem "spring"
 
   # Catches style issues
-  gem "rubocop", require: false
-  gem "rubocop-rspec", require: false
+  gem "rubocop"
+  gem "rubocop-rspec"
 end
