@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
     analytics[:uuid] = current_account.uuid if current_account
     analytics[:events] ||= []
-    analytics[:events].push({ name: event_name })
+    analytics[:events].push(name: event_name)
 
     # Convert the analytics object back into a string so it can stay in the
     # cookie
