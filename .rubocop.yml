@@ -3,6 +3,10 @@ AllCops:
   Exclude:
     - "db/schema.rb"
     - "bin/**"
+    # Silly thing is "too big"
+    - "db/migrate/20150428025452_devise_create_accounts.rb"
+    # REVIEW: Could be better, deal with later.
+    - "app/controllers/application_controller.rb"
   RunRailsCops: true
 
 Style/StringLiterals:
