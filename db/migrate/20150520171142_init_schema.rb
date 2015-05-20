@@ -36,9 +36,8 @@ class InitSchema < ActiveRecord::Migration
       t.string "name", null: false, default: "", index: true
       t.datetime "created_at", null: false, index: true
       t.datetime "updated_at", null: false, index: true
-      t.integer "total_capacity_owed", null: false, default: 0, index: true
-      t.integer "capacity_used", null: false, default: 0, index: true
-      t.integer "capacity_remaining", null: false, default: 0, index: true
+      t.integer "total", null: false, default: 0, index: true
+      t.integer "remaining", null: false, default: 0, index: true
     end
   end
 

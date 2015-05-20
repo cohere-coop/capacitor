@@ -65,19 +65,17 @@ ActiveRecord::Schema.define(version: 20150520171142) do
   add_index "capacities", ["worked_at"], name: "index_capacities_on_worked_at", using: :btree
 
   create_table "projects", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.string   "name",                default: "", null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.integer  "total_capacity_owed", default: 0,  null: false
-    t.integer  "capacity_used",       default: 0,  null: false
-    t.integer  "capacity_remaining",  default: 0,  null: false
+    t.string   "name",       default: "", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "total",      default: 0,  null: false
+    t.integer  "remaining",  default: 0,  null: false
   end
 
-  add_index "projects", ["capacity_remaining"], name: "index_projects_on_capacity_remaining", using: :btree
-  add_index "projects", ["capacity_used"], name: "index_projects_on_capacity_used", using: :btree
   add_index "projects", ["created_at"], name: "index_projects_on_created_at", using: :btree
   add_index "projects", ["name"], name: "index_projects_on_name", using: :btree
-  add_index "projects", ["total_capacity_owed"], name: "index_projects_on_total_capacity_owed", using: :btree
+  add_index "projects", ["remaining"], name: "index_projects_on_remaining", using: :btree
+  add_index "projects", ["total"], name: "index_projects_on_total", using: :btree
   add_index "projects", ["updated_at"], name: "index_projects_on_updated_at", using: :btree
 
 end

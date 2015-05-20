@@ -3,7 +3,7 @@ require "rails_helper"
 feature "update capacity remaining" do
   include_context "account login"
 
-  Given!(:project) { FactoryGirl.create(:project, total_capacity_owed: 10) }
+  Given!(:project) { FactoryGirl.create(:project, total: 10) }
 
   When { click_link_or_button project.name }
 
