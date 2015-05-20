@@ -15,7 +15,7 @@ feature "Logging time" do
   context "when tracking time as billable" do
     When { click_link_or_button "Log Capacity" }
     Then do
-      expect(Capacity.find_by(worker: current_account,
+      expect(Log.find_by(account: current_account,
                               amount: 4,
                               quality: 4,
                               worked_at: "2015-05-06",
@@ -28,7 +28,7 @@ feature "Logging time" do
     When { check("Do Not Bill") }
     When { click_link_or_button "Log Capacity" }
     Then do
-      expect(Capacity.find_by(worker: current_account,
+      expect(Log.find_by(account: current_account,
                               amount: 4,
                               quality: 4,
                               worked_at: "2015-05-06",
