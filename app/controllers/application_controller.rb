@@ -16,4 +16,5 @@ class ApplicationController < ActionController::Base
     # { uuid: 1234, events: [ { name: "awesome event" } ] }
     cookies[:analytics] = analytics.to_json
   end
+  private "track_event"
 end
