@@ -1,0 +1,27 @@
+account:
+  -
+    name: "Zee Spencer"
+    email: "zee@example.com"
+    password: "password"
+  -
+    name: "Diana Hilton"
+    email: "diana@example.com"
+    password: "password"
+
+project:
+  -
+    name: "Capacitor"
+    capacity: 20
+  -
+    name: "Transistor"
+    capacity: 500
+
+log:
+  -
+    amount: 5
+    quality: 4
+    worked_at: "2014-05-05"
+  -
+    amount: 10
+    quality: 2
+    worked_at: "2015-06-06"
