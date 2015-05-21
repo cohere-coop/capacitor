@@ -29,6 +29,9 @@ gem "bugsnag", "2.8.6"
 group :production do
   # Does some special heroku magic
   gem "rails_12factor", "0.0.3"
+
+  # A concurrent web server
+  gem "puma", "2.11.3"
 end
 
 group :development, :test do
