@@ -45,7 +45,8 @@ RSpec.describe Account, type: :model do
 
       context "with a non-unique email" do
         it "doesn't allow non-unique emails" do
-          expect { account }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed")
+          FactoryGirl.create(:account, name: name, email: email)
+          expect { account }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Email has already been taken")
         end
       end
     end
