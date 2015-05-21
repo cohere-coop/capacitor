@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :account, aliases: [:client, :worker] do
     sequence(:email) { |i| "account-#{i}@example.com" }
+    name "test"
     password "password"
   end
 end
