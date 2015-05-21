@@ -1,8 +1,8 @@
 class Project < ActiveRecord::Base
-  has_many :capacities
-  has_many :accounts, through: :capacities
+  has_many :logs
+  has_many :accounts, through: :logs
 
-  def calculate_remaining_capacity
-    update(used: capacities.pluck(:amount).sum)
+  def calculate_capacity_logged
+    update(capacity_logged: logs.pluck(:amount).sum)
   end
 end

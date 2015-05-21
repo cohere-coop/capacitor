@@ -3,9 +3,7 @@
 FactoryGirl.define do
   factory :project do
     sequence(:name) { |i| "Project #{i}" }
-    client
-    total 15
-    used 0
-    remaining 0
+    capacity 15
+    capacity_logged 0
   end
 end

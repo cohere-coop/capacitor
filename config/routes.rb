@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   }
 
   resources :projects, only: [:index] do
-    resources :capacities, only: [:new, :create]
+    resources :logs, only: [:new, :create]
   end
 
   root to: "pages#dashboard"

@@ -21,7 +21,7 @@ class InitSchema < ActiveRecord::Migration
       t.datetime "updated_at", null: false, index: true
     end
 
-    create_table "capacities", id: :uuid do |t|
+    create_table "logs", id: :uuid do |t|
       t.integer "amount", null: false, default: 0, index: true
       t.integer "quality", null: false, index: true
       t.boolean "do_not_bill", null: false, default: false
@@ -36,8 +36,8 @@ class InitSchema < ActiveRecord::Migration
       t.string "name", null: false, default: "", index: true
       t.datetime "created_at", null: false, index: true
       t.datetime "updated_at", null: false, index: true
-      t.integer "total", null: false, default: 0, index: true
-      t.integer "used", null: false, default: 0, index: true
+      t.integer "capacity", null: false, default: 0, index: true
+      t.integer "capacity_logged", null: false, default: 0, index: true
     end
   end
 

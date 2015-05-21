@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20150520171142) do
   add_index "accounts", ["updated_at"], name: "index_accounts_on_updated_at", using: :btree
   add_index "accounts", ["username"], name: "index_accounts_on_username", unique: true, using: :btree
 
-  create_table "capacities", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+  create_table "logs", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.integer  "amount",      default: 0,     null: false
     t.integer  "quality",                     null: false
     t.boolean  "do_not_bill", default: false, null: false
@@ -56,26 +56,26 @@ ActiveRecord::Schema.define(version: 20150520171142) do
     t.datetime "updated_at",                  null: false
   end
 
-  add_index "capacities", ["account_id"], name: "index_capacities_on_account_id", using: :btree
-  add_index "capacities", ["amount"], name: "index_capacities_on_amount", using: :btree
-  add_index "capacities", ["created_at"], name: "index_capacities_on_created_at", using: :btree
-  add_index "capacities", ["project_id"], name: "index_capacities_on_project_id", using: :btree
-  add_index "capacities", ["quality"], name: "index_capacities_on_quality", using: :btree
-  add_index "capacities", ["updated_at"], name: "index_capacities_on_updated_at", using: :btree
-  add_index "capacities", ["worked_at"], name: "index_capacities_on_worked_at", using: :btree
+  add_index "logs", ["account_id"], name: "index_logs_on_account_id", using: :btree
+  add_index "logs", ["amount"], name: "index_logs_on_amount", using: :btree
+  add_index "logs", ["created_at"], name: "index_logs_on_created_at", using: :btree
+  add_index "logs", ["project_id"], name: "index_logs_on_project_id", using: :btree
+  add_index "logs", ["quality"], name: "index_logs_on_quality", using: :btree
+  add_index "logs", ["updated_at"], name: "index_logs_on_updated_at", using: :btree
+  add_index "logs", ["worked_at"], name: "index_logs_on_worked_at", using: :btree
 
   create_table "projects", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.string   "name",       default: "", null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "total",      default: 0,  null: false
-    t.integer  "remaining",  default: 0,  null: false
+    t.string   "name",            default: "", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "capacity",        default: 0,  null: false
+    t.integer  "capacity_logged", default: 0,  null: false
   end
 
+  add_index "projects", ["capacity"], name: "index_projects_on_capacity", using: :btree
+  add_index "projects", ["capacity_logged"], name: "index_projects_on_capacity_logged", using: :btree
   add_index "projects", ["created_at"], name: "index_projects_on_created_at", using: :btree
   add_index "projects", ["name"], name: "index_projects_on_name", using: :btree
-  add_index "projects", ["remaining"], name: "index_projects_on_remaining", using: :btree
-  add_index "projects", ["total"], name: "index_projects_on_total", using: :btree
   add_index "projects", ["updated_at"], name: "index_projects_on_updated_at", using: :btree
 
 end
