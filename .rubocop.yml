@@ -7,8 +7,8 @@ AllCops:
     - "db/schema.rb"
     - "bin/**"
     # Silly thing is "too big"
-    # REVIEW: Could be better, deal with later.
     - "db/migrate/20150520171142_init_schema.rb"
+    # REVIEW: track_event() could be better, deal with later.
     - "app/controllers/application_controller.rb"
   RunRailsCops: true
   DisplayCopNames: true
