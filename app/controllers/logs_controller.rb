@@ -17,8 +17,6 @@ class LogsController < ApplicationController
     end
   end
 
-
-
   def log_params
     params.require(:log).permit(:quality, :amount, :worked_at, :do_not_bill)
   end
