@@ -8,12 +8,16 @@
         <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
       </div>
       <div class="card-header">
-        First Card
+       <%= link_to project.name, new_project_log_path(project) %>
       </div>
       <div class="card-copy">
-        <p>  
-          <%= link_to project.name, new_project_log_path(project) %> <%= project.capacity %>, Capacity Logged: <%= project.capacity_logged %>
-        </p>
+        <div class="stats">
+          <ul>
+            <li><%= project.capacity %><span>Capacity</span></li>
+            <li><%= project.capacity_remaining%><span>Capacity Remaining</span></li>
+            <li>923<span>Team Members</span></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

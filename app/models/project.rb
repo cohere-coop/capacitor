@@ -5,4 +5,8 @@ class Project < ActiveRecord::Base
   def calculate_capacity_logged
     update(capacity_logged: logs.pluck(:amount).sum)
   end
+  def capacity_remaining
+    capacity - capacity_logged
+  end
+
 end
