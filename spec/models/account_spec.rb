@@ -28,7 +28,8 @@ RSpec.describe Account, type: :model do
       end
 
       it "detects lack of name" do
-        expect { account }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Name can't be blank")
+        expect { account }.to raise_error(ActiveRecord::RecordInvalid,
+                                          "Validation failed: Name can't be blank")
       end
     end
 
@@ -39,14 +40,16 @@ RSpec.describe Account, type: :model do
         end
 
         it "detects lack of email" do
-          expect { account }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Email can't be blank")
+          expect { account }.to raise_error(ActiveRecord::RecordInvalid,
+                                            "Validation failed: Email can't be blank")
         end
       end
 
       context "with a non-unique email" do
         it "doesn't allow non-unique emails" do
           FactoryGirl.create(:account, name: name, email: email)
-          expect { account }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Email has already been taken")
+          expect { account }.to raise_error(ActiveRecord::RecordInvalid,
+                                            "Validation failed: Email has already been taken")
         end
       end
     end
