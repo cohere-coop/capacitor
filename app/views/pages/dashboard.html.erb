@@ -1,5 +1,20 @@
 <h1>Welcome to Capacitor!</h1>
 
 <%- @projects.each do |project| %>
-  <%= link_to project.name, new_project_log_path(project) %> <%= project.capacity %>, Capacity Logged: <%= project.capacity_logged %>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-image">
+        <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
+      </div>
+      <div class="card-header">
+        First Card
+      </div>
+      <div class="card-copy">
+        <p>  
+          <%= link_to project.name, new_project_log_path(project) %> <%= project.capacity %>, Capacity Logged: <%= project.capacity_logged %>
+        </p>
+      </div>
+    </div>
+  </div>
 <% end %>
