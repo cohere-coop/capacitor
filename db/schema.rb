@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20150520171142) do
     t.boolean  "do_not_bill", default: false, null: false
     t.uuid     "project_id",                  null: false
     t.uuid     "account_id",                  null: false
-    t.datetime "worked_at",                   null: false
+    t.date     "worked_at",                   null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end

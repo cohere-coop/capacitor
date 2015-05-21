@@ -27,7 +27,7 @@ class InitSchema < ActiveRecord::Migration
       t.boolean "do_not_bill", null: false, default: false
       t.uuid "project_id", null: false, index: true
       t.uuid "account_id", null: false, index: true
-      t.datetime "worked_at", null: false, index: true
+      t.date "worked_at", null: false, index: true
       t.datetime "created_at", null: false, index: true
       t.datetime "updated_at", null: false, index: true
     end
