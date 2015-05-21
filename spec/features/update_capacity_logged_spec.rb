@@ -1,9 +1,9 @@
 require "rails_helper"
 
-feature "update capacity remaining" do
+feature "update capacity logged" do
   include_context "account login"
 
-  Given!(:project) { FactoryGirl.create(:project, total_capacity_owed: 10) }
+  Given!(:project) { FactoryGirl.create(:project, capacity: 10) }
 
   When { click_link_or_button project.name }
 
@@ -12,5 +12,5 @@ feature "update capacity remaining" do
   When { fill_in("Worked at", with: "2015-05-06") }
 
   When { click_link_or_button "Log Capacity" }
-  Then { expect(project.reload.capacity_remaining).to eq(6) }
+  Then { expect(project.reload.capacity_logged).to eq(4) }
 end
