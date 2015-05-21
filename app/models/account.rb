@@ -11,6 +11,8 @@ class Account < ActiveRecord::Base
   has_many :owned_projects, class_name: "Project", foreign_key: :client_id
 
   validates :name, presence: true
+  validates :email, uniqueness: true
+
   def available_projects
     Project.all
   end

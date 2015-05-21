@@ -28,7 +28,9 @@ RSpec.describe Account, type: :model do
       end
 
       it "detects lack of name" do
-        expect{account}.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Name can't be blank")
+        expect { account }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Name can't be blank")
+      end
+    end
 
     describe "email" do
       context "with a blank email" do
@@ -40,6 +42,11 @@ RSpec.describe Account, type: :model do
           expect { account }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Email can't be blank")
         end
       end
+
+      context "with a non-unique email" do
+        it "doesn't allow non-unique emails" do
+          expect { account }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed")
+        end
       end
     end
   end
