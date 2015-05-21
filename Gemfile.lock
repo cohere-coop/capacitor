@@ -124,6 +124,7 @@ GEM
     rack (1.6.0)
     rack-test (0.6.3)
       rack (>= 1.0)
+    rack-timeout (0.2.4)
     rails (4.2.0)
       actionmailer (= 4.2.0)
       actionpack (= 4.2.0)
@@ -245,6 +246,7 @@ DEPENDENCIES
   neat
   pg (= 0.18.2)
   puma (= 2.11.3)
+  rack-timeout (= 0.2.4)
   rails (= 4.2.0)
   rails_12factor (= 0.0.3)
   rspec-given (= 3.5.0)

@@ -26,6 +26,9 @@ gem "sdoc", "0.4.0", group: :doc
 # Used to catch errors in production
 gem "bugsnag", "2.8.6"
 
+# This gem makes rack requests time out...because puma doesn't
+gem "rack-timeout", "0.2.4"
+
 group :production do
   # Does some special heroku magic
   gem "rails_12factor", "0.0.3"
