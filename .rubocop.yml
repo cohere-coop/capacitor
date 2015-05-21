@@ -7,8 +7,8 @@ AllCops:
     - "db/schema.rb"
     - "bin/**"
     # Silly thing is "too big"
-    - "db/migrate/20150428025452_devise_create_accounts.rb"
     # REVIEW: Could be better, deal with later.
+    - "db/migrate/20150520171142_init_schema.rb"
     - "app/controllers/application_controller.rb"
   RunRailsCops: true
   DisplayCopNames: true
