@@ -2,10 +2,6 @@ source "https://rubygems.org"
 
 gem "rails", "4.2.0"
 
-gem "bourbon"
-gem "neat"
-gem "bitters"
-
 # Used to catch errors in production
 gem "bugsnag"
 
@@ -66,3 +62,7 @@ group :development, :test do
   gem "rubocop"
   gem "rubocop-rspec"
 end
+
+gem "bourbon"
+gem "neat"
+gem "bitters"
