@@ -1,8 +1,6 @@
 require "rails_helper"
 
 feature "Sign up" do
-  given(:account) { FactoryGirl.create(:account) }
-
   scenario "with valid name, email, password" do
     visit new_account_registration_path
     fill_in "Name", with: "Test Tester"
