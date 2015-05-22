@@ -70,6 +70,9 @@ group :development, :test do
 
   # Specifically pulls in cops for rspec
   gem "rubocop-rspec", "1.3.0"
+
+  # This turns off the noisy asset logs
+  gem "quiet_assets"
 end
 
 gem "bourbon"

@@ -12,14 +12,16 @@
  *
  *= require_self
  */
+@import "normalize";
 @import "bourbon";
-
-
-@import "variables";
 @import "grid-settings";
 @import "neat";
-@import "base/base";
+@import "bitters/base";
+
+@import "variables";
 @import "nav";
+@import "cards";
+@import "stats";
 
 body {
   background-color: $red;
@@ -30,4 +32,8 @@ body > header, body > main, body > footer {
 
 .field_with_errors {
   display: inline-block;
+}
+
+#projects {
+  color: $invert-font-color;
 }
