@@ -12,10 +12,10 @@ when "production"
 when "development"
   seeds = YAML.load_file(Rails.root.join("db", "seeds.yml"))
   accounts = seeds["account"].map do |seed|
-    Account.create!(seed)
+    Account.create_with(seed).find_or_create_by(email: seed["email"])
   end
   projects = seeds["project"].map do |seed|
-    Project.create!(seed)
+    Project.create_with(seed).find_or_create_by(name: seed["name"])
   end
   seeds["log"].map do |seed|
     Log.create!(seed.merge(account: accounts.first, project: projects.first))
