@@ -11,6 +11,9 @@ gem "pg", "0.18.2"
 # Use .haml for views
 gem "haml", "4.0.6"
 
+# Provides a wrapper object for models
+gem "draper", "1.4.0"
+
 # Use SCSS for stylesheets
 gem "sass-rails", "5.0.3"
 
@@ -78,3 +81,4 @@ end
 gem "bourbon"
 gem "neat"
 gem "bitters"
+gem "refills"
