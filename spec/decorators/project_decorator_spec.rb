@@ -1,11 +1,9 @@
 require "spec_helper"
 
-describe ProjectDecorator do
-  let(:project) { FactoryGirl.(:project).decorate }
+escribe ProjectDecorator do
+  let(:project) { FactoryGirl.build_stubbed(:project).decorate }
 
-  it "returns decorated project" do
-    
-
+  it "returns decorated project link " do
+    assigns(:project).should_be_decorated_by ProjectDecorator
   end
-
 end
