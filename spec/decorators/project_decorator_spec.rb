@@ -1,5 +1,6 @@
 require "rails_helper"
 
+
 describe ProjectDecorator do
   let(:project) { instance_double(Project) }
   let(:decorator) { ProjectDecorator.new(project) }
