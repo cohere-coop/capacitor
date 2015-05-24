@@ -8,7 +8,7 @@ feature "Logging time" do
 
   Given!(:project) { FactoryGirl.create(:project) }
 
-  When { click_link_or_button project.name }
+  When { click_link_or_button "#{project.id}_new_log_entry" }
 
   When { select("1 half-day", from: "Amount") }
   When { select("4", from: "Quality") }

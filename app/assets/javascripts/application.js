@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require cookie-monster
 //= require_tree .
+
+$('.projects .project').click(function(event) {
+  window.location = $(event.target).data().href
+})

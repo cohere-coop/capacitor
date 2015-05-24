@@ -18,19 +18,16 @@ $base-z-index: 0;
 // Colors
 $red: #F60018;
 $yellow: #FFBC44;
-$dark-gray: #333;
-$medium-gray: #999;
-$light-gray: #ddd;
 $white: #fff;
 
 // Font Colors
 $base-background-color: $white;
 $base-font-color: $white;
-$invert-font-color: $dark-gray;
+$invert-font-color: darken($red, 90%);
 $action-color: $yellow;
 
 // Border
-$base-border-color: $light-gray;
+$base-border-color: $yellow;
 $base-border: 1px solid $base-border-color;
 
 // Forms

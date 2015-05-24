@@ -1,32 +1,15 @@
 <h1>Welcome to Capacitor!</h1>
 
-
-<section id="projects" class="cards">
+<section id="projects">
   <%- @projects.each do |project| %>
-    <section class="card">
-      <div class="card-image">
-        <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
-      </div>
-
-      <header class="card-header">
-        <%= link_to project.name, new_project_log_path(project) %>
+    <article>
+      <%= link_to_new_log_entry(project) %>
+      <header>
+        <h3><%= project.name %></h3>
       </header>
-
-      <article class="card-copy">
-        <data class="stats">
-          <ul class="dataset">
-            <li class="data">
-              <%= project.capacity_remaining%>
-              <span class="label">Capacity Remaining</span>
-            </li>
-
-            <li class="data">
-              <%= project.capacity %>
-              <span class="label">Capacity Total</span>
-            </li>
-          </ul>
-        </data>
-      </article>
-    </section>
+      <main>
+        <p>Capacity Remaining: <%=project.capacity_remaining %></p>
+      </main>
+    </article>
   <% end %>
 </section>
