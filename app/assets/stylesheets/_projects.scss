@@ -1,28 +1,16 @@
-.projects {
+#projects {
   @include outer-container;
 
-  .project {
-    $base-border-radius: 3px !default;
-    $base-background-color: white !default;
-    $project-border-color: $base-border-color;
-    $project-border: 1px solid $project-border-color;
-    $project-background: lighten($project-border-color, 10%);
-    $project-hover-background: lighten($project-background, 5%);
-    @include span-columns(3);
-    @include omega(4n);
-    background-color: $project-background;
-    border-radius: $base-border-radius;
-    border: $project-border;
-    box-shadow: 0 2px 4px darken($base-background-color, 10%);
-    cursor: pointer;
-    padding: 1em;
-    .details {
-
+  article {
+    h3 {
+      text-align: center;
     }
-    .title {
-
+    background-color: $yellow;
+    @include span-columns(4);
+    @include omega(3n);
+    position: relative;
+    a {
+      @extend .fill-hw;
     }
   }
-
-
 }
