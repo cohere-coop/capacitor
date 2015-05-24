@@ -3,9 +3,9 @@
 <section id="projects">
   <%- @projects.each do |project| %>
     <article>
-      <%= link_to "", new_project_log_path(project) %>
+      <%= link_to_new_log_entry(project) %>
       <header>
-        <h3><%= project.name %>
+        <h3><%= project.name %></h3>
       </header>
       <main>
         <p>Capacity Remaining: <%=project.capacity_remaining %></p>
