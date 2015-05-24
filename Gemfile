@@ -33,7 +33,7 @@ gem "rack-timeout", "0.2.4"
 gem "bourbon", "4.2.3"
 
 # Hooray for grid systems!
-gem "neat",    "1.7.2"
+gem "neat", "1.7.2"
 
 # And some basic prettiness
 gem "bitters", "1.0.0"
