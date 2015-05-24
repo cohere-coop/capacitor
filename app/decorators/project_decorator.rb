@@ -2,6 +2,7 @@ class ProjectDecorator < Draper::Decorator
   delegate_all
 
   def href
+    binding.pry
     helpers.projects_path(object)
   end
 
