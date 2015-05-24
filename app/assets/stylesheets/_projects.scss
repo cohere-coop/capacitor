@@ -2,6 +2,10 @@
   @include outer-container;
 
   article {
+    h3 {
+      text-align: center;
+    }
+    background-color: $yellow;
     @include span-columns(4);
     @include omega(3n);
     position: relative;
