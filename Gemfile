@@ -32,6 +32,15 @@ gem "bugsnag", "2.8.6"
 # This gem makes rack requests time out...because puma doesn't
 gem "rack-timeout", "0.2.4"
 
+# A lightweight compass alternative
+gem "bourbon", "4.2.3"
+
+# Hooray for grid systems!
+gem "neat", "1.7.2"
+
+# And some basic prettiness
+gem "bitters", "1.0.0"
+
 group :production do
   # Does some special heroku magic
   gem "rails_12factor", "0.0.3"
@@ -77,8 +86,3 @@ group :development, :test do
   # This turns off the noisy asset logs
   gem "quiet_assets"
 end
-
-gem "bourbon"
-gem "neat"
-gem "bitters"
-gem "refills"
