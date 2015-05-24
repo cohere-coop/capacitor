@@ -18,6 +18,7 @@
 @import "neat";
 @import "bitters/base";
 
+@import "lib";
 @import "variables";
 @import "nav";
 @import "projects";
@@ -32,8 +33,4 @@ body > header, body > main, body > footer {
 
 .field_with_errors {
   display: inline-block;
-}
-
-#projects {
-  color: $invert-font-color;
 }

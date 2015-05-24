@@ -1,28 +1,16 @@
 <h1>Welcome to Capacitor!</h1>
 
 
-<ol id="projects" class="projects">
+<section id="projects">
   <%- @projects.each do |project| %>
-    <li class="project" data-href="<%= project.href %>">
-      <header class="title">
-        <%= link_to project.name, new_project_log_path(project) %>
+    <article>
+      <%= link_to_new_log_entry(project) %>
+      <header>
+        <h3><%= project.name %></h3>
       </header>
-
-      <section class="details">
-        <p class="stats">
-          <ul class="dataset">
-            <li class="data">
-              <%= project.capacity_remaining%>
-              <span class="label">Capacity Remaining</span>
-            </li>
-
-            <li class="data">
-              <%= project.capacity %>
-              <span class="label">Capacity Total</span>
-            </li>
-          </ul>
-        </p>
-      </section>
-    </li>
+      <main>
+        <p>Capacity Remaining: <%=project.capacity_remaining %></p>
+      </main>
+    </article>
   <% end %>
-</ol>
+</section>

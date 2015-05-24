@@ -29,6 +29,7 @@ label {
 #{$all-text-inputs},
 select[multiple=multiple],
 textarea {
+  color: $invert-font-color;
   background-color: $base-background-color;
   border: $base-border;
   border-radius: $base-border-radius;
