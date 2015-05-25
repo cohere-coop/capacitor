@@ -8,7 +8,7 @@
         <h3><%= project.name %></h3>
       </header>
       <main>
-        <p>Capacity Remaining: <%=project.capacity_remaining %></p>
+        <p><%= project.infinite_capacity? %></p>
       </main>
     </article>
   <% end %>
