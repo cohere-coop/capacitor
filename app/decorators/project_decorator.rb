@@ -3,7 +3,7 @@ class ProjectDecorator < Draper::Decorator
 
   def capacity_remaining
     if object.capacity == -1
-      "Capacity Remaining: Infinite"
+      "Infinity"
     else
       project.capacity_remaining
     end
