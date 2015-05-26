@@ -11,7 +11,7 @@ describe ProjectDecorator do
   end
 
   describe "#infinite_capacity?" do
-    let(:infinite_capacity) { decorator.infinite_capacity? }
+    let(:infinite_capacity) { decorator.capacity_remaining }
 
     context "when capacity is -1" do
       let(:project) { instance_double(Project, capacity: -1) }
@@ -24,7 +24,7 @@ describe ProjectDecorator do
       let(:project) { FactoryGirl.create(:project) }
       it "returns the remaining value of capacity left" do
         # allow(project).to receive(:capacity_remaining).and_return(capacity - capacity_logged)
-        expect(infinite_capacity).to eq("Capacity Remaining: #{project.capacity_remaining}")
+        expect(infinite_capacity).to eq(project.capacity_remaining)
       end
     end
   end
