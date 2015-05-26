@@ -2,7 +2,7 @@ class ProjectDecorator < Draper::Decorator
   delegate_all
 
   def capacity_remaining
-    if object.capacity == -1
+    if project.capacity == -1
       "Infinity"
     else
       project.capacity_remaining
