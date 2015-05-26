@@ -11,6 +11,9 @@ gem "pg", "0.18.2"
 # Use .haml for views
 gem "haml", "4.0.6"
 
+# Provides a wrapper object for models
+gem "draper", "1.4.0"
+
 # Use SCSS for stylesheets
 gem "sass-rails", "5.0.3"
 
@@ -28,6 +31,15 @@ gem "bugsnag", "2.8.6"
 
 # This gem makes rack requests time out...because puma doesn't
 gem "rack-timeout", "0.2.4"
+
+# A lightweight compass alternative
+gem "bourbon", "4.2.3"
+
+# Hooray for grid systems!
+gem "neat", "1.7.2"
+
+# And some basic prettiness
+gem "bitters", "1.0.0"
 
 group :production do
   # Does some special heroku magic
@@ -74,7 +86,3 @@ group :development, :test do
   # This turns off the noisy asset logs
   gem "quiet_assets"
 end
-
-gem "bourbon"
-gem "neat"
-gem "bitters"
