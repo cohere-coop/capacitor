@@ -1,11 +1,11 @@
 class ProjectDecorator < Draper::Decorator
   delegate_all
 
-  def infinite_capacity?
+  def capacity_remaining
     if object.capacity == -1
       "Capacity Remaining: Infinite"
     else
-      "Capacity Remaining: #{project.capacity_remaining}"
+      project.capacity_remaining
     end
   end
   # Define presentation-specific methods here. Helpers are accessed through
