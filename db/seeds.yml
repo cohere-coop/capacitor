@@ -1,22 +1,43 @@
-account:
+accounts:
   -
     name: "Zee Spencer"
-    email: "zee@example.com"
+    email: "zee@zincma.de"
     password: "password"
   -
     name: "Diana Hilton"
-    email: "diana@example.com"
+    email: "diana@zincma.de"
+    password: "password"
+  -
+    name: "Kurtis Rainbolt-Greene"
+    email: "kurtis@zincma.de"
+    password: "password"
+  -
+    name: "Dicko Sow"
+    email: "dicko@zincma.de"
+    password: "password"
+  -
+    name: "Krystyna Ewing"
+    email: "krystyna@zincma.de"
     password: "password"
 
-project:
+projects:
   -
     name: "Capacitor"
     capacity: 20
   -
     name: "Transistor"
     capacity: 500
+  -
+    name: "Generator"
+    capacity: 500
+  -
+    name: "Processor"
+    capacity: 500
+  -
+    name: "Timer"
+    capacity: 500
 
-log:
+logs:
   -
     amount: 5
     quality: 4
