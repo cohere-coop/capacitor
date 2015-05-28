@@ -2,8 +2,6 @@ require "rails_helper"
 
 describe ProjectDecorator do
   let(:project) { instance_double(Project) }
-  #  Rubocop error: Spec/DescribedClass: Use described_class instead of ProjectDecorator
-  # let(:decorator) { ProjectDecorator.new(project) }
   let(:decorator) { described_class.new(project) }
 
   before do
