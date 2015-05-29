@@ -16,5 +16,11 @@ class ApplicationController < ActionController::Base
     # { uuid: 1234, events: [ { name: "awesome event" } ] }
     cookies[:analytics] = analytics.to_json
   end
+
   private "track_event"
+
+  alias_method :devise_current_account, :current_account
+  def current_account
+    devise_current_account.present? ? devise_current_account.decorate : nil
+  end
 end
