@@ -6,7 +6,7 @@ class Account < ActiveRecord::Base
   devise :trackable
   devise :validatable
 
-  has_many :capacities
+  has_many :logs
   has_many :projects, through: :capacities
   has_many :owned_projects, class_name: "Project", foreign_key: :client_id
 

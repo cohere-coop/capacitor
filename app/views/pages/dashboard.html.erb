@@ -1,5 +1,10 @@
-<h1>Welcome to Capacitor!</h1>
-
+<section id="recent_logs">
+<ol>
+  <%- current_account.recent_logs.each do |log| %>
+    <li id="<%=log.dom_id%>"><%=log.summary %></li>
+  <%- end %>
+</ol>
+</section>
 <section id="projects">
   <%- @projects.each do |project| %>
     <article>
@@ -7,8 +12,8 @@
       <header>
         <h3><%= project.name %></h3>
       </header>
-        <p>Capacity Remaining: <%= project.capacity_remaining %></p>
-        <p>Capacity Total: <%= project.capacity %></p>
+      <p>Capacity Remaining: <%= project.capacity_remaining %></p>
+      <p>Capacity Total: <%= project.capacity %></p>
     </article>
   <% end %>
 </section>

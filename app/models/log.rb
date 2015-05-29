@@ -10,4 +10,8 @@ class Log < ActiveRecord::Base
   after_save do
     project.calculate_capacity_logged
   end
+
+  scope :recent, lambda {
+    order(:worked_at).where("worked_at >= ?", 7.days.ago)
+  }
 end

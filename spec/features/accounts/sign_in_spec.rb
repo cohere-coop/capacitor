@@ -8,7 +8,7 @@ feature "Sign in" do
     fill_in "Email", with: account.email
     fill_in "Password", with: account.password
     click_button "Log in"
-    expect(page).to have_content "Welcome"
+    expect(current_path).to eql "/"
   end
 
   scenario "with incorrect credentials" do
@@ -16,6 +16,7 @@ feature "Sign in" do
     fill_in "Email", with: account.email
     fill_in "Password", with: "654321"
     click_button "Log in"
+    expect(current_path).not_to eql "/"
     expect(page).to have_content "Sign in"
   end
 end
