@@ -1,4 +1,5 @@
 require "capacity_converter"
+
 class LogDecorator < Draper::Decorator
   delegate_all
   using CapacityConverter
