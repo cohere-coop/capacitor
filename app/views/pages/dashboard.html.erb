@@ -16,7 +16,7 @@
 <h3>Recently Logged Capacity</h3>
 <ol>
   <%- current_account.recent_logs.each do |log| %>
-    <li id="<%=log.dom_id%>"><%=log.summary %></li>
+    <li id="<%=log.dom_id%>"><%=log.summary %> <%= link_to "Delete", log_path(log), method: :delete %></li>
   <%- end %>
 </ol>
 </section>
