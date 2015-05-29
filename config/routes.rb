@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :logs, only: [:new, :create]
   end
 
+  resources :logs, only: [:destroy]
+
   root to: "pages#dashboard"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
