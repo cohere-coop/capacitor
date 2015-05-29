@@ -3,7 +3,7 @@ require "rails_helper"
 describe ProjectDecorator do
   using CapacityConverter
 
-  Given(:project) { double(:project, capacity: capacity, capacity_remaining: capacity_remaining) }
+  Given(:project) { instance_double(Project, capacity: capacity, capacity_remaining: capacity_remaining) }
   Given(:capacity_remaining) { 8 }
   Given(:decorator) { described_class.new(project) }
 
