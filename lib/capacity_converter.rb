@@ -1,32 +1,33 @@
-require 'active_support/core_ext/string/inflections'
+require "active_support/core_ext/string/inflections"
 
 module CapacityConverter
+  QUARTER_DAYS_TO_WORDS_MAPPING = [
+    { quantity: 4, word: "half" },
+    { quantity: 2, word: "quarter" },
+    { quantity: 1, word: "eighth" }
+  ]
   def to_days(number)
     remainder = number % 8
     total = number / 8
-    if total > 0
-      if (remainder == 0)
-        "#{total} #{"day".pluralize(total)}"
-      elsif remainder % 4 == 0
-        "#{total} and #{remainder / 4} half #{pluralized_unit(total, remainder)}"
-      elsif remainder % 2 == 0
-        "#{total} and #{remainder / 2} quarter #{pluralized_unit(total, remainder)}"
-      else
-        "#{total} and #{remainder} eighth #{pluralized_unit(total, remainder)}"
-      end
+    if total > 0 && remainder == 0
+      "#{total} #{pluralized_unit(total)}"
+    elsif total > 0 && remainder != 0
+      "#{total} and #{partial_day(remainder)}"
     else
-      if remainder % 4 == 0
-        "#{remainder / 4} half #{pluralized_unit(remainder / 4)}"
-      elsif remainder % 2 == 0
-        "#{remainder / 2} quarter #{pluralized_unit(remainder / 2)}"
-      else
-        "#{remainder} eighth #{pluralized_unit(remainder)}"
+      partial_day(remainder)
+    end
+  end
+
+  def partial_day(remainder)
+    QUARTER_DAYS_TO_WORDS_MAPPING.each do |translation|
+      result = remainder / translation[:quantity]
+      if remainder % translation[:quantity] == 0
+        return "#{result} #{translation[:word]} #{pluralized_unit(result)}"
       end
     end
   end
 
-
-  def pluralized_unit(total, remainder=0)
+  def pluralized_unit(total, remainder = 0)
     "day".pluralize(total + remainder)
   end
 end

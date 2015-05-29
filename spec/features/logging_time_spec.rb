@@ -10,7 +10,7 @@ feature "Logging time" do
 
   When { click_link_or_button "#{project.id}_new_log_entry" }
 
-  When { select("1 half-day", from: "Amount") }
+  When { select("1 half day", from: "Amount") }
   When { select("4", from: "Quality") }
   When { fill_in("Worked at", with: worked_at) }
 

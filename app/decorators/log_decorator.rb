@@ -1,4 +1,4 @@
-require 'capacity_converter'
+require "capacity_converter"
 class LogDecorator < Draper::Decorator
   delegate_all
   include CapacityConverter
@@ -6,7 +6,6 @@ class LogDecorator < Draper::Decorator
   def summary
     "#{project.name}, #{amount}, #{worked_at}"
   end
-
 
   def amount
     to_days(log.amount)
