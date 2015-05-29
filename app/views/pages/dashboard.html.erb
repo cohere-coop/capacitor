@@ -14,9 +14,24 @@
 
 <section id="recent_logs">
 <h3>Recently Logged Capacity</h3>
-<ol>
+<table>
+  <thead>
+    <tr>
+      <th>Project</th>
+      <th>Capacity Worked</th>
+      <th>Date Worked</th>
+      <th>Billable?</th>
+      <th></th>
+    </tr>
+  </thead>
   <%- current_account.recent_logs.each do |log| %>
-    <li id="<%=log.dom_id%>"><%=log.summary %> <%= link_to "Delete", log_path(log), method: :delete %></li>
+    <tr id="<%=log.dom_id%>">
+      <td><%= log.project.name %></td>
+      <td><%= log.amount %></td>
+      <td><%= log.worked_at %></td>
+      <td><%= log.billable? %></td>
+      <td><%= link_to "Delete", log_path(log), method: :delete %></td>
+    </tr>
   <%- end %>
-</ol>
+</table>
 </section>

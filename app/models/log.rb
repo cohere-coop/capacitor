@@ -12,6 +12,6 @@ class Log < ActiveRecord::Base
   end
 
   scope :recent, lambda {
-    order(:worked_at).where("worked_at >= ?", 7.days.ago)
+    order("worked_at DESC").where("worked_at >= ?", 7.days.ago)
   }
 end
