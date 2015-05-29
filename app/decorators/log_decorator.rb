@@ -8,4 +8,8 @@ class LogDecorator < Draper::Decorator
   def dom_id
     "log-#{project.id}"
   end
+
+  def worked_at
+    log.worked_at.strftime("%A %B %-d, %Y")
+  end
 end
