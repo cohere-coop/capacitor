@@ -12,4 +12,8 @@ class LogDecorator < Draper::Decorator
   def worked_at
     log.worked_at.strftime("%A %B %-d, %Y")
   end
+
+  def billable?
+    do_not_bill? ? "No" : "Yes"
+  end
 end
