@@ -4,7 +4,13 @@ test:
     - bin/rake rubocop
 deployment:
   production:
-    branch: primary
+    branch: production
     commands:
       - git push git@heroku.com:capacitor-prod.git $CIRCLE_SHA1:master
       - heroku run rake db:migrate --app capacitor-prod
+  staging:
+    branch: primary
+    commands:
+      - git push git@heroku.com:capacitor-staging.git $CIRCLE_SHA1:master
+      - heroku run rake db:migrate --app capacitor-staging
+
