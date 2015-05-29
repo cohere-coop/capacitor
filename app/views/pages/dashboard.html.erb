@@ -1,11 +1,5 @@
-<section id="recent_logs">
-<ol>
-  <%- current_account.recent_logs.each do |log| %>
-    <li id="<%=log.dom_id%>"><%=log.summary %></li>
-  <%- end %>
-</ol>
-</section>
 <section id="projects">
+  <h3>Pick a Project to Work On</h3>
   <%- @projects.each do |project| %>
     <article>
       <%= link_to_new_log_entry(project) %>
@@ -16,4 +10,13 @@
       <p>Capacity Total: <%= project.capacity %></p>
     </article>
   <% end %>
+</section>
+
+<section id="recent_logs">
+<h3>Recently Logged Capacity</h3>
+<ol>
+  <%- current_account.recent_logs.each do |log| %>
+    <li id="<%=log.dom_id%>"><%=log.summary %></li>
+  <%- end %>
+</ol>
 </section>
