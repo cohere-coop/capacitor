@@ -9,7 +9,7 @@ module CapacityConverter
     ]
 
     # @return [String] business days given a number of hours
-    def to_days
+    def to_business_days
       remainder = self % 8
       total = self / 8
       if total > 0 && remainder == 0

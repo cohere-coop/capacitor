@@ -8,7 +8,7 @@ class LogDecorator < Draper::Decorator
   end
 
   def amount
-    log.amount.to_days
+    log.amount.to_business_days
   end
 
   def dom_id
