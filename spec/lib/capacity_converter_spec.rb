@@ -1,13 +1,13 @@
 require "capacity_converter"
 
 describe CapacityConverter do
-  include described_class
+  using described_class
   describe "#to_days" do
-    Then { expect(to_days(8)).to eql("1 day") }
-    Then { expect(to_days(12)).to eql("1 and 1 half day") }
-    Then { expect(to_days(2)).to eql("1 quarter day") }
-    Then { expect(to_days(1)).to eql("1 eighth day") }
-    Then { expect(to_days(3)).to eql("3 eighth days") }
-    Then { expect(to_days(9)).to eql("1 and 1 eighth day") }
+    Then { expect(8.to_days).to eql("1 day") }
+    Then { expect(12.to_days).to eql("1 and 1 half day") }
+    Then { expect(2.to_days).to eql("1 quarter day") }
+    Then { expect(1.to_days).to eql("1 eighth day") }
+    Then { expect(3.to_days).to eql("3 eighth days") }
+    Then { expect(9.to_days).to eql("1 and 1 eighth day") }
   end
 end
