@@ -3,23 +3,14 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  def track_event(event_name)
-    # Cookies must always be stored as strings.
-    analytics = (cookies[:analytics] ? JSON.parse(cookies[:analytics], symbolize_names: true) : {})
+  include SegmentRails
 
-    analytics[:uuid] = current_account.uuid if current_account
-    analytics[:events] ||= []
-    analytics[:events].push(name: event_name)
-
-    # Convert the analytics object back into a string so it can stay in the
-    # cookie
-    # { uuid: 1234, events: [ { name: "awesome event" } ] }
-    cookies[:analytics] = analytics.to_json
+  def user_identifier
+    current_account ? current_account.id : nil
   end
 
-  private "track_event"
-
   alias_method :devise_current_account, :current_account
+
   def current_account
     devise_current_account.present? ? devise_current_account.decorate : nil
   end

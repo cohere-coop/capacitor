@@ -12,5 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require cookie-monster
+//= require segment_rails
 //= require_tree .
