@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150521181036) do
+ActiveRecord::Schema.define(version: 20150530013620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,11 +63,12 @@ ActiveRecord::Schema.define(version: 20150521181036) do
   add_index "logs", ["worked_at"], name: "index_logs_on_worked_at", using: :btree
 
   create_table "projects", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.string   "name",            default: "", null: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.integer  "capacity",        default: 0,  null: false
-    t.integer  "capacity_logged", default: 0,  null: false
+    t.string   "name",             default: "", null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "capacity",         default: 0,  null: false
+    t.integer  "capacity_logged",  default: 0,  null: false
+    t.integer  "weekly_burn_rate"
   end
 
   add_index "projects", ["capacity"], name: "index_projects_on_capacity", using: :btree
