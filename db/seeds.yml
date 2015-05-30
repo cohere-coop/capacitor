@@ -12,9 +12,11 @@ project:
   -
     name: "Capacitor"
     capacity: 20
+    weekly_burn_rate: 2
   -
     name: "Transistor"
     capacity: 500
+    weekly_burn_rate: 50
 
 log:
   -
