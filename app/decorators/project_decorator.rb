@@ -11,6 +11,10 @@ class ProjectDecorator < Draper::Decorator
       project.capacity_remaining.to_business_days
     end
   end
+
+  def weekly_burn_rate
+    project.weekly_burn_rate ? project.weekly_burn_rate.to_business_days : "No days"
+  end
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
   #
