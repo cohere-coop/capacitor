@@ -2,6 +2,7 @@
   @include outer-container;
 
   .contents article {
+    font-size: 1.4rem;
     background-color: $yellow;
     @include span-columns(4);
     @include omega(3n);
