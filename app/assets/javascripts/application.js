@@ -13,4 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require segment_rails
+//= require jquery.datetimepicker
 //= require_tree .
+
+
+$(function () {
+  $('input[type=date]').datetimepicker({
+    inline: true,
+    timepicker: false,
+    format: 'd/m/Y'
+  });
+});
