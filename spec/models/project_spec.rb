@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Project do
   describe "#weekly_capacity_reamining" do

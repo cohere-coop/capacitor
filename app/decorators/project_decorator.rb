@@ -17,8 +17,8 @@ class ProjectDecorator < Draper::Decorator
   end
 
   def weekly_capacity_remaining
-    if project.capacity_remaining_this_week > 0
-      project.capacity_remaining_this_week.to_business_days
+    if project.weekly_capacity_remaining > 0
+      project.weekly_capacity_remaining.to_business_days
     else
       "No capacity"
     end
