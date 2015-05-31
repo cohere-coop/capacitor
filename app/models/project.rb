@@ -14,7 +14,7 @@ class Project < ActiveRecord::Base
     end
   end
 
-  def capacity_remaining_this_week
+  def weekly_capacity_remaining
     weekly_burn_rate - logs.recent.pluck(:amount).sum
   end
 end
