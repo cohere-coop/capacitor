@@ -11,6 +11,7 @@ class LogsController < ApplicationController
     @log.project = @project
 
     if @log.save
+      flash[:notice] = "Logged #{log.decorate.summary}"
       redirect_to root_path
     else
       render :new
