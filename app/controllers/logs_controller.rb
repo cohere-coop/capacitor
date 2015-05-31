@@ -1,7 +1,7 @@
 class LogsController < ApplicationController
   def new
     @project = Project.find(params[:project_id])
-    @log = Log.new
+    @log = Log.new(worked_at: Date.today)
   end
 
   def create
