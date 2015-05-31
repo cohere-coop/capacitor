@@ -5,12 +5,10 @@ class LogsController < ApplicationController
   end
 
   def create
-    @project = Project.find(params[:project_id])
     @log = Log.new(log_params)
-    @log.account = current_account
-    @log.project = @project
 
     if @log.save
+      flash[:notice] = "Logged #{@log.decorate.summary}"
       redirect_to root_path
     else
       render :new
@@ -31,6 +29,7 @@ class LogsController < ApplicationController
 
   def log_params
     params.require(:log).permit(:quality, :amount, :worked_at, :do_not_bill)
+      .merge(account: current_account, project: Project.find(params[:project_id]))
   end
   private "log_params"
 end
