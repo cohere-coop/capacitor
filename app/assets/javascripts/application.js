@@ -12,15 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require segment_rails
-//= require jquery.datetimepicker
+//= require jquery-ui/datepicker
 //= require_tree .
 
 
-$(function () {
-  $('input[type=date]').datetimepicker({
-    inline: true,
-    timepicker: false,
-    format: 'd/m/Y'
+$(function() {
+  $(".datepicker").datepicker({
+    dateFormat: "yy-mm-dd"
   });
 });

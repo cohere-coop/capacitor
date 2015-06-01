@@ -10,7 +10,7 @@
   <%= render partial: "error_for_field", locals: { model: @log, field: :quality } %>
 
   <%= f.label :worked_at %>
-  <%= f.date_field :worked_at %>
+  <%= f.text_field :worked_at, class: "datepicker" %>
   <%= render partial: "error_for_field", locals: { model: @log, field: :worked_at } %>
 
 
