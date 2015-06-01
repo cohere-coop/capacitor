@@ -8,7 +8,7 @@
           <h3><%= project.name %></h3>
         </header>
         <p><%= project.capacity_remaining %> of work left</p>
-        <p><%= project.weekly_burn_rate %> per week</p>
+        <p><%= project.weekly_capacity_remaining%> of <%= project.weekly_burn_rate %> per week</p>
       </article>
     <% end %>
   </div>
