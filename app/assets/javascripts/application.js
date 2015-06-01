@@ -12,5 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require segment_rails
+//= require jquery-ui/datepicker
 //= require_tree .
+
+
+$(function() {
+  $(".datepicker").datepicker({
+    dateFormat: "yy-mm-dd"
+  });
+});
