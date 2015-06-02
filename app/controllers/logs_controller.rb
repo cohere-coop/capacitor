@@ -9,6 +9,13 @@ class LogsController < ApplicationController
 
     if @log.save
       flash[:notice] = "Logged #{@log.decorate.summary}"
+      track_event("Capacity Logged", {
+        worked_at: @log.worked_at,
+        amount: @log.decorate.amount,
+        billable: @log.billable,
+        project_name: @log.project.name,
+        project_id: @log.project.id
+      })
       redirect_to root_path
     else
       render :new
