@@ -8,14 +8,8 @@ class LogsController < ApplicationController
     @log = Log.new(log_params)
 
     if @log.save
+      track_log_creation(@log.decorate)
       flash[:notice] = "Logged #{@log.decorate.summary}"
-      track_event("Capacity Logged", {
-        worked_at: @log.worked_at,
-        amount: @log.decorate.amount,
-        billable: @log.billable,
-        project_name: @log.project.name,
-        project_id: @log.project.id
-      })
       redirect_to root_path
     else
       render :new
@@ -39,4 +33,12 @@ class LogsController < ApplicationController
       .merge(account: current_account, project: Project.find(params[:project_id]))
   end
   private "log_params"
+
+  def track_log_creation(log)
+    track_event("Capacity Logged", worked_at: log.worked_at,
+                                   amount: log.amount,
+                                   billable: log.billable?,
+                                   project_name: log.project.name,
+                                   project_id: log.project.id)
+  end
 end
