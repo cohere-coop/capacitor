@@ -1,14 +1,15 @@
 #projects {
   @include outer-container;
 
-  article {
-    h3 {
-      text-align: center;
-    }
+  .contents article {
+    font-size: 1.4rem;
     background-color: $yellow;
     @include span-columns(4);
     @include omega(3n);
     position: relative;
+    margin-bottom: $gutter;
+
+    text-align: center;
     a {
       @extend .fill-hw;
     }

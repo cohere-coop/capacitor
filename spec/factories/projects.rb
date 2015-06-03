@@ -5,5 +5,6 @@ FactoryGirl.define do
     sequence(:name) { |i| "Project #{i}" }
     capacity 15
     capacity_logged 0
+    weekly_burn_rate 4
   end
 end

@@ -22,6 +22,10 @@ gem "sass-rails", "5.0.3"
 # Use jquery as the JavaScript library
 gem "jquery-rails", "4.0.3"
 
+gem "jquery-ui-rails", "5.0.5"
+
+gem "segment_rails", "0.2.0"
+
 # Use Uglifier as compressor for JavaScript assets
 gem "uglifier", "2.7.1"
 

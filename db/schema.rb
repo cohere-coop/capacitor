@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20150603063639) do
     t.datetime "updated_at",                    null: false
     t.integer  "capacity",         default: 0,  null: false
     t.integer  "capacity_logged",  default: 0,  null: false
-    t.integer  "weekly_burn_rate"
+    t.integer  "weekly_burn_rate", default: 0,  null: false
   end
 
   add_index "projects", ["capacity"], name: "index_projects_on_capacity", using: :btree
