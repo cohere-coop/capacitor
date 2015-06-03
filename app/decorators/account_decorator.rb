@@ -11,6 +11,6 @@ class AccountDecorator < Draper::Decorator
   end
 
   def remaining_personal_capacity
-   account.weekly_expected_capacity - logs.recent.pluck(:amount).sum
+    account.weekly_expected_capacity - logs.recent.pluck(:amount).sum
   end
 end
