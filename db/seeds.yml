@@ -3,8 +3,7 @@ account:
     name: "Zee Spencer"
     email: "zee@example.com"
     password: "password"
-    weekly_expected_capacity: 5
-    remaining_personal_capacity: 1
+    weekly_expected_capacity: 40
 
 
   -
