@@ -3,11 +3,12 @@
 
   .contents article {
     font-size: 1.4rem;
-    background-color: $yellow;
+    background-color: $dark-blue;
     @include span-columns(4);
     @include omega(3n);
     position: relative;
     margin-bottom: $gutter;
+    padding:10px;
 
     text-align: center;
     a {
