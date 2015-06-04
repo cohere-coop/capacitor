@@ -25,12 +25,23 @@
 @import "projects";
 
 body {
-  background-color: $red;
+  background-color: $gray-blue;
 }
+
 body > header, body > main, body > footer, #flash {
   @include outer-container;
+  padding: 40px;
 }
 
 .field_with_errors {
   display: inline-block;
+}
+
+.brand {
+  text-align: center;
+  background-color: $red;
+  .logo {
+    width: 50vh;
+    height: 50vh;
+  }
 }
