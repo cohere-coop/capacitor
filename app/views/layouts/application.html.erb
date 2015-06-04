@@ -14,15 +14,15 @@
     </script>
   </head>
   <body>
+    <%= render partial: "header" %>
 
+    <%= render partial: "notifications" %>
 
     <main>
       <%= yield %>
     </main>
 
-  <footer>
-    Copyright © 2015 <a href="https://zincma.de/">Zinc Technology Inc</a>
-  </footer>
+    <%= render partial: "footer" %>
 
     <%= javascript_include_tag "application" %>
   </body>
