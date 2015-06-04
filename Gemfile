@@ -24,6 +24,7 @@ gem "jquery-rails", "4.0.3"
 
 gem "jquery-ui-rails", "5.0.5"
 
+# This lets us easily track pieces
 gem "segment_rails", "0.2.0"
 
 # Use Uglifier as compressor for JavaScript assets
