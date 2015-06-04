@@ -35,13 +35,13 @@ projects:
     capacity: 0
     weekly_burn_rate: 0
   -
-    name: "Voltage"
-    capacity: 25
-    weekly_burn_rate: 3
-  -
     name: "Generator"
     capacity: 40
     weekly_burn_rate: 0
+  -
+    name: "Voltage"
+    capacity: 25
+    weekly_burn_rate: 3
 
 logs:
   -
