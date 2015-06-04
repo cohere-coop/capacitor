@@ -47,6 +47,8 @@ gem "neat", "1.7.2"
 # And some basic prettiness
 gem "bitters", "1.0.0"
 
+gem "pry-rails"
+
 group :production do
   # Does some special heroku magic
   gem "rails_12factor", "0.0.3"
