@@ -26,7 +26,6 @@
 
 body {
   background-color: $gray-blue;
-
 }
 body > header, body > main, body > footer, #flash {
   @include outer-container;
