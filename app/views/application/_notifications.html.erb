@@ -1,0 +1,7 @@
+<p id="flash">
+  <% flash.each do |name, message| %>
+    <% if message.is_a?(String) %>
+      <%= content_tag :div, message, class: "flash_#{name}" %>
+    <% end %>
+  <% end %>
+</p>
