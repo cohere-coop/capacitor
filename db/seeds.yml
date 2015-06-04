@@ -4,13 +4,11 @@ account:
     email: "zee@example.com"
     password: "password"
     weekly_expected_capacity: 40
-
-
   -
     name: "Diana Hilton"
     email: "diana@example.com"
     password: "password"
-
+    weekly_expected_capacity: 10
 
 project:
   -

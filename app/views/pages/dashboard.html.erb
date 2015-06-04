@@ -1,4 +1,8 @@
 <section id="week_in_review">
+  <h3> Your Week In Review: </h3>
+  <p>You've worked <%= current_account.remaining_personal_capacity %> of your
+  expected <%= current_account.weekly_expected_capacity %> in the past 7
+  days</p>
 </section>
 
 <section id="projects">
@@ -18,10 +22,7 @@
 </section>
 
 <section id="recent_logs">
-  <h3> Your Week In Review: </h3>
-  <p>You've worked <%= current_account.remaining_personal_capacity %> of your
-  expected <%= current_account.weekly_expected_capacity %> in the past 7
-  days</p>
+  <h3>Your Recent Entries</h3>
   <table>
     <thead>
       <tr>
