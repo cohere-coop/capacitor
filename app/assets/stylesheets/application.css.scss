@@ -35,3 +35,14 @@ body > header, body > main, body > footer, #flash {
 .field_with_errors {
   display: inline-block;
 }
+
+.brand {
+  text-align: center;
+  background-color: $red;
+  box-shadow: 1px 1px 1px #444;
+  border-radius: 5px;
+  .logo {
+    width: 50vh;
+    height: 50vh;
+  }
+}
