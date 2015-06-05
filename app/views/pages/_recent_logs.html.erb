@@ -1,0 +1,23 @@
+<section id="recent_logs">
+  <h3>Your Recent Entries</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Project</th>
+        <th>Capacity Worked</th>
+        <th>Date Worked</th>
+        <th>Billable?</th>
+        <th></th>
+      </tr>
+    </thead>
+    <%- current_account.recent_logs.each do |log| %>
+      <tr id="<%=log.dom_id%>">
+        <td><%= log.project.name %></td>
+        <td><%= log.amount %></td>
+        <td><%= log.worked_at %></td>
+        <td><%= log.billable? %></td>
+        <td><%= link_to "Delete", log_path(log), method: :delete %></td>
+      </tr>
+    <%- end %>
+  </table>
+</section>
