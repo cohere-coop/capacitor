@@ -12,5 +12,4 @@ deployment:
     branch: primary
     commands:
       - git push git@heroku.com:capacitor-staging.git $CIRCLE_SHA1:master
-      - heroku run rake db:migrate --app capacitor-staging
-
+      - heroku run rake db:reset db:migrate db:seed --app capacitor-staging

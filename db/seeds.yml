@@ -1,4 +1,4 @@
-account:
+accounts:
   -
     name: "Zee Spencer"
     email: "zee@example.com"
@@ -8,9 +8,24 @@ account:
     name: "Diana Hilton"
     email: "diana@example.com"
     password: "password"
+    weekly_expected_capacity: 28
+  -
+    name: "Kurtis Rainbolt-Greene"
+    email: "kurtis@example.com"
+    password: "password"
+    weekly_expected_capacity: 19
+  -
+    name: "Dicko Sow"
+    email: "dicko@example.com"
+    password: "password"
+    weekly_expected_capacity: 45
+  -
+    name: "Krystyna Ewing"
+    email: "krystyna@example.com"
+    password: "password"
     weekly_expected_capacity: 10
 
-project:
+projects:
   -
     name: "Capacitor"
     capacity: -1
@@ -24,11 +39,11 @@ project:
     capacity: 25
     weekly_burn_rate: 3
   -
-    name: "Surge"
+    name: "Generator"
     capacity: 40
     weekly_burn_rate: 0
 
-log:
+logs:
   -
     amount: 2
     quality: 4

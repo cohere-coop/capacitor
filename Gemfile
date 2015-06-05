@@ -49,7 +49,7 @@ gem "bitters", "1.0.0"
 
 gem "pry-rails"
 
-group :production do
+group :production, :staging do
   # Does some special heroku magic
   gem "rails_12factor", "0.0.3"
 
