@@ -4,40 +4,18 @@
   "repository": "https://github.com/zincmade/capacitor",
   "success_url": "/",
   "scripts": {
-    "postdeploy": "bin/rake db:migrate db:seed"
+    "postdeploy": "bin/rake db:migrate"
   },
   "env": {
-    "DEVISE_SESSION_TOKEN_PRIVATE": {
-      "description": "A secret key for verifying the integrity of signed cookies.",
-      "generator": "secret"
-    },
-    "WEB_CONCURRENCY": {
-      "description": "The number of processes to run.",
-      "value": "2"
-    },
-    "SEGMENT_TOKEN": {
-      "description": "segment.io private key",
-      "value": "CCF3blf9D85J25gs8KzfJbCDayfx2C7l"
-    },
-    "MIN_THREADS": {
-      "description": "The minimum amount of threads that puma allows",
-      "value": "5"
-    },
-    "MAX_THREADS": {
-      "description": "The maximum amount of threads that puma allows",
-      "value": "5"
-    },
-    "RACK_ENV": {
-      "description": "The rack environment",
-      "value": "staging"
-    },
-    "DEVISE_MAILER_TOKEN_PUBLIC": {
-      "description": "The email address that devise sends from",
-      "value": "noreply-review@capacitor.io"
-    },
-    "RACK_TIMEOUT": {
-      "description": "The number of seconds before rack gives up",
-      "value": "20"
-    }
+    "LANG": { "required": true },
+    "WEB_CONCURRENCY": { "required": true },
+    "MAX_THREADS": { "required": true },
+    "MIN_THREADS": { "required": true },
+    "RACK_ENV": { "required": true },
+    "RAILS_ENV": { "required": true },
+    "RAILS_SERVE_STATIC_FILES": { "required": true },
+    "SECRET_KEY_BASE": { "required": true },
+    "SEGMENT_TOKEN": { "required": true },
+    "RACK_TIMEOUT": { "required": true }
   }
 }
