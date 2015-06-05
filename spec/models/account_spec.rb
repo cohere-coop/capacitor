@@ -21,6 +21,9 @@ RSpec.describe Account, type: :model do
     expect(account.uuid).to be_present
   end
 
+  context "" do
+  end
+
   context "validations" do
     describe "name" do
       let(:name) do
