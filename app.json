@@ -7,15 +7,15 @@
     "postdeploy": "bin/rake db:migrate"
   },
   "env": {
-    "LANG": { "required": true }
-    "WEB_CONCURRENCY": { "required": true }
-    "MAX_THREADS": { "required": true }
-    "MIN_THREADS": { "required": true }
-    "RACK_ENV": { "required": true }
-    "RAILS_ENV": { "required": true }
-    "RAILS_SERVE_STATIC_FILES": { "required": true }
-    "SECRET_KEY_BASE": { "required": true }
-    "SEGMENT_TOKEN": { "required": true }
+    "LANG": { "required": true },
+    "WEB_CONCURRENCY": { "required": true },
+    "MAX_THREADS": { "required": true },
+    "MIN_THREADS": { "required": true },
+    "RACK_ENV": { "required": true },
+    "RAILS_ENV": { "required": true },
+    "RAILS_SERVE_STATIC_FILES": { "required": true },
+    "SECRET_KEY_BASE": { "required": true },
+    "SEGMENT_TOKEN": { "required": true },
     "RACK_TIMEOUT": { "required": true }
   }
 }
