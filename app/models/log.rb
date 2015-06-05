@@ -7,10 +7,6 @@ class Log < ActiveRecord::Base
   validates :worked_at, presence: true
   validates :account, presence: true
 
-  after_save do
-    project.calculate_capacity_logged
-  end
-
   scope :recent, lambda {
     start_at = Time.zone.now.beginning_of_week
     end_at = Time.zone.now.end_of_week
