@@ -12,4 +12,8 @@ class Log < ActiveRecord::Base
     end_at = Time.zone.now.end_of_week
     order(worked_at: :desc).where(worked_at: start_at..end_at)
   }
+
+  scope :billable, lambda {
+    where(do_not_bill: false)
+  }
 end

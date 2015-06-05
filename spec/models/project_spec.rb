@@ -7,5 +7,18 @@ describe Project do
       FactoryGirl.create(:recent_log, amount: 5, project: project)
       expect(project.weekly_capacity_remaining).to eql(7)
     end
+
+    it "does not subract do not bill logs" do
+      project = FactoryGirl.create(:project, weekly_burn_rate: 12)
+      FactoryGirl.create(:recent_log, amount: 5, project: project, do_not_bill: true)
+      expect(project.weekly_capacity_remaining).to eql(12)
+    end
+  end
+  describe "#capacity_remaining" do
+    it "does not take into account non-billable work" do
+      project = FactoryGirl.create(:project, capacity: 12)
+      FactoryGirl.create(:recent_log, amount: 5, project: project, do_not_bill: true)
+      expect(project.capacity_remaining).to eql(12)
+    end
   end
 end
