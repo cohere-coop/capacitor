@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe ProjectDecorator do
+RSpec.describe ProjectDecorator, type: :decorator do
   using CapacityConverter
 
   Given(:project) { instance_double(Project, capacity: capacity, capacity_remaining: capacity_remaining) }
