@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require_self
+ *= require jquery-ui/datepicker
  */
 @import "normalize";
 @import "bourbon";
@@ -24,12 +25,22 @@
 @import "projects";
 
 body {
-  background-color: $red;
+  background-color: $gray-blue;
 }
-body > header, body > main, body > footer {
+
+body > header, body > main, body > footer, #flash {
   @include outer-container;
+  padding: 40px;
 }
 
 .field_with_errors {
   display: inline-block;
+}
+
+.brand {
+  text-align: center;
+  .logo {
+    width: 50vh;
+    height: 50vh;
+  }
 }

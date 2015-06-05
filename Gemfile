@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+ruby "2.2.2"
+
 gem "rails", "4.2.1"
 
 # Used for user authentication
@@ -19,6 +21,10 @@ gem "sass-rails", "5.0.3"
 
 # Use jquery as the JavaScript library
 gem "jquery-rails", "4.0.3"
+
+gem "jquery-ui-rails", "5.0.5"
+
+gem "segment_rails", "0.2.0"
 
 # Use Uglifier as compressor for JavaScript assets
 gem "uglifier", "2.7.1"
@@ -40,6 +46,8 @@ gem "neat", "1.7.2"
 
 # And some basic prettiness
 gem "bitters", "1.0.0"
+
+gem "pry-rails"
 
 group :production, :staging do
   # Does some special heroku magic

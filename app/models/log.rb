@@ -10,4 +10,10 @@ class Log < ActiveRecord::Base
   after_save do
     project.calculate_capacity_logged
   end
+
+  scope :recent, lambda {
+    start_at = Time.zone.now.beginning_of_week
+    end_at = Time.zone.now.end_of_week
+    order(worked_at: :desc).where(worked_at: start_at..end_at)
+  }
 end

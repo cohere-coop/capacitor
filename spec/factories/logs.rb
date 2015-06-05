@@ -7,6 +7,13 @@ FactoryGirl.define do
     worked_at "2015-04-30"
     do_not_bill true
     project
-    worker
+    account
+    factory :recent_log do
+      worked_at 3.days.ago
+    end
+
+    factory :old_log do
+      worked_at 8.days.ago
+    end
   end
 end

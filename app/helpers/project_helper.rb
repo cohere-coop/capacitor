@@ -1,14 +1,8 @@
+require "capacity_converter"
+
 module ProjectHelper
-  AMOUNT_OPTIONS = [
-    ["1 eighth-day", 1],
-    ["1 quarter-day", 2],
-    ["3 eighth-days", 3],
-    ["1 half-day", 4],
-    ["5 eighth-days", 5],
-    ["3 quarter-days", 6],
-    ["7 eight-days", 7],
-    ["1 whole day", 8]
-  ]
+  using CapacityConverter
+  AMOUNT_OPTIONS = [1, 2, 4, 6, 8].map { |i| [i.to_business_days, i] }
 
   WORST = 1
   BAD = 2

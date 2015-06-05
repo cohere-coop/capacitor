@@ -1,48 +1,61 @@
 accounts:
   -
     name: "Zee Spencer"
-    email: "zee@zincma.de"
+    email: "zee@example.com"
     password: "password"
+    weekly_expected_capacity: 40
   -
     name: "Diana Hilton"
-    email: "diana@zincma.de"
+    email: "diana@example.com"
     password: "password"
+    weekly_expected_capacity: 28
   -
     name: "Kurtis Rainbolt-Greene"
-    email: "kurtis@zincma.de"
+    email: "kurtis@example.com"
     password: "password"
+    weekly_expected_capacity: 19
   -
     name: "Dicko Sow"
-    email: "dicko@zincma.de"
+    email: "dicko@example.com"
     password: "password"
+    weekly_expected_capacity: 45
   -
     name: "Krystyna Ewing"
-    email: "krystyna@zincma.de"
+    email: "krystyna@example.com"
     password: "password"
+    weekly_expected_capacity: 10
 
 projects:
   -
     name: "Capacitor"
-    capacity: 20
+    capacity: -1
+    weekly_burn_rate: 2
   -
     name: "Transistor"
-    capacity: 500
+    capacity: 0
+    weekly_burn_rate: 0
+  -
+    name: "Voltage"
+    capacity: 25
+    weekly_burn_rate: 3
   -
     name: "Generator"
-    capacity: 500
-  -
-    name: "Processor"
-    capacity: 500
-  -
-    name: "Timer"
-    capacity: 500
+    capacity: 40
+    weekly_burn_rate: 0
 
 logs:
   -
-    amount: 5
+    amount: 2
     quality: 4
+    do_not_bill: false
     worked_at: "2014-05-05"
   -
-    amount: 10
+    amount: 4
     quality: 2
+    do_not_bill: false
     worked_at: "2015-06-06"
+  -
+    amount: 8
+    quality: 1
+    do_not_bill: true
+    worked_at: "2014-05-10"
