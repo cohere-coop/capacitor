@@ -15,4 +15,12 @@ class Account < ActiveRecord::Base
   def available_projects
     Project.all
   end
+
+  def total_recent_capacity
+    logs.recent.pluck(:amount).sum
+  end
+
+  def remaining_personal_capacity
+    weekly_expected_capacity - total_recent_capacity
+  end
 end

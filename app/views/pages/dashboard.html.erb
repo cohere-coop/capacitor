@@ -1,3 +1,9 @@
+<section id="week_in_review">
+  <h3> Your Week In Review: </h3>
+  <p><%= current_account.remaining_personal_capacity %> of your personal capacity remaining out of your
+  expected <%= current_account.weekly_expected_capacity %> for this week</p>
+</section>
+
 <section id="projects">
   <h3>Pick a Project to Work On</h3>
   <div class="contents">
@@ -15,25 +21,25 @@
 </section>
 
 <section id="recent_logs">
-<h2>Recently Logged Capacity</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Project</th>
-      <th>Capacity Worked</th>
-      <th>Date Worked</th>
-      <th>Billable?</th>
-      <th></th>
-    </tr>
-  </thead>
-  <%- current_account.recent_logs.each do |log| %>
-    <tr id="<%=log.dom_id%>">
-      <td><%= log.project.name %></td>
-      <td><%= log.amount %></td>
-      <td><%= log.worked_at %></td>
-      <td><%= log.billable? %></td>
-      <td><%= link_to "Delete", log_path(log), method: :delete %></td>
-    </tr>
-  <%- end %>
-</table>
+  <h3>Your Recent Entries</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Project</th>
+        <th>Capacity Worked</th>
+        <th>Date Worked</th>
+        <th>Billable?</th>
+        <th></th>
+      </tr>
+    </thead>
+    <%- current_account.recent_logs.each do |log| %>
+      <tr id="<%=log.dom_id%>">
+        <td><%= log.project.name %></td>
+        <td><%= log.amount %></td>
+        <td><%= log.worked_at %></td>
+        <td><%= log.billable? %></td>
+        <td><%= link_to "Delete", log_path(log), method: :delete %></td>
+      </tr>
+    <%- end %>
+  </table>
 </section>

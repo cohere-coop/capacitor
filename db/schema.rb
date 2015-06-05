@@ -18,20 +18,21 @@ ActiveRecord::Schema.define(version: 20150531174746) do
   enable_extension "uuid-ossp"
 
   create_table "accounts", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.string   "name",                   default: "",                   null: false
-    t.string   "email",                  default: "",                   null: false
-    t.uuid     "uuid",                   default: "uuid_generate_v4()"
-    t.string   "encrypted_password",                                    null: false
+    t.string   "name",                     default: "",                   null: false
+    t.string   "email",                    default: "",                   null: false
+    t.uuid     "uuid",                     default: "uuid_generate_v4()"
+    t.string   "encrypted_password",                                      null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,                    null: false
+    t.integer  "sign_in_count",            default: 0,                    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                                            null: false
-    t.datetime "updated_at",                                            null: false
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+    t.integer  "weekly_expected_capacity", default: 0,                    null: false
   end
 
   add_index "accounts", ["created_at"], name: "index_accounts_on_created_at", using: :btree
