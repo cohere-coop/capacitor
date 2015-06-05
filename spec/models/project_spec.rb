@@ -14,4 +14,11 @@ describe Project do
       expect(project.weekly_capacity_remaining).to eql(12)
     end
   end
+  describe "#capacity_remaining" do
+    it "does not take into account non-billable work" do
+      project = FactoryGirl.create(:project, capacity: 12)
+      FactoryGirl.create(:recent_log, amount: 5, project: project, do_not_bill: true)
+      expect(project.capacity_remaining).to eql(12)
+    end
+  end
 end
