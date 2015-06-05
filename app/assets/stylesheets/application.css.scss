@@ -28,9 +28,9 @@ body {
   background-color: $gray-blue;
 }
 
-body > header, body > main, body > footer, #flash {
+body > header, body > main, body > footer {
   @include outer-container;
-  padding: 40px;
+  margin-bottom: 1em;
 }
 
 .field_with_errors {
