@@ -4,8 +4,6 @@ class ProjectDecorator < Draper::Decorator
   delegate_all
   using CapacityConverter
 
-  FULL_DAY = 8.0
-
   def per_weekly
     if any_burn_rate?
       "no expected work"
