@@ -26,7 +26,7 @@ class ProjectDecorator < Draper::Decorator
     if any_burn_rate?
       project.weekly_burn_rate.to_business_days
     else
-      "no weekly burn rate"
+      "no weekly"
     end
   end
 
