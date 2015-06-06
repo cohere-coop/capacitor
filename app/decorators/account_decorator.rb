@@ -3,7 +3,7 @@ class AccountDecorator < Draper::Decorator
   using CapacityConverter
 
   def recent_logs
-    logs.recent.decorate
+    LogDecorator.decorate_collection(logs.recent)
   end
 
   def weekly_expected_capacity

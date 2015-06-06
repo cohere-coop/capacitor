@@ -1,41 +1,46 @@
 require "active_support/core_ext/string/inflections"
 
 module CapacityConverter
-  refine Integer do
-    QUARTER_DAYS_TO_WORDS_MAPPING = [
-      { quantity: 4, word: "half" },
-      { quantity: 2, word: "quarter" },
-      { quantity: 1, word: "eighth" }
-    ]
-
+  refine Numeric do
     # @return [String] business days given a number of hours
     def to_business_days
-      remainder = self % 8
-      total = self / 8
-      if total > 0 && remainder == 0
-        "#{total} #{pluralized_day(total)}"
-      elsif total > 0 && remainder != 0
-        "#{total} and #{partial_day(remainder)}"
+      BusinessDayCalculator.new(self).to_s
+    end
+  end
+
+  class BusinessDayCalculator
+    FULL_DAY = 8.0
+
+    def initialize(amount)
+      @value = amount / FULL_DAY
+    end
+
+    def to_s
+      if some?
+        some
       else
-        partial_day(remainder)
+        none
       end
     end
 
-    def partial_day(remainder)
-      QUARTER_DAYS_TO_WORDS_MAPPING.each do |translation|
-        result = remainder / translation[:quantity]
-        if remainder % translation[:quantity] == 0
-          return "#{result} #{translation[:word]} #{pluralized_day(result)}"
-        end
-      end
+    def some?
+      !@value.zero?
     end
+    private :some?
 
-    private "partial_day"
-
-    def pluralized_day(total)
-      "day".pluralize(total)
+    def some
+      "#{@value.to_s.gsub(/\A0|\.0\z/, "")} #{pluralized}"
     end
+    private :some
 
-    private "pluralized_day"
+    def none
+      "zero days"
+    end
+    private :none
+
+    def pluralized
+      "day".pluralize(@value)
+    end
+    private :pluralized
   end
 end

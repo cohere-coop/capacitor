@@ -4,23 +4,72 @@ class ProjectDecorator < Draper::Decorator
   delegate_all
   using CapacityConverter
 
-  def capacity_remaining
-    if project.capacity == -1
-      "Infinity"
+  def per_weekly
+    if any_burn_rate?
+      "#{weekly_capacity_remaining} capacity remaining this week and #{weekly_burn_rate} expected burn rate"
     else
-      project.capacity_remaining.to_business_days
+      "no expected work"
+    end
+  end
+
+  def capacity_remaining
+    if infinte_capacity_remaining?
+      "unlimited work remaining"
+    elsif no_capacity_remaining?
+      "no more work left"
+    else
+      "#{project.capacity_remaining.to_business_days} of work remaining"
     end
   end
 
   def weekly_burn_rate
-    project.weekly_burn_rate ? project.weekly_burn_rate.to_business_days : "No days"
+    if any_burn_rate?
+      project.weekly_burn_rate.to_business_days
+    else
+      "no weekly"
+    end
   end
 
   def weekly_capacity_remaining
-    if project.weekly_capacity_remaining > 0
+    if any_weekly_remaining?
       project.weekly_capacity_remaining.to_business_days
     else
-      "No capacity"
+      "zero"
     end
   end
+
+  def capacity_remaining_value
+    project.capacity_remaining
+  end
+  private :capacity_remaining_value
+
+  def weekly_burn_rate_value
+    project.weekly_burn_rate
+  end
+  private :weekly_burn_rate_value
+
+  def weekly_capacity_remaining_value
+    project.weekly_capacity_remaining
+  end
+  private :weekly_capacity_remaining_value
+
+  def infinte_capacity_remaining?
+    project.capacity_remaining == Float::INFINITY
+  end
+  private :infinte_capacity_remaining?
+
+  def no_capacity_remaining?
+    project.capacity_remaining < 0
+  end
+  private :no_capacity_remaining?
+
+  def any_burn_rate?
+    project.weekly_burn_rate > 0
+  end
+  private :any_burn_rate?
+
+  def any_weekly_remaining?
+    project.weekly_capacity_remaining > 0
+  end
+  private :any_weekly_remaining?
 end

@@ -1,7 +1,11 @@
 <section id="week_in_review">
   <h3> Your Week In Review: </h3>
-  <p><%= current_account.remaining_personal_capacity %> of your personal capacity remaining out of your
-  expected <%= current_account.weekly_expected_capacity %> for this week</p>
+  <p>
+    <strong><%= current_account.remaining_personal_capacity %></strong>
+    of your
+    <strong><%= current_account.weekly_expected_capacity %></strong>
+    expected capacity remaining for this week
+  </p>
 </section>
 <%= render partial: "projects" %>
 <%= render partial: "recent_logs" %>

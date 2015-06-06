@@ -3,7 +3,15 @@ class Project < ActiveRecord::Base
   has_many :accounts, through: :logs
 
   def capacity_logged
-    logs.billable.pluck(:amount).sum
+    billable.pluck(:amount).sum
+  end
+
+  def capacity_recently_logged
+    billable.recent.pluck(:amount).sum
+  end
+
+  def billable
+    logs.billable
   end
 
   def capacity_remaining
@@ -15,6 +23,6 @@ class Project < ActiveRecord::Base
   end
 
   def weekly_capacity_remaining
-    weekly_burn_rate - logs.recent.billable.pluck(:amount).sum
+    [capacity_remaining, weekly_burn_rate - capacity_recently_logged].min
   end
 end

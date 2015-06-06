@@ -24,6 +24,7 @@ gem "jquery-rails", "4.0.3"
 
 gem "jquery-ui-rails", "5.0.5"
 
+# This lets us easily track pieces
 gem "segment_rails", "0.2.0"
 
 # Use Uglifier as compressor for JavaScript assets
@@ -34,9 +35,6 @@ gem "sdoc", "0.4.0", group: :doc
 
 # Used to catch errors in production
 gem "bugsnag", "2.8.6"
-
-# This gem makes rack requests time out...because puma doesn't
-gem "rack-timeout", "0.2.4"
 
 # A lightweight compass alternative
 gem "bourbon", "4.2.3"
@@ -55,6 +53,9 @@ group :production do
 
   # A concurrent web server
   gem "puma", "2.11.3"
+
+  # This gem makes rack requests time out...because puma doesn't
+  gem "rack-timeout", "0.2.4"
 end
 
 group :development, :test do
@@ -84,6 +85,9 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "spring", "1.3.6"
+
+  # Adds the spring interface to the rspec command
+  gem "spring-commands-rspec", "1.0.4"
 
   # Catches style issues
   gem "rubocop", "0.31.0"
