@@ -6,9 +6,9 @@ class ProjectDecorator < Draper::Decorator
 
   def per_weekly
     if any_burn_rate?
-      "no expected work"
+      "#{weekly_capacity_remaining} capacity remaining this week and #{weekly_burn_rate} expected burn rate"
     else
-      "#{weekly_capacity_remaining} capacity remaining this week and #{weekly_burn_rate} per week expected"
+      "no expected work"
     end
   end
 
