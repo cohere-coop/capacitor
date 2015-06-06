@@ -86,6 +86,9 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "spring", "1.3.6"
 
+  # Adds the spring interface to the rspec command
+  gem "spring-commands-rspec", "1.0.4"
+
   # Catches style issues
   gem "rubocop", "0.31.0"
 
