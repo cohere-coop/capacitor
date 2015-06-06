@@ -3,17 +3,49 @@ require "rails_helper"
 RSpec.describe ProjectDecorator, type: :decorator do
   using CapacityConverter
 
-  Given(:project) { instance_double(Project, capacity: capacity, capacity_remaining: capacity_remaining) }
-  Given(:capacity_remaining) { 8 }
-  Given(:decorator) { described_class.new(project) }
-
-  context "capacity is -1" do
-    Given(:capacity) { -1 }
-    Then { expect(decorator.capacity_remaining).to eql "Infinity" }
+  let(:_capacity_remaining) do
+    8
   end
 
-  context "capacity is an actual number" do
-    Given(:capacity) { 100 }
-    Then { expect(decorator.capacity_remaining).to eql capacity_remaining.to_business_days }
+  let(:project) do
+    instance_double(Project)
+  end
+
+  let(:decorator) do
+    described_class.new(project)
+  end
+
+  before(:each) do
+    allow(project).to receive(:capacity_remaining).and_return(_capacity_remaining)
+  end
+
+  describe "#capacity_remaining" do
+    let(:capacity_remaining) do
+      decorator.capacity_remaining
+    end
+
+    it "returns the amount in days" do
+      expect(capacity_remaining).to eql("1 day of work remaining")
+    end
+
+    context "when project capacity remaining is infinty" do
+      let(:_capacity_remaining) do
+        Float::INFINITY
+      end
+
+      it "returns the phrase 'infinite work remaining'" do
+        expect(capacity_remaining).to eq("infinite work remaining")
+      end
+    end
+
+    context "when project capacity remaining is 0" do
+      let(:_capacity_remaining) do
+        0
+      end
+
+      it "returns the phrase '0 half days of work remaining'" do
+        expect(capacity_remaining).to eq("zero days of work remaining")
+      end
+    end
   end
 end

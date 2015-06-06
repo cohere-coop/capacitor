@@ -4,8 +4,10 @@ class ProjectDecorator < Draper::Decorator
   delegate_all
   using CapacityConverter
 
+  FULL_DAY = 8.0
+
   def per_weekly
-    if project.weekly_burn_rate.zero?
+    if any_burn_rate?
       "no expected work"
     else
       "#{weekly_capacity_remaining} capacity remaining this week and #{weekly_burn_rate} per week expected"
@@ -13,58 +15,63 @@ class ProjectDecorator < Draper::Decorator
   end
 
   def capacity_remaining
-    if project.capacity_remaining == Float::INFINITY
+    if infinte_capacity_remaining?
       "infinite work remaining"
-    elsif project.capacity_remaining < 0
+    elsif no_capacity_remaining?
       "no more work left"
     else
-      "#{capacity_remaining_word} of work remaining"
+      "#{project.capacity_remaining.to_business_days} of work remaining"
     end
   end
 
-  def capacity_remaining_word
-    project.capacity_remaining.to_business_days
-  end
-  private :capacity_remaining_word
-
-  def capacity_remaining_decimal
-    project.capacity_remaining / 8.0
-  end
-  private :capacity_remaining_decimal
-
   def weekly_burn_rate
-    if project.weekly_burn_rate > 0
-      weekly_burn_rate_word
+    if any_burn_rate?
+      project.weekly_burn_rate.to_business_days
     else
       "no weekly burn rate"
     end
   end
 
-  def weekly_burn_rate_word
-    project.weekly_burn_rate.to_business_days
-  end
-  private :weekly_burn_rate_word
-
-  def weekly_burn_rate_decimal
-    project.weekly_burn_rate / 8.0
-  end
-  private :weekly_burn_rate_decimal
-
   def weekly_capacity_remaining
-    if project.weekly_capacity_remaining > 0
-      weekly_capacity_remaining_word
+    if any_weekly_remaining?
+      project.weekly_capacity_remaining.to_business_days
     else
       "zero"
     end
   end
 
-  def weekly_capacity_remaining_word
-    project.weekly_capacity_remaining.to_business_days
+  def capacity_remaining_value
+    project.capacity_remaining
   end
-  private :weekly_capacity_remaining_word
+  private :capacity_remaining_value
 
-  def weekly_capacity_remaining_decimal
-    project.weekly_capacity_remaining / 8.0
+  def weekly_burn_rate_value
+    project.weekly_burn_rate
   end
-  private :weekly_capacity_remaining_decimal
+  private :weekly_burn_rate_value
+
+  def weekly_capacity_remaining_value
+    project.weekly_capacity_remaining
+  end
+  private :weekly_capacity_remaining_value
+
+  def infinte_capacity_remaining?
+    project.capacity_remaining == Float::INFINITY
+  end
+  private :infinte_capacity_remaining?
+
+  def no_capacity_remaining?
+    project.capacity_remaining < 0
+  end
+  private :no_capacity_remaining?
+
+  def any_burn_rate?
+    project.weekly_burn_rate > 0
+  end
+  private :any_burn_rate?
+
+  def any_weekly_remaining?
+    project.weekly_capacity_remaining > 0
+  end
+  private :any_weekly_remaining?
 end
