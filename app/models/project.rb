@@ -6,6 +6,10 @@ class Project < ActiveRecord::Base
     billable.pluck(:amount).sum
   end
 
+  def capacity_recently_logged
+    billable.recent.pluck(:amount).sum
+  end
+
   def billable
     logs.billable
   end
