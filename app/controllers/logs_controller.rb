@@ -1,4 +1,5 @@
 class LogsController < ApplicationController
+  skip_before_filter :verify_authenticity_token, :only => :destroy
   def new
     @project = Project.find(params[:project_id])
     @log = Log.new(worked_at: Time.zone.today)

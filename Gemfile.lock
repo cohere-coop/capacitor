@@ -281,6 +281,3 @@ DEPENDENCIES
   spring (= 1.3.6)
   uglifier (= 2.7.1)
   web-console (= 2.1.2)
-
-BUNDLED WITH
-   1.10.3
