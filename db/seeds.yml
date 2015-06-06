@@ -29,19 +29,23 @@ projects:
   -
     name: "Capacitor"
     capacity: -1
-    weekly_burn_rate: 2
+    weekly_burn_rate: 8
   -
     name: "Transistor"
     capacity: 0
     weekly_burn_rate: 0
   -
     name: "Generator"
-    capacity: 40
+    capacity: 10
     weekly_burn_rate: 0
   -
     name: "Voltage"
-    capacity: 25
-    weekly_burn_rate: 3
+    capacity: 100
+    weekly_burn_rate: 8
+  -
+    name: "Surge"
+    capacity: 6
+    weekly_burn_rate: 8
 
 logs:
   -
