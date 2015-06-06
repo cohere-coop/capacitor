@@ -14,7 +14,7 @@ class ProjectDecorator < Draper::Decorator
 
   def capacity_remaining
     if infinte_capacity_remaining?
-      "infinite work remaining"
+      "unlimited work remaining"
     elsif no_capacity_remaining?
       "no more work left"
     else
