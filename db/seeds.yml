@@ -30,18 +30,22 @@ projects:
     name: "Capacitor"
     capacity: -1
     weekly_burn_rate: 2
+    billable: false
   -
     name: "Transistor"
     capacity: 0
     weekly_burn_rate: 0
+    billable: true
   -
     name: "Voltage"
     capacity: 25
     weekly_burn_rate: 3
+    billable: true
   -
     name: "Generator"
     capacity: 40
     weekly_burn_rate: 0
+    billable: true
 
 logs:
   -

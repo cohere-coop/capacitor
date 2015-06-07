@@ -13,10 +13,11 @@
   <%= f.text_field :worked_at, class: "datepicker" %>
   <%= render partial: "error_for_field", locals: { model: @log, field: :worked_at } %>
 
-
-  <label>
-    <%= f.check_box :do_not_bill %>Do Not Bill
-  </label>
+  <% if @project.billable %>
+    <label>
+      <%= f.check_box :do_not_bill %>Do Not Bill
+    </label>
+  <% end %>
 
   <%= render partial: "error_for_field", locals: { model: @log, field: :do_not_bill } %>
 
