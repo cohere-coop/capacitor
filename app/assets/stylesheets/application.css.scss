@@ -37,10 +37,9 @@ body > header, body > main, body > footer {
   display: inline-block;
 }
 
-.brand {
+h1.brand {
   text-align: center;
-  .logo {
-    width: 50vh;
-    height: 50vh;
+  img {
+    max-height: 10em;
   }
 }
