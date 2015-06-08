@@ -10,7 +10,7 @@ module ProjectHelper
   OKAY = 3
   GOOD = 4
   BEST = 5
-  QUALITY_OPTIONS = [NULL,WORST, BAD, OKAY, GOOD, BEST]
+  QUALITY_OPTIONS = [NULL, WORST, BAD, OKAY, GOOD, BEST]
 
   def options_for_project_amount
     options_for_select(AMOUNT_OPTIONS)
