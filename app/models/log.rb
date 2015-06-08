@@ -8,8 +8,8 @@ class Log < ActiveRecord::Base
   validates :account, presence: true
 
   scope :recent, lambda {
-    start_at = Time.zone.now.beginning_of_week
-    end_at = Time.zone.now.end_of_week
+    start_at = 7.days.ago
+    end_at = Time.zone.today
     order(worked_at: :desc).where(worked_at: start_at..end_at)
   }
 
