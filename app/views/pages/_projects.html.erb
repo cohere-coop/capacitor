@@ -2,7 +2,6 @@
   <h3>Pick a Project to Work On</h3>
   <div class="contents">
     <%- @projects.each do |project| %>
-     <% if project.active %>
       <article>
         <header>
           <h3><%= link_to project.name, new_project_log_path(project), id: "#{project.id}_new_log_entry" %></h3>
@@ -10,7 +9,6 @@
         <p><%= project.capacity_remaining %> of work left</p>
         <p><%= project.weekly_capacity_remaining%> of <%= project.weekly_burn_rate %> per week</p>
       </article>
-     <% end %>
     <% end %>
   </div>
 </section>
