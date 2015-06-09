@@ -10,14 +10,14 @@ module CapacityConverter
 
     # @return [String] business days given a number of hours
     def to_business_days
-      remainder = (self.abs) % 8
-      total = (self.abs) / 8
-      result = if total > 0 && remainder == 0
-        "#{total} #{pluralized_day(total)}"
+      remainder = abs % 8
+      total = abs / 8
+      if total > 0 && remainder == 0
+        result = "#{total} #{pluralized_day(total)}"
       elsif total > 0 && remainder != 0
-        "#{total} and #{partial_day(remainder)}"
+        result = "#{total} and #{partial_day(remainder)}"
       else
-        partial_day(remainder)
+        result = partial_day(remainder)
       end
 
       self < 0 ? "negative #{result}" : result
