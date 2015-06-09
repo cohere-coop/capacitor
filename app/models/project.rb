@@ -2,7 +2,7 @@ class Project < ActiveRecord::Base
   has_many :logs
   has_many :accounts, through: :logs
 
-  scope :active, -> {
+  scope :active, lambda {
     where(active: true)
   }
 
