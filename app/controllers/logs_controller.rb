@@ -5,6 +5,7 @@ class LogsController < ApplicationController
   end
 
   def create
+    @project = Project.find(params[:project_id])
     @log = Log.new(log_params)
 
     if @log.save
