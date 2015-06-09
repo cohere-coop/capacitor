@@ -4,12 +4,12 @@ FactoryGirl.define do
   factory :log do
     amount 1
     quality 1
-    worked_at "2015-04-30"
+    worked_at Time.zone.today
     do_not_bill false
     project
     account
     factory :recent_log do
-      worked_at 3.days.ago
+      worked_at Time.zone.today
     end
 
     factory :old_log do
