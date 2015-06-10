@@ -2,6 +2,10 @@ class Project < ActiveRecord::Base
   has_many :logs
   has_many :accounts, through: :logs
 
+  scope :active, lambda {
+    where(active: true)
+  }
+
   def capacity_logged
     logs.billable.pluck(:amount).sum
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150606230821) do
+ActiveRecord::Schema.define(version: 20150608065809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20150606230821) do
     t.integer  "capacity",         default: 0,    null: false
     t.integer  "weekly_burn_rate", default: 0,    null: false
     t.boolean  "billable",         default: true, null: false
+    t.boolean  "active",           default: true, null: false
   end
 
   add_index "projects", ["capacity"], name: "index_projects_on_capacity", using: :btree
