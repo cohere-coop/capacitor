@@ -7,13 +7,21 @@ class Log < ActiveRecord::Base
   validates :worked_at, presence: true
   validates :account, presence: true
 
-  scope :recent, lambda {
-    start_at = 7.days.ago
-    end_at = Time.zone.today
+  scope :weekly, ->(distance = 0) do
+    start_at = Date.today.beginning_of_week - distance.weeks
+    end_at = Date.today.end_of_week - distance.weeks
     order(worked_at: :desc).where(worked_at: start_at..end_at)
-  }
+  end
 
-  scope :billable, lambda {
+  scope :billable, -> do
     where(do_not_bill: false)
-  }
+  end
+
+  scope :recent, ->(start_at = 7.days.ago) do
+    order(worked_at: :desc).where(worked_at: start_at..Date.today)
+  end
+
+  scope :for_project, ->(project) do
+    where(project_id: project)
+  end
 end

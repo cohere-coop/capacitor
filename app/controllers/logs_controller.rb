@@ -1,7 +1,16 @@
 class LogsController < ApplicationController
   before_action :setup_variables, only: [:new, :create]
 
+  def index
+    search = SearchDenormalizer.new(params[:search] || {})
+    logs = search.scopes.inject(Log) do |query, scope|
+      query.public_send(scope, *search.arguments[scope])
+    end
+    @logs = LogsDecorator.new(logs)
+  end
+
   def new
+
   end
 
   def create
