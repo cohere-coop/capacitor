@@ -1,10 +1,11 @@
 class SearchDenormalizer
-  ALLOWED_SCOPES = ["recent", "weekly", "for_project", "billable"]
+  DEFAULT_SCOPES = Array.new
+  ALLOWED_SCOPES = ["recent", "weekly", "for_project", "billable", "order"]
 
   def initialize(parameters)
-    @scopes = parameters[:scopes] || []
+    @scopes = parameters[:scopes] || DEFAULT_SCOPES
     @arguments = ALLOWED_SCOPES.inject({}) do |query, scope|
-      query.merge(scope => parameters[scope] || [])
+      query.merge(scope => parameters[scope])
     end
   end
 
@@ -14,7 +15,19 @@ class SearchDenormalizer
     end
   end
 
-  def arguments
-    @arguments
+  def for_project
+    @arguments["for_project"]
+  end
+
+  def weekly
+    (@arguments["weekly"].to_i || 0).weeks
+  end
+
+  def recent
+    @arguments["recent"].to_i.days.ago
+  end
+
+  def order
+    @arguments["order"]
   end
 end

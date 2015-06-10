@@ -1,10 +1,15 @@
 class LogsController < ApplicationController
+  DEFAULT_SEARCH = {
+    scopes: ["recent"],
+    recent: 21
+  }
+
   before_action :setup_variables, only: [:new, :create]
 
   def index
-    search = SearchDenormalizer.new(params[:search] || {})
+    search = SearchDenormalizer.new(params[:search] || DEFAULT_SEARCH)
     logs = search.scopes.inject(Log) do |query, scope|
-      query.public_send(scope, *search.arguments[scope])
+      query.public_send(scope, *Array.wrap(search.public_send(scope)))
     end
     @logs = LogsDecorator.new(logs)
   end

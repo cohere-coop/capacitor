@@ -7,9 +7,9 @@ class Log < ActiveRecord::Base
   validates :worked_at, presence: true
   validates :account, presence: true
 
-  scope :weekly, ->(distance = 0) do
-    start_at = Date.today.beginning_of_week - distance.weeks
-    end_at = Date.today.end_of_week - distance.weeks
+  scope :weekly, ->(distance = 0.weeks) do
+    start_at = Date.today.beginning_of_week - distance
+    end_at = Date.today.end_of_week - distance
     order(worked_at: :desc).where(worked_at: start_at..end_at)
   end
 
