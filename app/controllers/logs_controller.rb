@@ -28,6 +28,22 @@ class LogsController < ApplicationController
     redirect_to root_path
   end
 
+  def edit
+    @project = Project.find(params[:project_id])
+    @log = Log.find(params[:id])
+  end
+
+  def update
+    @log = Log.find(params[:id])
+
+    if @log.update(log_params)
+      flash[:notice] = "Edited #{@log.decorate.summary}"
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
+
   def log_params
     params.require(:log).permit(:quality, :amount, :worked_at, :do_not_bill)
       .merge(account: current_account, project: Project.find(params[:project_id]))
