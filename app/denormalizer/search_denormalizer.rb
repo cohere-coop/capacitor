@@ -1,5 +1,5 @@
 class SearchDenormalizer
-  DEFAULT_SCOPES = Array.new
+  DEFAULT_SCOPES = []
   ALLOWED_SCOPES = ["recent", "weekly", "for_project", "billable", "order"]
 
   def initialize(parameters)
