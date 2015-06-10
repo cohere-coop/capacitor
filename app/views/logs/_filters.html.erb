@@ -1,0 +1,62 @@
+<ul class="filters">
+  <li class="filter">
+  </li>
+  <li class="filter">
+    <%= link_to "For Project", "#", class: "filter-link" %>
+    <div class="filter-content">
+      <ul>
+        <% current_account.projects.uniq.each do |project| %>
+          <li>
+            <%= link_to project.name, logs_path(search: { scopes: ["for_project"], for_project: project.id }) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </li>
+
+  <li class="filter">
+    <%= link_to "Weekly", "#", class: "filter-link" %>
+    <div class="filter-content">
+      <ul>
+        <li class="subfilter">
+          <%= link_to "This week", logs_path(search: { scopes: ["weekly"], weekly: 0 }), class: "link" %>
+        </li>
+
+        <li class="subfilter">
+          <%= link_to "Last week", logs_path(search: { scopes: ["weekly"], weekly: 1 }), class: "link" %>
+        </li>
+      </ul>
+    </div>
+  </li>
+
+  <li class="filter">
+    <%= link_to "Recent", "#", class: "filter-link" %>
+    <div class="filter-content">
+      <ul>
+        <% @logs.recents.each do |recent| %>
+          <li class="subfilter">
+            <%= link_to "Last #{pluralize(recent, "day")}", logs_path(search: { scopes: ["recent"], recent: recent }), class: "link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </li>
+
+  <li class="filter">
+    <%= link_to "Order", "#", class: "filter-link" %>
+    <div class="filter-content">
+      <ul>
+        <% @logs.orders.each do |order| %>
+          <li class="subfilter">
+            <%= link_to order, logs_path(search: { scopes: ["order"], order: [{ order => :desc }] }), class: "link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </li>
+
+
+  <li class="filter">
+    <%= link_to "Billable", logs_path(search: { scopes: ["billable"]}), class: "ink" %>
+  </li>
+</ul>
