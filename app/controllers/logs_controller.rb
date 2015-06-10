@@ -32,6 +32,7 @@ class LogsController < ApplicationController
   end
 
   def update
+    @project = Project.find(params[:project_id])
     @log = Log.find(params[:id])
 
     if @log.update(log_params)
