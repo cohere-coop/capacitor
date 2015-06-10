@@ -9,5 +9,6 @@ describe CapacityConverter do
     Then { expect(1.to_business_days).to eql("1 eighth day") }
     Then { expect(3.to_business_days).to eql("3 eighth days") }
     Then { expect(9.to_business_days).to eql("1 and 1 eighth day") }
+    Then { expect(-9.to_business_days).to eql("negative 1 and 1 eighth day") }
   end
 end
