@@ -7,7 +7,7 @@ class Account < ActiveRecord::Base
   devise :validatable
 
   has_many :logs
-  has_many :projects, through: :capacities
+  has_many :projects, through: :logs
 
   validates :name, presence: true
 
