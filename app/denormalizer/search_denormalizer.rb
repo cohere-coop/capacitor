@@ -30,4 +30,8 @@ class SearchDenormalizer
   def order
     @arguments["order"]
   end
+
+  def billable
+    @arguments["billable"]
+  end
 end
