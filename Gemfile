@@ -35,9 +35,6 @@ gem "sdoc", "0.4.0", group: :doc
 # Used to catch errors in production
 gem "bugsnag", "2.8.6"
 
-# This gem makes rack requests time out...because puma doesn't
-gem "rack-timeout", "0.2.4"
-
 # A lightweight compass alternative
 gem "bourbon", "4.2.3"
 
@@ -55,6 +52,9 @@ group :production do
 
   # A concurrent web server
   gem "puma", "2.11.3"
+
+  # This gem makes rack requests time out...because puma doesn't
+  gem "rack-timeout", "0.2.4"
 end
 
 group :development, :test do
