@@ -1,12 +1,10 @@
 class LogsController < ApplicationController
+  before_action :setup_variables, only: [:new, :create]
+
   def new
-    @project = Project.find(params[:project_id])
-    @log = Log.new(worked_at: Time.zone.today)
   end
 
   def create
-    @log = Log.new(log_params)
-
     if @log.save
       track_log_creation(@log.decorate)
       flash[:notice] = "Logged #{@log.decorate.summary}"
@@ -57,4 +55,11 @@ class LogsController < ApplicationController
                                    project_name: log.project.name,
                                    project_id: log.project.id)
   end
+  private "track_log_creation"
+
+  def setup_variables
+    @project = Project.find(params[:project_id]) if params[:project_id]
+    @log = params[:log] ? Log.new(log_params) : Log.new(worked_at: Time.zone.today)
+  end
+  private "setup_variables"
 end
