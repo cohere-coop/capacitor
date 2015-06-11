@@ -4,4 +4,7 @@
   expected <%= current_account.weekly_expected_capacity %> for this week</p>
 </section>
 <%= render partial: "projects" %>
-<%= render partial: "recent_logs" %>
+<section id="recent_logs">
+  <h3>Your Recent Entries</h3>
+  <%= render partial: "recent_logs", locals: { logs: current_account.recent_logs } %>
+</section>

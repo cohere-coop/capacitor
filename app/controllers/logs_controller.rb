@@ -1,6 +1,10 @@
 class LogsController < ApplicationController
   before_action :setup_variables, only: [:new, :create, :edit, :update]
 
+  def index
+    @logs = current_account.logs.decorate
+  end
+
   def new
   end
 
