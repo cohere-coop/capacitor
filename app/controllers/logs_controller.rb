@@ -1,5 +1,5 @@
 class LogsController < ApplicationController
-  before_action :setup_variables, only: [:new, :create]
+  before_action :setup_variables, only: [:new, :create, :edit, :update]
 
   def new
   end
@@ -32,9 +32,6 @@ class LogsController < ApplicationController
   end
 
   def update
-    @project = Project.find(params[:project_id])
-    @log = Log.find(params[:id])
-
     if @log.update(log_params)
       flash[:notice] = "Edited #{@log.decorate.summary}"
       redirect_to root_path
@@ -58,9 +55,23 @@ class LogsController < ApplicationController
   end
   private "track_log_creation"
 
-  def setup_variables
+  def load_project
     @project = Project.find(params[:project_id]) if params[:project_id]
-    @log = params[:log] ? Log.new(log_params) : Log.new(worked_at: Time.zone.today)
+  end
+
+  def load_log
+    if params[:id]
+      @log = Log.find(params[:id])
+    elsif params[:log]
+      @log = Log.new(log_params)
+    else
+      @log = Log.new(worked_at: Time.zone.today)
+    end
+  end
+
+  def setup_variables
+    load_project
+    load_log
   end
   private "setup_variables"
 end
