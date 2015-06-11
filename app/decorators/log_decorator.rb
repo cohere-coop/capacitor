@@ -13,7 +13,7 @@ class LogDecorator < Draper::Decorator
   end
 
   def dom_id
-    "log-#{project.id}"
+    "log-#{id}"
   end
 
   def worked_at

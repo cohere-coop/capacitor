@@ -27,3 +27,16 @@ feature "Logging time" do
     Then { expect(log).to be_persisted }
   end
 end
+
+feature "Editing time" do
+  include_context "account login"
+
+  Given!(:project) { FactoryGirl.create(:project) }
+  Given!(:log) { current_account.logs.create(project: project, quality: 1, amount: 1, worked_at: Time.zone.now) }
+  Given!(:decorated_log) { log.decorate }
+
+  When { within("##{decorated_log.dom_id}") { click_link_or_button("Edit") } }
+  When { select("5", from: "Quality") }
+  When { click_link_or_button("Log Capacity") }
+  Then { expect(log.reload.quality).to eql(5) }
+end
