@@ -1,18 +1,31 @@
-$(document).ready(function () {
-  $('.filters').each(function(index) {
-    $(this).children('li').first().children('a').addClass('is-active').next().addClass('is-open').show();
-  });
-  $('.filters').on('click', 'li > a.filter-link', function(event) {
-    if (!$(this).hasClass('is-active')) {
-      event.preventDefault();
-      var filters = $(this).closest('.filters');
-      filters.find('.is-open').removeClass('is-open').hide();
+(function(){
+    $(document).ready(function () {
+        enableDropdownForLogFilters();
+    });
 
-      $(this).next().toggleClass('is-open').toggle();
-      filters.find('.is-active').removeClass('is-active');
-      $(this).addClass('is-active');
-    } else {
-      event.preventDefault();
+    var enableDropdownForLogFilters = function () {
+        $('.filters').on('click', 'li > a.filter-link', function (event) {
+            event.preventDefault();
+            if (isInactive(this)) {
+                showDropdownForLink(this);
+            }
+        });
     }
-  });
-});
+
+    var isInactive = function (element) {
+        return !$(element).hasClass('is-active');
+    }
+
+    var showDropdownForLink = function (link) {
+        var $link = $(link)
+        var filters = $link.closest('.filters');
+        // closes currently open tab
+        filters.find('.is-open').removeClass('is-open').hide();
+        //find the content for the dropdown for this link and show it
+        $link.next().toggleClass('is-open').toggle();
+        //finds currently active filtered link and removes it
+        filters.find('.is-active').removeClass('is-active');
+        // makes link that was clicked active
+        $link.addClass('is-active');
+    }
+})();
