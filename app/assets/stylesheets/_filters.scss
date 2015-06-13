@@ -1,7 +1,5 @@
 .filters {
   $base-spacing: 1em !default;
-  $medium-screen: em(640) !default;
-  $filter-mode: $medium-screen;
 
   @include clearfix;
   line-height: 1.5;
@@ -9,61 +7,41 @@
 
   li.filter {
     list-style: none;
-
-    @include media($filter-mode) {
-      display: inline;
-    }
-
+    display: inline;
 
     .subfilter {
       list-style: none;
-
-      @include media($filter-mode) {
-        display: inline;
-      }
+      display: inline;
     }
   }
 
   a.filter-link {
-    display: block;
     font-weight: 400;
     padding: ($base-spacing / 2) $gutter;
     text-decoration: none;
-
-    @include media($filter-mode) {
-      @include inline-block;
-      border-top: 0;
-    }
+    @include inline-block;
+    border-top: 0;
 
     &:focus {
       outline: none;
     }
 
     &.is-active {
-      @include media($filter-mode) {
-        margin-bottom: -1px;
-      }
+      margin-bottom: -1px;
     }
   }
 
   a.link {
-    display: block;
     font-weight: 400;
     padding: ($base-spacing / 2) $gutter;
-
-    @include media($filter-mode) {
-      @include inline-block;
-      border-top: 0;
-    }
+    @include inline-block;
+    border-top: 0;
   }
 
   .filter-content {
     display: none;
     padding: $base-spacing $gutter;
     width: 100%;
-
-    @include media($filter-mode) {
-      float: left;
-    }
+    float: left;
   }
 }
