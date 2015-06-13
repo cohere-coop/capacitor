@@ -36,4 +36,4 @@ Metrics/LineLength:
   Max: 120
 
 Rails/Date:
-  Enable: false
+  Enabled: false
