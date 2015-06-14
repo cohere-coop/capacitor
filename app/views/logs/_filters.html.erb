@@ -15,11 +15,11 @@
     <div class="filter-content">
       <ul>
         <li class="subfilter">
-          <%= link_to "This week", logs_path(start_date: 7.days.ago.to_date), class: "link" %>
+          <%= link_to "This week", logs_path(after_date: 7.days.ago.to_date), class: "link" %>
         </li>
 
         <li class="subfilter">
-          <%= link_to "Last week", logs_path(start_date: 14.days.ago.to_date, end_date: 7.days.ago.to_date), class: "link" %>
+          <%= link_to "Last week", logs_path(after_date: 14.days.ago.to_date, before_date: 7.days.ago.to_date), class: "link" %>
         </li>
       </ul>
     </div>
