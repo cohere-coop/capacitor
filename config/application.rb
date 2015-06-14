@@ -1,6 +1,6 @@
 require File.expand_path("../boot", __FILE__)
 
-#encoding: UTF-8
+# encoding: UTF-8
 
 # Pick the frameworks you want:
 require "active_model/railtie"

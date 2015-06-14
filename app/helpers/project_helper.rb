@@ -9,7 +9,7 @@ module ProjectHelper
   OKAY = "\xF0\x9F\x98\x9E"
   GOOD = "\xF0\x9F\x98\x84"
   BEST = "\xF0\x9F\x98\x86"
-  QUALITY_OPTIONS = [[nil], [WORST, 1], [BAD, 2], [OKAY, 3], [GOOD, 4], [BEST,5] ]
+  QUALITY_OPTIONS = [[nil], [1, WORST], [2, BAD], [3, OKAY], [4, GOOD], [5, BEST]]
 
   def options_for_project_amount
     options_for_select(AMOUNT_OPTIONS)
