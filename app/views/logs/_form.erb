@@ -3,7 +3,7 @@
   <%= f.select :amount, options_for_select(ProjectHelper::AMOUNT_OPTIONS, @log.amount) %>
   <%= render partial: "error_for_field", locals: { model: @log, field: :amount } %>
 
-  <%= f.label :quality %>
+  <%= f.label :quality, "How'd it go?" %>
   <%= f.select :quality, options_for_select(ProjectHelper::QUALITY_OPTIONS, @log.quality) %>
   <%= render partial: "error_for_field", locals: { model: @log, field: :quality } %>
 
@@ -18,7 +18,6 @@
   <% end %>
 
   <%= render partial: "error_for_field", locals: { model: @log, field: :do_not_bill } %>
-
 
   <%= f.submit "Log Capacity" %>
 <%- end %>
