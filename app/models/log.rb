@@ -15,19 +15,23 @@ class Log < ActiveRecord::Base
     order(worked_at: :desc).where(worked_at: start_at..Date.today)
   end
 
-  scope :filter, ->(conditions) do
+  def self.filter(conditions)
     where_clauses = []
     where_clauses.push(["worked_at >= ?", conditions[:after_date]]) if conditions[:after_date]
     where_clauses.push(["worked_at <= ?", conditions[:before_date]]) if conditions[:before_date]
     where_clauses.push(do_not_bill: false) if conditions[:billable]
     where_clauses.push(project_id: conditions[:projects]) if conditions[:projects]
-    where_clauses.reduce(self) { |search_query, clause|
-      if clause.respond_to?(:keys)
-        search_query.where(clause)
-      else
-        field, condition = clause
-        search_query.where(field, condition)
-      end
-    }
+    where_clauses.reduce(self) do |search_query, clause|
+      search_query.filter_clause(clause)
+    end
+  end
+
+  def self.filter_clause(clause)
+    if clause.respond_to?(:keys)
+      where(clause)
+    else
+      field, condition = clause
+      where(field, condition)
+    end
   end
 end

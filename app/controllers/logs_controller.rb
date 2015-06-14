@@ -68,6 +68,7 @@ class LogsController < ApplicationController
   def load_project
     @project = Project.find(params[:project_id]) if params[:project_id]
   end
+  private "load_project"
 
   def load_log
     if params[:id]
@@ -78,12 +79,11 @@ class LogsController < ApplicationController
       @log = Log.new(worked_at: Time.zone.today)
     end
   end
+  private "load_log"
 
   def setup_variables
     load_project
     load_log
   end
   private "setup_variables"
-
-
 end
