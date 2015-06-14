@@ -8,7 +8,7 @@ class LogsController < ApplicationController
   before_action :setup_variables, only: [:new, :create, :edit, :update]
 
   def index
-    @logs = current_account.logs.decorate
+    @logs = LogsDecorator.new(current_account.logs.filter(params))
   end
 
   def new
@@ -84,4 +84,6 @@ class LogsController < ApplicationController
     load_log
   end
   private "setup_variables"
+
+
 end

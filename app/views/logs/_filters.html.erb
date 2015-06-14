@@ -1,60 +1,31 @@
 <ul class="filters">
   <li class="filter">
-    <%= link_to "For Project", "#", class: "filter-link" %>
+    <%= link_to "By Project", "#", class: "filter-link" %>
     <div class="filter-content">
       <ul>
         <% current_account.projects.uniq.each do |project| %>
-          <li>
-            <%= link_to project.name, logs_path(search: { scopes: ["for_project"], for_project: project.id }) %>
-          </li>
+          <li><%= link_to project.name, logs_path(projects: [project.id]) %></li>
         <% end %>
       </ul>
     </div>
   </li>
 
   <li class="filter">
-    <%= link_to "Weekly", "#", class: "filter-link" %>
+    <%= link_to "By Week", "#", class: "filter-link" %>
     <div class="filter-content">
       <ul>
         <li class="subfilter">
-          <%= link_to "This week", logs_path(search: { scopes: ["weekly"], weekly: 0 }), class: "link" %>
+          <%= link_to "This week", logs_path(start_date: 7.days.ago.to_date), class: "link" %>
         </li>
 
         <li class="subfilter">
-          <%= link_to "Last week", logs_path(search: { scopes: ["weekly"], weekly: 1 }), class: "link" %>
+          <%= link_to "Last week", logs_path(start_date: 14.days.ago.to_date, end_date: 7.days.ago.to_date), class: "link" %>
         </li>
       </ul>
     </div>
   </li>
 
   <li class="filter">
-    <%= link_to "Recent", "#", class: "filter-link" %>
-    <div class="filter-content">
-      <ul>
-        <% @logs.recents.each do |recent| %>
-          <li class="subfilter">
-            <%= link_to "Last #{pluralize(recent, "day")}", logs_path(search: { scopes: ["recent"], recent: recent }), class: "link" %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </li>
-
-  <li class="filter">
-    <%= link_to "Order", "#", class: "filter-link" %>
-    <div class="filter-content">
-      <ul>
-        <% @logs.orders.each do |order| %>
-          <li class="subfilter">
-            <%= link_to order, logs_path(search: { scopes: ["order"], order: [{ order => :desc }] }), class: "link" %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </li>
-
-
-  <li class="filter">
-    <%= link_to "Billable", logs_path(search: { scopes: ["billable"]}), class: "ink" %>
+    <%= link_to "Only Billable", logs_path(billable: true), class: "ink" %>
   </li>
 </ul>
