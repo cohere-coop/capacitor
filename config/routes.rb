@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   }
 
   resources :projects, only: [:index] do
-    resources :logs, only: [:new, :create]
+    resources :logs, only: [:new, :create, :edit, :update]
   end
 
   resources :logs, only: [:index, :destroy]

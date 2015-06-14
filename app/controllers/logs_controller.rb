@@ -5,13 +5,10 @@ class LogsController < ApplicationController
   }
 
   before_action :setup_variables, only: [:new, :create]
+  before_action :setup_variables, only: [:new, :create, :edit, :update]
 
   def index
-    search = SearchDenormalizer.new(params[:search] || DEFAULT_SEARCH)
-    logs = search.scopes.inject(Log) do |query, scope|
-      query.public_send(scope, *Array.wrap(search.public_send(scope)))
-    end
-    @logs = LogsDecorator.new(logs)
+    @logs = current_account.logs.decorate
   end
 
   def new
@@ -39,6 +36,20 @@ class LogsController < ApplicationController
     redirect_to root_path
   end
 
+  def edit
+    @project = Project.find(params[:project_id])
+    @log = Log.find(params[:id])
+  end
+
+  def update
+    if @log.update(log_params)
+      flash[:notice] = "Edited #{@log.decorate.summary}"
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
+
   def log_params
     params.require(:log).permit(:quality, :amount, :worked_at, :do_not_bill)
       .merge(account: current_account, project: Project.find(params[:project_id]))
@@ -54,9 +65,23 @@ class LogsController < ApplicationController
   end
   private "track_log_creation"
 
-  def setup_variables
+  def load_project
     @project = Project.find(params[:project_id]) if params[:project_id]
-    @log = params[:log] ? Log.new(log_params) : Log.new(worked_at: Time.zone.today)
+  end
+
+  def load_log
+    if params[:id]
+      @log = Log.find(params[:id])
+    elsif params[:log]
+      @log = Log.new(log_params)
+    else
+      @log = Log.new(worked_at: Time.zone.today)
+    end
+  end
+
+  def setup_variables
+    load_project
+    load_log
   end
   private "setup_variables"
 end

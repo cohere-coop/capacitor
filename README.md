@@ -6,5 +6,6 @@
 2. `bundle install`
 3. `cp .env.example .env`
 4. `bin/rake db:create db:migrate`
-5. `bin/rspec`
-6. `bin/rails s`
+5. `bin/rake db:test:prepare`
+6. `bin/rspec`
+7. `bin/rails s`

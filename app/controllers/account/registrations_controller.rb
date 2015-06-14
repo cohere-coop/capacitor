@@ -11,8 +11,8 @@ class Account
     # POST /resource
     def create
       super do |account|
-        account.reload
         if account.persisted?
+          account.reload
           track_event("Account created")
         else
           track_event("Account creation failed")

@@ -1,26 +1,3 @@
 <h1>Track Capacity For <%= @project.name %> </h1>
 
-<%= form_for([ @project, @log]) do |f| %>
-  <%= f.label :amount  %>
-  <%= f.select :amount, options_for_select(ProjectHelper::AMOUNT_OPTIONS, @log.amount) %>
-  <%= render partial: "error_for_field", locals: { model: @log, field: :amount } %>
-
-  <%= f.label :quality %>
-  <%= f.select :quality, options_for_select(ProjectHelper::QUALITY_OPTIONS, @log.quality) %>
-  <%= render partial: "error_for_field", locals: { model: @log, field: :quality } %>
-
-  <%= f.label :worked_at %>
-  <%= f.text_field :worked_at, class: "datepicker" %>
-  <%= render partial: "error_for_field", locals: { model: @log, field: :worked_at } %>
-
-  <% if @project.billable %>
-    <label>
-      <%= f.check_box :do_not_bill %>Do Not Bill
-    </label>
-  <% end %>
-
-  <%= render partial: "error_for_field", locals: { model: @log, field: :do_not_bill } %>
-
-
-  <%= f.submit "Log Capacity" %>
-<%- end %>
+<%= render partial: "form" %>
