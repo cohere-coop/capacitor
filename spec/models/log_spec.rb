@@ -2,6 +2,15 @@ require "rails_helper"
 
 describe Log do
   describe "#filter" do
+    it "returns everything if no filters" do
+      old_log = FactoryGirl.create(:old_log)
+      recent_log = FactoryGirl.create(:recent_log)
+
+      results = described_class.filter({})
+      expect(results).to include(recent_log)
+      expect(results).to include(old_log)
+    end
+
     it "filters after_date" do
       old_log = FactoryGirl.create(:old_log)
       recent_log = FactoryGirl.create(:recent_log)
