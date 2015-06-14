@@ -17,11 +17,11 @@ class Log < ActiveRecord::Base
 
   scope :filter, ->(conditions) do
     where_clauses = []
-    where_clauses.push(["worked_at >= ?", conditions[:start_date]]) if conditions[:start_date]
-    where_clauses.push(["worked_at <= ?", conditions[:end_date]]) if conditions[:end_date]
+    where_clauses.push(["worked_at >= ?", conditions[:after_date]]) if conditions[:after_date]
+    where_clauses.push(["worked_at <= ?", conditions[:before_date]]) if conditions[:before_date]
     where_clauses.push(do_not_bill: false) if conditions[:billable]
     where_clauses.push(project_id: conditions[:projects]) if conditions[:projects]
-    search = where_clauses.reduce(self) { |search_query, clause|
+    where_clauses.reduce(self) { |search_query, clause|
       if clause.respond_to?(:keys)
         search_query.where(clause)
       else
@@ -29,6 +29,5 @@ class Log < ActiveRecord::Base
         search_query.where(field, condition)
       end
     }
-    search
   end
 end
