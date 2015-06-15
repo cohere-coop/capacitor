@@ -1,12 +1,21 @@
 class LogsDecorator < Draper::CollectionDecorator
+  RANGE_OF_TIME = (0...4)
   def ranges
-    [0, 1,2,3,4].map do |x|
+    week_ranges + month_ranges
+  end
+
+  def week_ranges
+    RANGE_OF_TIME.map do |x|
       {
         after_date: x.weeks.ago.beginning_of_week.to_date,
         before_date: x.weeks.ago.end_of_week.to_date,
         label: label_for(x, "week")
       }
-    end + [0,1,2,3].map do |x|
+    end
+  end
+
+  def month_ranges
+    RANGE_OF_TIME.map do |x|
       {
         after_date: x.months.ago.beginning_of_month.to_date,
         before_date: x.months.ago.end_of_month.to_date,
