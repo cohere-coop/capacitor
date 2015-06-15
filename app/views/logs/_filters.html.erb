@@ -11,16 +11,14 @@
   </li>
 
   <li class="filter">
-    <%= link_to "By Week", "#", class: "filter-link" %>
+    <%= link_to "By Date", "#", class: "filter-link" %>
     <div class="filter-content">
       <ul>
+        <%- filterer.ranges.each do |range| %>
         <li class="subfilter">
-          <%= link_to "This week", logs_path(after_date: 7.days.ago.to_date), class: "link" %>
+          <%= link_to range[:label], logs_path(after_date: range[:after_date], before_date: range[:before_date]), class: "link" %>
         </li>
-
-        <li class="subfilter">
-          <%= link_to "Last week", logs_path(after_date: 14.days.ago.to_date, before_date: 7.days.ago.to_date), class: "link" %>
-        </li>
+        <%- end %>
       </ul>
     </div>
   </li>
