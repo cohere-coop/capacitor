@@ -7,8 +7,8 @@ class Log < ActiveRecord::Base
     end
 
     def results
-      clauses.reduce(collection) do |search_query, clause|
-        filter_clause(search_query, clause)
+      clauses.reduce(collection) do |collection, clause|
+        filter(collection, clause)
       end
     end
 
@@ -35,7 +35,7 @@ class Log < ActiveRecord::Base
       clauses
     end
 
-    def filter_clause(collection, clause)
+    def filter(collection, clause)
       if clause.respond_to?(:keys)
         collection.where(clause)
       else
