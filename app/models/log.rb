@@ -7,12 +7,6 @@ class Log < ActiveRecord::Base
   validates :worked_at, presence: true
   validates :account, presence: true
 
-  scope :weekly, ->(distance = 0.weeks) do
-    start_at = Date.today.beginning_of_week - distance
-    end_at = Date.today.end_of_week - distance
-    order(worked_at: :desc).where(worked_at: start_at..end_at)
-  end
-
   scope :billable, -> do
     where(do_not_bill: false)
   end
@@ -21,7 +15,7 @@ class Log < ActiveRecord::Base
     order(worked_at: :desc).where(worked_at: start_at..Date.today)
   end
 
-  scope :for_project, ->(project) do
-    where(project_id: project)
+  def self.filter(conditions)
+    Filter.new(collection: all, conditions: conditions).results
   end
 end

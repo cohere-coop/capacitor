@@ -32,7 +32,7 @@ feature "Editing time" do
   include_context "account login"
 
   Given!(:project) { FactoryGirl.create(:project) }
-  Given!(:log) { current_account.logs.create(project: project, quality: 1, amount: 1, worked_at: Time.zone.now) }
+  Given!(:log) { current_account.logs.create(project: project, quality: 1, amount: 1, worked_at: 1.day.ago) }
   Given!(:decorated_log) { log.decorate }
 
   When { within("##{decorated_log.dom_id}") { click_link_or_button("Edit") } }
