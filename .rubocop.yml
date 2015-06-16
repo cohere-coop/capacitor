@@ -26,5 +26,14 @@ Style/ExtraSpacing:
 Style/MethodCalledOnDoEndBlock:
   Enabled: true
 
+Style/Lambda:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
 Metrics/LineLength:
   Max: 120
+
+Rails/Date:
+  Enabled: false

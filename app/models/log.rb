@@ -7,13 +7,15 @@ class Log < ActiveRecord::Base
   validates :worked_at, presence: true
   validates :account, presence: true
 
-  scope :recent, lambda {
-    start_at = 7.days.ago
-    end_at = Time.zone.today
-    order(worked_at: :desc).where(worked_at: start_at..end_at)
-  }
-
-  scope :billable, lambda {
+  scope :billable, -> do
     where(do_not_bill: false)
-  }
+  end
+
+  scope :recent, ->(start_at = 7.days.ago) do
+    order(worked_at: :desc).where(worked_at: start_at..Date.today)
+  end
+
+  def self.filter(conditions)
+    Filter.new(collection: all, conditions: conditions).results
+  end
 end

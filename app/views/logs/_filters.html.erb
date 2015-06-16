@@ -1,0 +1,32 @@
+<ul class="filters">
+  <li class="filter">
+    <%= link_to "By Project", "#", class: "filter-link" %>
+    <div class="filter-content">
+      <ul>
+        <% current_account.projects.uniq.each do |project| %>
+          <li><%= link_to project.name, logs_path(projects: [project.id]) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </li>
+
+  <li class="filter">
+    <%= link_to "By Date", "#", class: "filter-link" %>
+    <div class="filter-content">
+      <ul>
+        <%- filterer.ranges.each do |range| %>
+        <li class="subfilter">
+          <%= link_to range[:label], logs_path(after_date: range[:after_date], before_date: range[:before_date]), class: "link" %>
+        </li>
+        <%- end %>
+      </ul>
+    </div>
+  </li>
+
+  <li class="filter">
+    <%= link_to "Only Billable", logs_path(billable: true), class: "link" %>
+  </li>
+  <li class="filter">
+    <%= link_to "No filter", logs_path, class: "link" %>
+  </li>
+</ul>
