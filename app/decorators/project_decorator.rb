@@ -1,6 +1,8 @@
 require "capacity_converter"
 
 class ProjectDecorator < Draper::Decorator
+  QUALITY_PRESENTATION = [nil, "😡", "😟", "😐", "😌", "😄"]
+
   delegate_all
   using CapacityConverter
 
@@ -14,6 +16,12 @@ class ProjectDecorator < Draper::Decorator
 
   def weekly_burn_rate
     project.weekly_burn_rate ? project.weekly_burn_rate.to_business_days : "No days"
+  end
+
+  def quality_by_week
+    project.quality_by_week.map do |(_, quality)|
+      QUALITY_PRESENTATION[quality]
+    end
   end
 
   def weekly_capacity_remaining

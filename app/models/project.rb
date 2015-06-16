@@ -21,4 +21,13 @@ class Project < ActiveRecord::Base
   def weekly_capacity_remaining
     weekly_burn_rate - logs.recent.billable.pluck(:amount).sum
   end
+
+  def quality_by_week
+    logs_by_week = logs.group_by { |l| l.worked_at.beginning_of_week }
+
+    logs_by_week.each_with_object({}) do |(beginning_of_week, logs), weeks|
+      qualities = logs.map(&:quality)
+      weeks[beginning_of_week] = (qualities.reduce(:+).to_f / qualities.length).round
+    end
+  end
 end
