@@ -23,13 +23,11 @@ class Project < ActiveRecord::Base
   end
 
   def quality_by_week
-    logs_by_week  = logs.group_by { |l| l.worked_at.beginning_of_week }
+    logs_by_week = logs.group_by { |l| l.worked_at.beginning_of_week }
 
-    logs_by_week.reduce({}) { |weeks, week_with_logs| 
-      date, logs = week_with_logs; 
-      qualities = logs.map(&:quality); 
-      weeks[date] = qualities.reduce(:+) / qualities.length; 
-      weeks
-    }
+    logs_by_week.each_with_object({}) do |(beginning_of_week, logs), weeks|
+      qualities = logs.map(&:quality)
+      weeks[beginning_of_week] = qualities.reduce(:+) / qualities.length
+    end
   end
 end
