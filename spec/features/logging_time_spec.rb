@@ -11,7 +11,7 @@ feature "Logging time" do
   When { click_link_or_button "#{project.id}_new_log_entry" }
 
   When { select("1 half day", from: "Amount") }
-  When { select("4", from: "Quality") }
+  When { select("😌", from: "How'd it go?") }
   When { fill_in("Worked at", with: worked_at) }
 
   context "when tracking time as billable" do
@@ -36,7 +36,7 @@ feature "Editing time" do
   Given!(:decorated_log) { log.decorate }
 
   When { within("##{decorated_log.dom_id}") { click_link_or_button("Edit") } }
-  When { select("5", from: "Quality") }
+  When { select("😄", from: "How'd it go?") }
   When { click_link_or_button("Log Capacity") }
   Then { expect(log.reload.quality).to eql(5) }
 end
