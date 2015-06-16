@@ -27,7 +27,7 @@ class Project < ActiveRecord::Base
 
     logs_by_week.each_with_object({}) do |(beginning_of_week, logs), weeks|
       qualities = logs.map(&:quality)
-      weeks[beginning_of_week] = qualities.reduce(:+) / qualities.length
+      weeks[beginning_of_week] = (qualities.reduce(:+).to_f / qualities.length).round
     end
   end
 end
