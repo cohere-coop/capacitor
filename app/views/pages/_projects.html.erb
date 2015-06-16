@@ -8,6 +8,8 @@
         </header>
         <p><%= project.capacity_remaining %> of work left</p>
         <p><%= project.weekly_capacity_remaining%> of <%= project.weekly_burn_rate %> per week</p>
+        <!-- oldest ... most recent -->
+        <p><%- project.quality_by_week.each do |face| %><%= face %><%- end %></p>
       </article>
     <% end %>
   </div>
