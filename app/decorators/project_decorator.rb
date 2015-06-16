@@ -1,7 +1,7 @@
 require "capacity_converter"
 
 class ProjectDecorator < Draper::Decorator
-  QUALITY_PRESENTATION = ["😡", "😟", "😐", "😌", "😄"]
+  QUALITY_PRESENTATION = [nil, "😡", "😟", "😐", "😌", "😄"]
 
   delegate_all
   using CapacityConverter
