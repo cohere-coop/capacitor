@@ -1,10 +1,4 @@
 class LogsController < ApplicationController
-  DEFAULT_SEARCH = {
-    scopes: ["recent"],
-    recent: 21
-  }
-
-  before_action :setup_variables, only: [:new, :create]
   before_action :setup_variables, only: [:new, :create, :edit, :update]
 
   def index
