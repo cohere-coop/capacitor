@@ -31,4 +31,12 @@ class ProjectDecorator < Draper::Decorator
       "No capacity"
     end
   end
+
+  def recent_capacity_remaining
+    if project.recent_capacity_remaining > 0
+      project.recent_capacity_remaining.to_business_days
+    else
+      "No capacity"
+    end
+  end
 end

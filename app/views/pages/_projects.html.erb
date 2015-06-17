@@ -7,8 +7,8 @@
           <h3><%= link_to project.name, new_project_log_path(project), id: "#{project.id}_new_log_entry" %></h3>
         </header>
         <p><%= project.capacity_remaining %> of work left</p>
-        <p><%= project.weekly_capacity_remaining%> of <%= project.weekly_burn_rate %> per week</p>
-        <!-- oldest ... most recent -->
+        <p><%= project.weekly_capacity_remaining %> of <%= project.weekly_burn_rate %> per week</p>
+        <p><%= project.recent_capacity_remaining %> of <%= project.weekly_burn_rate %> in the past 7 days</p>
         <p><%- project.quality_by_week.each do |face| %><%= face %><%- end %></p>
       </article>
     <% end %>
