@@ -15,6 +15,11 @@ class Log < ActiveRecord::Base
     order(worked_at: :desc).where(worked_at: start_at..Date.today)
   end
 
+  scope :from_weeks_ago, ->(weeks_ago = 0) do
+    week = weeks_ago.weeks.ago
+    order(worked_at: :desc).where(worked_at: week.beginning_of_week..week.end_of_week)
+  end
+
   def self.filter(conditions)
     Filter.new(collection: all, conditions: conditions).results
   end

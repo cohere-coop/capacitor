@@ -10,7 +10,11 @@ class AccountDecorator < Draper::Decorator
     account.weekly_expected_capacity.to_business_days
   end
 
-  def remaining_personal_capacity
-    account.remaining_personal_capacity.to_business_days
+  def remaining_weekly_capacity
+    account.remaining_weekly_capacity.to_business_days
+  end
+
+  def remaining_recent_capacity
+    account.remaining_recent_capacity.to_business_days
   end
 end
