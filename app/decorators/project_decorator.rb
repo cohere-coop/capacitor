@@ -1,7 +1,6 @@
 require "capacity_converter"
 
 class ProjectDecorator < Draper::Decorator
-
   delegate_all
   using CapacityConverter
 
