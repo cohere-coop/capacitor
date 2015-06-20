@@ -1,5 +1,6 @@
 <section id="projects">
   <h3>Pick a Project to Work On</h3>
+  <p><%= link_to "Create a new project", new_project_path %></p>
   <div class="contents">
     <%- @projects.each do |project| %>
       <article>
