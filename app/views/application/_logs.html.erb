@@ -4,6 +4,7 @@
         <th>Project</th>
         <th>Capacity Worked</th>
         <th>Date Worked</th>
+        <th>Quality</th>
         <th>Billable?</th>
         <th></th>
       </tr>
@@ -13,6 +14,7 @@
         <td><%= log.project.name %></td>
         <td><%= log.amount %></td>
         <td><%= log.worked_at %></td>
+        <td><%= log.smiley_face %></td>
         <td><%= log.billable? %></td>
         <td><%= link_to "Edit", edit_project_log_path(id: log, project_id: log.project) %>
             &ndash;

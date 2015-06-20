@@ -1,8 +1,6 @@
 require "capacity_converter"
 
 class ProjectDecorator < Draper::Decorator
-  QUALITY_PRESENTATION = [nil, "😡", "😟", "😐", "😌", "😄"]
-
   delegate_all
   using CapacityConverter
 
@@ -20,7 +18,7 @@ class ProjectDecorator < Draper::Decorator
 
   def quality_by_week
     project.quality_by_week.map do |(_, quality)|
-      QUALITY_PRESENTATION[quality]
+      LogDecorator::QUALITY_PRESENTATION[quality]
     end
   end
 
