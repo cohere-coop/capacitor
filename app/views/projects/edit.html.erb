@@ -2,12 +2,17 @@
 
   <%= f.label :name %>
   <%= f.text_field :name %>
+  <%= render partial: "error_for_field", locals: { model: @project, field: :name } %>
+
 
   <%= f.label :capacity %>
   <%= f.number_field :capacity %>
+  <%= render partial: "error_for_field", locals: { model: @project, field: :capacity } %>
+
 
   <%= f.label :weekly_burn_rate %>
   <%= f.number_field :weekly_burn_rate %>
+  <%= render partial: "error_for_field", locals: { model: @project, field: :weekly_burn_rate } %>
 
   <%= f.label "" do %>
     <%= f.check_box :billable %>
