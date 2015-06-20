@@ -1,6 +1,8 @@
 require "capacity_converter"
 
 class LogDecorator < Draper::Decorator
+  QUALITY_PRESENTATION = [nil, "😡", "😟", "😐", "😌", "😄"]
+
   delegate_all
   using CapacityConverter
 
@@ -22,5 +24,9 @@ class LogDecorator < Draper::Decorator
 
   def billable?
     do_not_bill? ? "No" : "Yes"
+  end
+
+  def smiley_face
+    QUALITY_PRESENTATION[log.quality]
   end
 end
