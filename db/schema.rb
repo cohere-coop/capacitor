@@ -79,10 +79,13 @@ ActiveRecord::Schema.define(version: 20150621005116) do
   add_index "projects", ["updated_at"], name: "index_projects_on_updated_at", using: :btree
 
   create_table "teams", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.string   "name"
-    t.uuid     "leader"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       default: "", null: false
+    t.uuid     "leader_id",               null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
+
+  add_index "teams", ["leader_id"], name: "index_teams_on_leader_id", using: :btree
+  add_index "teams", ["name"], name: "index_teams_on_name", using: :btree
 
 end
