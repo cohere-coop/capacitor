@@ -1,3 +1,3 @@
 class Team < ActiveRecord::Base
-  belongs_to :leader, class_name: "Account", foreign_key: :leader
+  belongs_to :leader, class_name: "Account"
 end
