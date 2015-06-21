@@ -2,6 +2,8 @@ class Project < ActiveRecord::Base
   has_many :logs
   has_many :accounts, through: :logs
 
+  validates :name, :capacity, :weekly_burn_rate, presence: true
+
   scope :active, lambda {
     where(active: true)
   }

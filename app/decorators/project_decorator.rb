@@ -37,4 +37,8 @@ class ProjectDecorator < Draper::Decorator
       "No capacity"
     end
   end
+
+  def dom_id
+    "project-#{project.id}"
+  end
 end

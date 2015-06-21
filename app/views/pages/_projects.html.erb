@@ -3,7 +3,7 @@
   <p><%= link_to "Create a new project", new_project_path %></p>
   <div class="contents">
     <%- @projects.each do |project| %>
-      <article>
+      <article id="<%= project.dom_id %>">
         <header>
           <h3><%= link_to project.name, new_project_log_path(project), id: "#{project.id}_new_log_entry" %></h3>
         </header>
@@ -11,6 +11,10 @@
         <p><%= project.weekly_capacity_remaining %> of <%= project.weekly_burn_rate %> per week</p>
         <p><%= project.recent_capacity_remaining %> of <%= project.weekly_burn_rate %> in the past 7 days</p>
         <p><%- project.quality_by_week.each do |face| %><%= face %><%- end %></p>
+
+        <footer>
+          <%= link_to "Edit", edit_project_path(project) %>
+        </footer>
       </article>
     <% end %>
   </div>
