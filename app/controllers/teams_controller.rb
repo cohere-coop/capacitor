@@ -14,7 +14,6 @@ class TeamsController < ApplicationController
     end
   end
 
-
   def team_params
     params.require(:team).permit(:name).merge(leader: current_account)
   end
