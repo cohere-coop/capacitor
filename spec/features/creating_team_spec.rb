@@ -8,4 +8,5 @@ feature "Creating teams" do
   When { click_link_or_button "Create Team" }
 
   Then { expect(Team.find_by(name: "Team A")).to be_persisted }
+  Then { expect(Team.find_by(name: "Team A").leader).to eql(current_account) }
 end
