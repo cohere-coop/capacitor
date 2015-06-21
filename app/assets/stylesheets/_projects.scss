@@ -14,5 +14,9 @@
     a {
       @extend .fill-hw;
     }
+
+    footer a {
+      position: relative;
+    }
   }
 }
