@@ -1,0 +1,7 @@
+<%= form_for @team do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+   <%= render partial: "error_for_field", locals: { model: @team, field: :name } %>
+
+  <%= f.submit "Create Team" %>
+<% end %>
