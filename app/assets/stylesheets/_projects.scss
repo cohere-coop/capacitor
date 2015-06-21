@@ -11,8 +11,9 @@
     padding:10px;
 
     text-align: center;
-    a {
+    h2 > a {
       @extend .fill-hw;
+      position: relative;
     }
   }
 }

@@ -20,4 +20,5 @@
   <%= render partial: "error_for_field", locals: { model: @log, field: :do_not_bill } %>
 
   <%= f.submit "Log Capacity" %>
+  <%= link_to "Return To Dashboard", root_path %>
 <%- end %>
