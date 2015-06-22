@@ -1,10 +1,10 @@
 require "rails_helper"
 
 describe Project do
-  describe "#weekly_capacity_reamining" do
+  describe "#weekly_capacity_remaining" do
     it "subtracts the recently logged amount from the weekly burn rate" do
       project = FactoryGirl.create(:project, weekly_burn_rate: 12)
-      FactoryGirl.create(:recent_log, amount: 5, project: project)
+      FactoryGirl.create(:recent_log, amount: 5, project: project, worked_at: 0.weeks.ago)
       expect(project.weekly_capacity_remaining).to eql(7)
     end
 
