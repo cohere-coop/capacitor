@@ -1,7 +1,6 @@
 require "rails_helper"
 
 feature "Creating teams" do
-  Given!(:unicorns) { FactoryGirl.create(:project, name: "Project A", capacity: 10) }
   let(:team) { Team.find_by(name: "Team A") }
 
   include_context "account login"
@@ -13,5 +12,4 @@ feature "Creating teams" do
 
   Then { expect(team).to be_persisted }
   Then { expect(team.leader).to eql(current_account) }
-  Then { expect(team.project).to eql(unicorns) }
 end

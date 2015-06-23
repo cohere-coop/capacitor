@@ -3,10 +3,6 @@
   <%= f.text_field :name %>
     <%= render partial: "error_for_field", locals: { model: @team, field: :name } %>
 
-  <%= f.label :project_id %>
-  <%= f.select(:project_id, Project.all.collect {|proj| [ proj.name, proj.id ] }, {:include_blank => "" } ) %>
-  <%= render partial: "error_for_field", locals: { model: @team, field: :project_id } %>
-
   <%= f.submit "Create Team" %>
 <% end %>
 

@@ -15,7 +15,7 @@ class TeamsController < ApplicationController
   end
 
   def team_params
-    params.require(:team).permit(:name, :project_id).merge(leader: current_account)
+    params.require(:team).permit(:name).merge(leader: current_account)
   end
   private "team_params"
 end
