@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150621005116) do
+ActiveRecord::Schema.define(version: 20150628052852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150621005116) do
     t.datetime "created_at",                                              null: false
     t.datetime "updated_at",                                              null: false
     t.integer  "weekly_expected_capacity", default: 0,                    null: false
+    t.string   "time_zone"
   end
 
   add_index "accounts", ["created_at"], name: "index_accounts_on_created_at", using: :btree
@@ -64,13 +65,14 @@ ActiveRecord::Schema.define(version: 20150621005116) do
   add_index "logs", ["worked_at"], name: "index_logs_on_worked_at", using: :btree
 
   create_table "projects", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.string   "name",             default: "",   null: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.integer  "capacity",         default: 0,    null: false
-    t.integer  "weekly_burn_rate", default: 0,    null: false
-    t.boolean  "billable",         default: true, null: false
-    t.boolean  "active",           default: true, null: false
+    t.string   "name",             default: "",    null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "capacity",         default: 0,     null: false
+    t.integer  "weekly_burn_rate", default: 0,     null: false
+    t.boolean  "billable",         default: true,  null: false
+    t.boolean  "inactive",         default: false, null: false
+    t.boolean  "active",           default: true,  null: false
   end
 
   add_index "projects", ["capacity"], name: "index_projects_on_capacity", using: :btree
