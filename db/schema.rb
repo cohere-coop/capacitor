@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20150628052852) do
     t.datetime "created_at",                                              null: false
     t.datetime "updated_at",                                              null: false
     t.integer  "weekly_expected_capacity", default: 0,                    null: false
-    t.string   "time_zone"
+    t.string   "time_zone",                default: "",                   null: false
   end
 
   add_index "accounts", ["created_at"], name: "index_accounts_on_created_at", using: :btree
