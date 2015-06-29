@@ -17,8 +17,9 @@
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
-<%= f.label :time_zone %>
-<%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.all.sort %>
+
+  <%= f.label :time_zone %>
+  <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.all.sort %>
 
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>

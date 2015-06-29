@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_filter :set_time_zone
+  around_action :set_time_zone
 
 
   include SegmentRails
@@ -17,7 +17,13 @@ class ApplicationController < ActionController::Base
     devise_current_account.present? ? devise_current_account.decorate : nil
   end
 
-  def set_time_zone
-    Time.zone = current_account.time_zone if current_account
+
+  def set_time_zone(&block)
+    if account_signed_in?
+      Time.use_zone(current_account.time_zone, &block)
+    else
+      yield
+    end
   end
+  private :set_time_zone
 end

@@ -4,31 +4,26 @@ accounts:
     email: "zee@example.com"
     password: "password"
     weekly_expected_capacity: 40
-    time_zone: ""
   -
     name: "Diana Hilton"
     email: "diana@example.com"
     password: "password"
     weekly_expected_capacity: 28
-    time_zone: ""
   -
     name: "Kurtis Rainbolt-Greene"
     email: "kurtis@example.com"
     password: "password"
     weekly_expected_capacity: 19
-    time_zone: ""
   -
     name: "Dicko Sow"
     email: "dicko@example.com"
     password: "password"
     weekly_expected_capacity: 45
-    time_zone: ""
   -
     name: "Krystyna Ewing"
     email: "krystyna@example.com"
     password: "password"
     weekly_expected_capacity: 10
-    time_zone: ""
 
 projects:
   -
