@@ -1,6 +1,7 @@
 require "rails_helper"
 
 feature "Creating teams" do
+  Given!(:project) { FactoryGirl.create(:project, name: "Project A", capacity: 10) }
   let(:team) { Team.find_by(name: "Team A") }
 
   include_context "account login"
