@@ -1,7 +1,11 @@
-<%= form_for @team do |f| %>
+<%= form_for(@team) do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
     <%= render partial: "error_for_field", locals: { model: @team, field: :name } %>
+
+  <%= label_tag "teams_project[project_id]", "Project" %>
+  <%= select_tag "teams_project[project_id]", options_from_collection_for_select(@projects, "id", "name"), include_blank: true %>
+  <%= render partial: "error_for_field", locals: { model: @teams_project, field: :project } %>
 
   <%= f.submit "Create Team" %>
 <% end %>
