@@ -3,7 +3,7 @@ class Project < ActiveRecord::Base
   has_many :accounts, through: :logs
 
   has_many :teams_projects
-  has_many :projects, through: :teams_projects
+  has_many :teams, through: :teams_projects
 
   validates :name, :capacity, :weekly_burn_rate, presence: true
 

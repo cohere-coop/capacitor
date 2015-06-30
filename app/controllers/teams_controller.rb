@@ -2,22 +2,13 @@ class TeamsController < ApplicationController
   before_action :setup_variables, only: [:new, :create]
 
   def new
-    @teams_project = TeamsProject.new
   end
 
   def create
-    @team.leader = current_account
-    @team.save
-
-    @teams_project = TeamsProject.new(teams_project_params)
-    @teams_project.team_id = @team.id
-    @teams_project.save
-
-    if @teams_project.valid? && @team.valid?
+    if @team.save
       flash[:notice] = "#{@team.name} created successfully"
       redirect_to :root
     else
-      # @projects = Project.active
       render :new
     end
   end
@@ -43,12 +34,7 @@ class TeamsController < ApplicationController
   private "setup_variables"
 
   def team_params
-    params.require(:team).permit(:name)
+    params.require(:team).permit(:name, project_ids: []).merge(leader: current_account)
   end
   private "team_params"
-
-  def teams_project_params
-    params.require(:teams_project).permit(:project_id)
-  end
-  private "teams_project_params"
 end

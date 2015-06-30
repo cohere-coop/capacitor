@@ -3,9 +3,8 @@
   <%= f.text_field :name %>
     <%= render partial: "error_for_field", locals: { model: @team, field: :name } %>
 
-  <%= label_tag "teams_project[project_id]", "Project" %>
-  <%= select_tag "teams_project[project_id]", options_from_collection_for_select(@projects, "id", "name"), include_blank: true %>
-  <%= render partial: "error_for_field", locals: { model: @teams_project, field: :project } %>
+  <%= f.label :project %>
+  <%= collection_check_boxes(:team, :project_ids, Project.all, :id, :name) %>
 
   <%= f.submit "Create Team" %>
 <% end %>

@@ -1,17 +1,29 @@
 require "rails_helper"
 
 feature "Creating teams" do
-  Given!(:project_1) { FactoryGirl.create(:project, name: "Project A", capacity: 10) }
+  Given!(:project_1) { FactoryGirl.create(:project, name: "Project 1") }
+  Given!(:project_2) { FactoryGirl.create(:project, name: "Project 2") }
   let(:team) { Team.find_by(name: "Team A") }
 
   include_context "account login"
 
   When { click_link_or_button "Create a team" }
   When { fill_in "Name", with: "Team A" }
-  When { select "Project A", from: "Project" }
-  When { click_link_or_button "Create Team" }
+  When { check "Project 1" }
 
-  Then { expect(team).to be_persisted }
-  Then { expect(team.leader).to eql(current_account) }
-  Then { expect(team.projects).to include(project_1) }
+  context "creates a team with current account and project selected" do
+    When { click_link_or_button "Create Team" }
+
+    Then { expect(team).to be_persisted }
+    Then { expect(team.leader).to eql(current_account) }
+    Then { expect(team.projects).to include(project_1) }
+  end
+
+  context "allows multiple projects to be selected" do
+    When { check "Project 2" }
+    When { click_link_or_button "Create Team" }
+
+    Then { expect(team.projects).to include(project_1) }
+    Then { expect(team.projects).to include(project_2) }
+  end
 end
