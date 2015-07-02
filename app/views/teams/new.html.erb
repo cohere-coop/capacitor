@@ -2,10 +2,9 @@
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= render partial: "error_for_field", locals: { model: @team, field: :name } %>
-
-  <%= f.label :project %>
+<fieldset>
+  <legend> Projects </legend>
   <%= collection_check_boxes(:team, :project_ids, Project.all, :id, :name) %>
-
+</fieldset>
   <%= f.submit "Create Team" %>
 <% end %>
-

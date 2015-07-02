@@ -40,3 +40,14 @@ h1.brand {
     max-height: 10em;
   }
 }
+
+input[type="checkbox"] + label {
+  display: inline;
+  margin-right: 3.0em;
+  margin-left: .25em;
+}
+
+fieldset {
+  background-color: transparent;
+}
+
