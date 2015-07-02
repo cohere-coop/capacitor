@@ -13,6 +13,9 @@
     <% end %>
     <%= f.password_field :password, autocomplete: "off" %>
 
+    <%= f.label :time_zone %>
+    <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.all.sort %>
+
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
 
