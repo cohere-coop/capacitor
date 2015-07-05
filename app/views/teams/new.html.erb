@@ -6,5 +6,10 @@
   <legend> Projects </legend>
   <%= collection_check_boxes(:team, :project_ids, Project.all, :id, :name) %>
 </fieldset>
+
+<fieldset>
+  <legend> Accounts </legend>
+  <%= collection_check_boxes(:team, :account_ids, Account.all, :id, :name) %>
+</fieldset>
   <%= f.submit "Create Team" %>
 <% end %>

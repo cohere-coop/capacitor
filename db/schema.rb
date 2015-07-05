@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150628052852) do
+ActiveRecord::Schema.define(version: 20150705174354) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
@@ -62,6 +63,14 @@ ActiveRecord::Schema.define(version: 20150628052852) do
   add_index "logs", ["quality"], name: "index_logs_on_quality", using: :btree
   add_index "logs", ["updated_at"], name: "index_logs_on_updated_at", using: :btree
   add_index "logs", ["worked_at"], name: "index_logs_on_worked_at", using: :btree
+
+  create_table "memberships", force: :cascade do |t|
+    t.uuid "team_id",    null: false
+    t.uuid "account_id", null: false
+  end
+
+  add_index "memberships", ["account_id"], name: "index_memberships_on_account_id", using: :btree
+  add_index "memberships", ["team_id"], name: "index_memberships_on_team_id", using: :btree
 
   create_table "projects", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "name",             default: "",   null: false
