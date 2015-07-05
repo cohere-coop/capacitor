@@ -5,4 +5,5 @@ class Team < ActiveRecord::Base
   has_many :projects, through: :teams_projects
 
   validates :leader, presence: true
+  validates :name, presence: true, uniqueness: true
 end
