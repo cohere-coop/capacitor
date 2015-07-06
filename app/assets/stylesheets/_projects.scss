@@ -6,14 +6,11 @@
     background-color: $dark-blue;
     @include span-columns(4);
     @include omega(3n);
-    position: relative;
     margin-bottom: $gutter;
     padding:10px;
-
     text-align: center;
-    h2 > a {
-      @extend .fill-hw;
-      position: relative;
+    footer a {
+      @extend button;
     }
   }
 }
