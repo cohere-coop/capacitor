@@ -1,5 +1,9 @@
 class TeamsController < ApplicationController
-  before_action :setup_variables, only: [:new, :create]
+  before_action :setup_variables, only: [:new, :create, :edit, :update, :destroy]
+
+  def index
+    @teams = Team.all
+  end
 
   def new
   end
@@ -13,8 +17,31 @@ class TeamsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @team.save
+      flash[:notice] = "#{@team.name} successfully updated"
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    if @team.destroy
+      flash[:notice] = "Deleted team #{@team.name}"
+    else
+      flash[:error] = "Couldn't delete that team"
+    end
+    redirect_to root_path
+  end
+
   def load_team
-    if params[:team]
+    if params[:id]
+      @team = Team.find(params[:id])
+    elsif params[:team]
       @team = Team.new(team_params)
     else
       @team = Team.new

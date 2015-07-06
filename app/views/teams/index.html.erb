@@ -1,0 +1,20 @@
+<table>
+  <thead>
+    <tr>
+      <th>Team name</th>
+      <th>Projects</th>
+      <th>Members</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tr>
+    <% @teams.each do |team| %>
+      <td><%= team.name %></td>
+      <td><%= team.projects.pluck(:name).join(", ") %></td>
+      <td><%= team.accounts.pluck(:name).join(", ") %></td>
+      <td><%= link_to "Edit", edit_team_path(team) %> 
+        &ndash;
+        <%= link_to "Delete", team_path(team), method: :delete %></td>
+  </tr>
+    <% end %>
+</table>
