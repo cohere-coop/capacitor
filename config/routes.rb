@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :logs, only: [:index, :destroy]
 
-  resources :teams, only: [:new, :create]
+  resources :teams
 
   root to: "pages#dashboard"
   # The priority is based upon order of creation: first created -> highest priority.
