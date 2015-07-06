@@ -34,3 +34,6 @@ Style/WordArray:
 
 Metrics/LineLength:
   Max: 120
+
+Rails/Date:
+  Enabled: false
