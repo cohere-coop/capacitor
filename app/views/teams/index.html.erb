@@ -12,9 +12,13 @@
       <td><%= team.name %></td>
       <td><%= team.projects.pluck(:name).join(", ") %></td>
       <td><%= team.accounts.pluck(:name).join(", ") %></td>
-      <td><%= link_to "Edit", edit_team_path(team) %> 
-        &ndash;
-        <%= link_to "Delete", team_path(team), method: :delete %></td>
+      <td> 
+        <% if can_manage? team %>
+          <%= link_to "Edit", edit_team_path(team) %>
+          &ndash;
+          <%= link_to "Delete", team_path(team), method: :delete %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>

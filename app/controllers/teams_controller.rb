@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
   before_action :setup_variables, only: [:new, :create, :edit, :update, :destroy]
+  before_action :forbid_non_owners, only: [:edit, :update, :destroy]
 
   def index
     @teams = Team.all.decorate
@@ -70,4 +71,16 @@ class TeamsController < ApplicationController
     params.require(:team).permit(:name, project_ids: [], account_ids: []).merge(leader: current_account)
   end
   private "team_params"
+
+  def forbid_non_owners
+    return if can_manage? @team
+    flash[:error] = "You don't have access to this team"
+    redirect_to teams_path
+  end
+  private "forbid_non_owners"
+
+  def can_manage?(team)
+    team.leader == current_account
+  end
+  helper_method :can_manage?
 end
