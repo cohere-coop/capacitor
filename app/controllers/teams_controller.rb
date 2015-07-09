@@ -27,14 +27,20 @@ class TeamsController < ApplicationController
   end
   private "load_projects"
 
+  def load_accounts
+    @accounts = Account.all
+  end
+  private "load_accounts"
+
   def setup_variables
     load_team
     load_projects
+    load_accounts
   end
   private "setup_variables"
 
   def team_params
-    params.require(:team).permit(:name, project_ids: []).merge(leader: current_account)
+    params.require(:team).permit(:name, project_ids: [], account_ids: []).merge(leader: current_account)
   end
   private "team_params"
 end
