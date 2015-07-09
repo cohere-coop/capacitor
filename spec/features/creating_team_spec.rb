@@ -9,6 +9,7 @@ feature "Creating teams" do
 
   include_context "account login"
 
+  When { visit teams_path }
   When { click_link_or_button "Create a team" }
   When { fill_in "Name", with: "Team A" }
   When { check "Project 1" }
