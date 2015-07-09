@@ -1,5 +1,10 @@
 class TeamsController < ApplicationController
-  before_action :setup_variables, only: [:new, :create]
+  before_action :setup_variables, only: [:new, :create, :edit, :update, :destroy]
+  before_action :forbid_non_owners, only: [:edit, :update, :destroy]
+
+  def index
+    @teams = Team.all.decorate
+  end
 
   def new
   end
@@ -13,8 +18,31 @@ class TeamsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @team.update_attributes(team_params)
+      flash[:notice] = "#{@team.name} successfully updated"
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    if @team.destroy
+      flash[:notice] = "Deleted team #{@team.name}"
+    else
+      flash[:error] = "Couldn't delete that team"
+    end
+    redirect_to root_path
+  end
+
   def load_team
-    if params[:team]
+    if params[:id]
+      @team = Team.find(params[:id])
+    elsif params[:team]
       @team = Team.new(team_params)
     else
       @team = Team.new
@@ -43,4 +71,16 @@ class TeamsController < ApplicationController
     params.require(:team).permit(:name, project_ids: [], account_ids: []).merge(leader: current_account)
   end
   private "team_params"
+
+  def forbid_non_owners
+    return if can_manage? @team
+    flash[:error] = "You don't have access to this team"
+    redirect_to teams_path
+  end
+  private "forbid_non_owners"
+
+  def can_manage?(team)
+    team.leader == current_account
+  end
+  helper_method :can_manage?
 end
