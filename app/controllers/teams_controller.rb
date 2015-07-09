@@ -2,7 +2,7 @@ class TeamsController < ApplicationController
   before_action :setup_variables, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @teams = Team.all
+    @teams = Team.all.decorate
   end
 
   def new
@@ -21,7 +21,7 @@ class TeamsController < ApplicationController
   end
 
   def update
-    if @team.save
+    if @team.update_attributes(team_params)
       flash[:notice] = "#{@team.name} successfully updated"
       redirect_to root_path
     else
