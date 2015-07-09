@@ -23,9 +23,6 @@ Style/Documentation:
 Style/ExtraSpacing:
   Enabled: true
 
-Style/MethodCalledOnDoEndBlock:
-  Enabled: true
-
 Style/Lambda:
   Enabled: false
 

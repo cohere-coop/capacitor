@@ -8,5 +8,5 @@ class Team < ActiveRecord::Base
   has_many :accounts, through: :memberships
 
   validates :leader, presence: true
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { scope: :leader_id }
 end
