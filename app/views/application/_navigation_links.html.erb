@@ -2,7 +2,7 @@
   <%= link_to "Dashboard", root_path %>
   <%= link_to "Logs", logs_path %>
   <%= link_to "Teams", teams_path %>
-  <%= link_to "Edit account", edit_account_registration_path %>
+  <%= link_to "Account", edit_account_registration_path %>
   <%= link_to "Sign out", destroy_account_session_path, method: "delete" %>
 <% else %>
   <%= link_to "Sign in", new_account_session_path %>
