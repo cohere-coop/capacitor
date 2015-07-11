@@ -11,7 +11,7 @@
     </tr>
   </thead>
   <% @teams.each do |team| %>
-    <% if can_manage?(team) || team.accounts.pluck(:name).include?(current_account.name) %>
+    <% if can_view?(team) %>
       <tr id="<%=team.dom_id%>">
         <td><%= team.name %></td>
         <td><%= team.projects.pluck(:name).join(", ") %></td>
