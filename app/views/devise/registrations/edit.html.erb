@@ -19,7 +19,7 @@
   <% end %>
 
   <%= f.label :time_zone %>
-  <%= f.time_zone_options_for_select :time_zone %>
+  <%= f.time_zone_select :time_zone,  ActiveSupport::TimeZone.all.sort %>
 
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
