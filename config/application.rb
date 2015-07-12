@@ -30,8 +30,7 @@ module Capacitor
     # config.i18n.load_path += Dir[Rails.root.join("my", "locales", "*.{rb,yml}").to_s]
     # config.i18n.default_locale = :de
 
-    # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.default_timezone = :local
+    # Do not swallaow errors in after_commit/after_rollback callbacks.
     config.beginning_of_week = :sunday
     config.active_record.raise_in_transactional_callbacks = true
     config.encoding = "utf-8"
