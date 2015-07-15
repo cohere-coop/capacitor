@@ -24,6 +24,11 @@
     Active?
   <% end %>
 
+  <fieldset>
+    <legend>Teams</legend>
+    <%= collection_check_boxes(:project, :team_ids, Team.all, :id, :name) %>
+  </fieldset>
+
   <%= f.submit submit_text %>
   <%= link_to "Return To Dashboard", root_path %>
 <% end %>

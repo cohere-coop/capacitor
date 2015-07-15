@@ -16,6 +16,7 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
+    @teams = Team.all
   end
 
   def update
@@ -30,6 +31,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :capacity, :weekly_burn_rate, :billable, :active)
+    params.require(:project).permit(:name, :capacity, :weekly_burn_rate, :billable, :active, team_ids: [])
   end
 end
