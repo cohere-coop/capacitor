@@ -5,7 +5,10 @@ feature "Editing teams" do
 
   Given!(:project_1) { FactoryGirl.create(:project, name: "Project 1") }
   Given!(:zee) { FactoryGirl.create(:account, name: "Zee Spencer") }
-  Given!(:team) { FactoryGirl.create(:team, name: "Unicorns", leader: current_account) }
+
+  Given!(:team) { FactoryGirl.create(:team, name: "Unicorns") }
+  Given { team.add_leader(current_account) }
+
   Given!(:decorated_team) { team.decorate }
 
   When { visit teams_path }

@@ -19,7 +19,7 @@ feature "Creating teams" do
   When { click_link_or_button "Create Team" }
 
   Then { expect(team).to be_persisted }
-  Then { expect(team.leader).to eql(current_account) }
+  Then { expect(current_account.owned_teams).to include(team) }
   Then { expect(team.projects).to include(project_1) }
   Then { expect(team.projects).to include(project_2) }
   Then { expect(team.accounts).to include(zee) }
