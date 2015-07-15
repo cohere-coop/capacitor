@@ -7,6 +7,9 @@ class Team < ActiveRecord::Base
   has_many :memberships
   has_many :accounts, through: :memberships
 
-  validates :leader, presence: true
   validates :name, presence: true, uniqueness: { scope: :leader_id }
+
+  def add_leader(account)
+    memberships.find_or_create_by(account: account).make_leader
+  end
 end

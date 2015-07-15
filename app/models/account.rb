@@ -11,6 +11,7 @@ class Account < ActiveRecord::Base
 
   has_many :memberships
   has_many :teams, through: :memberships
+  has_many :owned_teams, -> { where(memberships: {level: "leader"}) }, through: :memberships, source: :team, class_name: "Team"
 
   validates :name, presence: true
 

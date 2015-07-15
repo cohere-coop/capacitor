@@ -11,6 +11,7 @@ class TeamsController < ApplicationController
 
   def create
     if @team.save
+      @team.add_leader(current_account)
       flash[:notice] = "#{@team.name} created successfully"
       redirect_to :root
     else
