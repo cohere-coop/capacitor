@@ -3,15 +3,15 @@ require "rails_helper"
 feature "Viewing teams" do
   include_context "account login"
 
+  Given!(:unicorns) { FactoryGirl.create(:team, name: "Unicorns").decorate }
   Given!(:zee) { FactoryGirl.create(:account, name: "Zee Spencer") }
-  Given!(:dicko) { FactoryGirl.create(:account, name: "Dicko Sow") }
+  Given { unicorns.add_member(zee) }
+  Given { unicorns.add_leader(current_account) }
 
-  Given!(:unicorns) { FactoryGirl.create(:team, name: "Unicorns", leader: current_account).decorate }
-  Given!(:dinosaurs) { FactoryGirl.create(:team, name: "Dinosaurs", leader: dicko).decorate }
+  Given!(:dinosaurs) { FactoryGirl.create(:team, name: "Dinosaurs").decorate }
+
   Given!(:giraffes) { FactoryGirl.create(:team, name: "Giraffes").decorate }
-
-  Given!(:membership_1) { FactoryGirl.create(:membership, team: unicorns, account: zee) }
-  Given!(:membership_2) { FactoryGirl.create(:membership, team: giraffes, account: current_account) }
+  Given { giraffes.add_member(current_account) }
 
   context "account can only see teams where they are a member or leader" do
     When { visit teams_path }

@@ -3,7 +3,6 @@ class TeamsController < ApplicationController
   before_action :forbid_non_owners, only: [:edit, :update, :destroy]
 
   def index
-    @teams = Team.all.decorate
   end
 
   def new
@@ -81,7 +80,7 @@ class TeamsController < ApplicationController
   private "forbid_non_owners"
 
   def can_manage?(team)
-    team.leader == current_account
+    team.leaders.include?(current_account)
   end
   helper_method :can_manage?
 end

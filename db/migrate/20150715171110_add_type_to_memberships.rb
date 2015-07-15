@@ -3,4 +3,3 @@ class AddTypeToMemberships < ActiveRecord::Migration
     add_column :memberships, :level, :string, default: "member", null: false, index: true
   end
 end
-

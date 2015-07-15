@@ -10,21 +10,19 @@
       <th></th>
     </tr>
   </thead>
-  <% @teams.each do |team| %>
-    <% if can_view?(team) %>
-      <tr id="<%=team.dom_id%>">
-        <td><%= team.name %></td>
-        <td><%= team.projects.pluck(:name).join(", ") %></td>
-        <td><%= team.leader.name %></td>
-        <td><%= team.accounts.pluck(:name).join(", ") %></td>
-        <td>
-          <% if can_manage?(team) %>
-            <%= link_to "Edit", edit_team_path(team) %>
-            &ndash;
-            <%= link_to "Delete", team_path(team), method: :delete %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
+  <% current_account.teams.decorate.each do |team| %>
+    <tr id="<%=team.dom_id%>">
+      <td><%= team.name %></td>
+      <td><%= team.projects.pluck(:name).join(", ") %></td>
+      <td><%= team.leader.name %></td>
+      <td><%= team.accounts.pluck(:name).join(", ") %></td>
+      <td>
+        <% if can_manage?(team) %>
+          <%= link_to "Edit", edit_team_path(team) %>
+          &ndash;
+          <%= link_to "Delete", team_path(team), method: :delete %>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
 </table>
