@@ -45,7 +45,7 @@ class LogsController < ApplicationController
   end
 
   def log_params
-    params.require(:log).permit(:quality, :amount, :worked_at, :do_not_bill)
+    params.require(:log).permit(:quality, :amount, :worked_at, :do_not_bill, :notes)
       .merge(account: current_account, project: Project.find(params[:project_id]))
   end
   private "log_params"

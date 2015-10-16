@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715171110) do
+ActiveRecord::Schema.define(version: 20151016213851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20150715171110) do
     t.date     "worked_at",                   null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.text     "notes"
   end
 
   add_index "logs", ["account_id"], name: "index_logs_on_account_id", using: :btree
@@ -90,7 +91,7 @@ ActiveRecord::Schema.define(version: 20150715171110) do
 
   create_table "teams", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "name",       default: "", null: false
-    t.uuid     "leader_id"
+    t.uuid     "leader_id",               null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end

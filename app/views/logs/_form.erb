@@ -19,6 +19,10 @@
 
   <%= render partial: "error_for_field", locals: { model: @log, field: :do_not_bill } %>
 
+  <%= f.label :notes %>
+  <%= f.text_area :notes %>
+  <%= render partial: "error_for_field", locals: { model: @log, field: :notes } %>
+
   <%= f.submit "Log Capacity" %>
   <%= link_to "Return To Dashboard", root_path %>
 <%- end %>
