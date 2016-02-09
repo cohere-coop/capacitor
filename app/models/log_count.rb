@@ -1,5 +1,5 @@
 class LogCount < ActiveRecord::Base
-    scope: eight_weeks_ago do
-        where(created_at: 8.weeks.ago)
+    scope: two_months_ago do
+        where(created_at: 2.months.ago)
     end
 end
