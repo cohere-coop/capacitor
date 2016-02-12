@@ -1,6 +1,10 @@
 machine:
   environment:
     CODECLIMATE_REPO_TOKEN: 40fd488627355e3e12fd14b84e18e1e7b8ee40d2271823ecd2427f02f4aad61d
+test:
+  override:
+    - bin/rspec
+    - bin/rubocop
 deployment:
   production:
     branch: production
