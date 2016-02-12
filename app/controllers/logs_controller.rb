@@ -44,40 +44,35 @@ class LogsController < ApplicationController
     end
   end
 
-  def log_params
+  private def log_params
     params.require(:log).permit(:quality, :amount, :worked_at, :do_not_bill, :notes)
       .merge(account: current_account, project: Project.find(params[:project_id]))
   end
-  private "log_params"
 
-  def track_log_creation(log)
+  private def track_log_creation(log)
     track_event("Capacity Logged", worked_at: log.worked_at,
                                    amount: log.amount,
                                    billable: log.billable?,
                                    project_name: log.project.name,
                                    project_id: log.project.id)
   end
-  private "track_log_creation"
 
-  def load_project
+  private def load_project
     @project = Project.find(params[:project_id]) if params[:project_id]
   end
-  private "load_project"
 
-  def load_log
-    if params[:id]
-      @log = Log.find(params[:id])
-    elsif params[:log]
-      @log = Log.new(log_params)
-    else
-      @log = Log.new(worked_at: Time.zone.today)
-    end
+  private def load_log
+    @log = if params[:id]
+             Log.find(params[:id])
+           elsif params[:log]
+             Log.new(log_params)
+           else
+             Log.new(worked_at: Time.zone.today)
+           end
   end
-  private "load_log"
 
-  def setup_variables
+  private def setup_variables
     load_project
     load_log
   end
-  private "setup_variables"
 end

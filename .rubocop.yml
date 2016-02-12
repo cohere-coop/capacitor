@@ -1,5 +1,10 @@
 require: rubocop-rspec
+
+Rails:
+  Enabled: true
+
 AllCops:
+  TargetRubyVersion: 2.2
   Exclude:
     # Default ignore for circle ci
     - "vendor/**/*"
@@ -7,12 +12,11 @@ AllCops:
     - "db/schema.rb"
     - "bin/**"
     # Silly thing is "too big"
-    - "db/migrate/20150520171142_init_schema.rb"
-    # REVIEW: track_event() could be better, deal with later.
-    - "app/controllers/application_controller.rb"
-  RunRailsCops: true
+    - "db/migrate/**.rb"
+
   DisplayCopNames: true
   DisplayStyleGuide: true
+
 
 Style/StringLiterals:
   EnforcedStyle: "double_quotes"
@@ -31,3 +35,6 @@ Style/WordArray:
 
 Metrics/LineLength:
   Max: 120
+
+RSpec/FilePath:
+  Enabled: false
