@@ -1,5 +1,13 @@
-# capacitor
+# Capacitor
+Mindfully managing burnout, one day at a time.
+
+[![Code
+Climate](https://codeclimate.com/github/zincmade/capacitor/badges/gpa.svg)](https://codeclimate.com/github/zincmade/capacitor)
+[![Test
+Coverage](https://codeclimate.com/github/zincmade/capacitor/badges/coverage.svg)](https://codeclimate.com/github/zincmade/capacitor/coverage)
 [![Stories in Ready](https://badge.waffle.io/zincmade/capacitor.svg?label=ready&title=Ready)](http://waffle.io/zincmade/capacitor)
+
+
 ## Getting Started
 
 1. Make sure you have Ruby 2.2.2
