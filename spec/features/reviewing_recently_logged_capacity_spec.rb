@@ -7,5 +7,5 @@ feature "Reviewing logged capacity" do
   Then { within("##{recent_log.dom_id}") { expect(page).to have_content(recent_log.worked_at) } }
   Then { within("##{recent_log.dom_id}") { expect(page).to have_content(recent_log.project.name) } }
   Then { within("##{recent_log.dom_id}") { expect(page).to have_content(recent_log.billable?) } }
-  Then { expect(page).not_to have_selector("#{old_log.dom_id}") }
+  Then { expect(page).not_to have_selector("##{old_log.dom_id}") }
 end

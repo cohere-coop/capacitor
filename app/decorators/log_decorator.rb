@@ -1,7 +1,7 @@
 require "capacity_converter"
 
 class LogDecorator < Draper::Decorator
-  QUALITY_PRESENTATION = [nil, "😡", "😟", "😐", "😌", "😄"]
+  QUALITY_PRESENTATION = [nil, "😡", "😟", "😐", "😌", "😄"].freeze
 
   delegate_all
   using CapacityConverter

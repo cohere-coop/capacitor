@@ -21,6 +21,6 @@ feature "Viewing teams" do
 
     Then { within("##{giraffes.dom_id}") { expect(page).to have_content(current_account.name) } }
 
-    Then { expect(page).not_to have_selector("#{dinosaurs.dom_id}") }
+    Then { expect(page).not_to have_selector("##{dinosaurs.dom_id}") }
   end
 end

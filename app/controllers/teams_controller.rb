@@ -39,45 +39,39 @@ class TeamsController < ApplicationController
     redirect_to root_path
   end
 
-  def load_team
-    if params[:id]
-      @team = Team.find(params[:id])
-    elsif params[:team]
-      @team = Team.new(team_params)
-    else
-      @team = Team.new
-    end
+  private def load_team
+    @team = if params[:id]
+              Team.find(params[:id])
+            elsif params[:team]
+              Team.new(team_params)
+            else
+              Team.new
+            end
   end
-  private "load_team"
 
-  def load_projects
+  private def load_projects
     @projects = Project.active
   end
-  private "load_projects"
 
-  def load_accounts
+  private def load_accounts
     @accounts = Account.all
   end
-  private "load_accounts"
 
-  def setup_variables
+  private def setup_variables
     load_team
     load_projects
     load_accounts
   end
-  private "setup_variables"
 
-  def team_params
+  private def team_params
     params.require(:team).permit(:name, project_ids: [], account_ids: []).merge(leader: current_account)
   end
-  private "team_params"
 
-  def forbid_non_owners
+  private def forbid_non_owners
     return if can_manage? @team
     flash[:error] = "You don't have access to this team"
     redirect_to teams_path
   end
-  private "forbid_non_owners"
 
   def can_manage?(team)
     team.leaders.include?(current_account)
