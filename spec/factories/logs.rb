@@ -9,7 +9,7 @@ FactoryGirl.define do
     project
     account
     factory :recent_log do
-      worked_at Time.zone.now.to_date
+      worked_at 1.day.ago
     end
 
     factory :old_log do

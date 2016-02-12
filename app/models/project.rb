@@ -32,7 +32,7 @@ class Project < ActiveRecord::Base
   end
 
   def quality_by_week
-    logs_by_week = logs.group_by { |l| l.worked_at.beginning_of_week }
+    logs_by_week = logs.up_to_two_months_ago.group_by { |l| l.worked_at.beginning_of_week }
 
     logs_by_week.each_with_object({}) do |(beginning_of_week, logs), weeks|
       qualities = logs.map(&:quality)
