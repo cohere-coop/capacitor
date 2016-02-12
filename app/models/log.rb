@@ -14,12 +14,12 @@ class Log < ActiveRecord::Base
   end
 
   scope :recent, ->(start_at = 7.days.ago) do
-    order(worked_at: :desc).where(worked_at: start_at..Time.zone.now.to_date)
+    where(worked_at: start_at..Time.zone.now.to_date)
   end
 
   scope :from_weeks_ago, ->(weeks_ago = 0) do
     week = weeks_ago.weeks.ago
-    order(worked_at: :desc).where(worked_at: week.beginning_of_week..week.end_of_week)
+    where(worked_at: week.beginning_of_week..week.end_of_week)
   end
 
   scope :up_to_two_months_ago, -> do
