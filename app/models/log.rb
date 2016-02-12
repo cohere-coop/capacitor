@@ -7,6 +7,8 @@ class Log < ActiveRecord::Base
   validates :worked_at, presence: true
   validates :account, presence: true
 
+  default_scope { order(worked_at: :desc) }
+
   scope :billable, -> do
     where(do_not_bill: false)
   end
