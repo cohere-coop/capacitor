@@ -20,7 +20,7 @@ class Log < ActiveRecord::Base
     order(worked_at: :desc).where(worked_at: week.beginning_of_week..week.end_of_week)
   end
 
-  scope :up_to_two_months_ago, ->(months_ago = 2) do
+  scope :up_to_two_months_ago, -> do
     recent(2.months.ago)
   end
 

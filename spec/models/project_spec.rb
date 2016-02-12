@@ -40,7 +40,7 @@ describe Project do
       expect(project.quality_by_week).to include(log1.worked_at.beginning_of_week => 3)
     end
     it "only includes up to eight weeks" do
-      log1 = FactoryGirl.create(:log, project: project, quality: 5, worked_at: 10.weeks.ago)
+      FactoryGirl.create(:log, project: project, quality: 5, worked_at: 10.weeks.ago)
       expect(project.quality_by_week).to be_empty
     end
   end
