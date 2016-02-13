@@ -22,7 +22,7 @@ Style/StringLiterals:
   EnforcedStyle: "double_quotes"
 
 Style/Documentation:
-  Enabled: false
+  Enabled: true
 
 Style/ExtraSpacing:
   Enabled: true
