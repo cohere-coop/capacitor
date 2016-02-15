@@ -52,6 +52,21 @@ group :production do
   gem "rack-timeout", "~> 0.3"
 end
 
+group :development do
+  # Access an IRB console on exception pages or by using <%= console %> in
+  # views
+  gem "web-console", "~> 2.1"
+
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem "spring", "~> 1.3"
+
+  # Catches style issues
+  gem "rubocop", "0.37.2"
+
+  # Specifically pulls in cops for rspec
+  gem "rubocop-rspec", "~> 1.3"
+end
+
 group :development, :test do
   gem "codeclimate-test-reporter", group: :test, require: nil
 
@@ -77,18 +92,6 @@ group :development, :test do
 
   # Allows for special Given/When/Then syntax
   gem "rspec-given", "~> 3.5"
-
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem "web-console", "~> 2.1"
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem "spring", "~> 1.3"
-
-  # Catches style issues
-  gem "rubocop", "0.37.2"
-
-  # Specifically pulls in cops for rspec
-  gem "rubocop-rspec", "~> 1.3"
 
   # This turns off the noisy asset logs
   gem "quiet_assets"
