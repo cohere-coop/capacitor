@@ -2,47 +2,44 @@ source "https://rubygems.org"
 
 ruby "2.2.4"
 
-gem "rails", "4.2.1"
+gem "rails", "~> 4.2"
 
 # Used for user authentication
-gem "devise", "3.4.1"
+gem "devise", "~> 3.5"
 
 # Use postgresql as the database for Active Record
-gem "pg", "0.18.2"
+gem "pg", "~> 0.18"
 
 # Use .haml for views
-gem "haml", "4.0.6"
+gem "haml", "~> 4.0"
 
 # Provides a wrapper object for models
-gem "draper", "1.4.0"
+gem "draper", "~> 1.4"
 
 # Use SCSS for stylesheets
-gem "sass-rails", "5.0.3"
+gem "sass-rails", "~> 5.0"
 
 # Use jquery as the JavaScript library
-gem "jquery-rails", "4.0.3"
+gem "jquery-rails", "~> 4.1"
 
-gem "jquery-ui-rails", "5.0.5"
+gem "jquery-ui-rails", "~> 5.0"
 
 gem "segment_rails", "0.2.0"
 
 # Use Uglifier as compressor for JavaScript assets
-gem "uglifier", "2.7.1"
+gem "uglifier", "~> 2.7"
 
 # bundle exec rake doc:rails generates the API under doc/api.
-gem "sdoc", "0.4.0", group: :doc
-
-# Used to catch errors in production
-gem "bugsnag", "2.8.6"
+gem "sdoc", "~> 0.4", group: :doc
 
 # A lightweight compass alternative
-gem "bourbon", "4.2.3"
+gem "bourbon", "~> 4.2"
 
 # Hooray for grid systems!
-gem "neat", "1.7.2"
+gem "neat", "~> 1.7"
 
 # And some basic prettiness
-gem "bitters", "1.0.0"
+gem "bitters", "1.2.0"
 
 group :production do
   # Does some special heroku magic
@@ -52,7 +49,7 @@ group :production do
   gem "puma", "~> 2.11"
 
   # This gem makes rack requests time out...because puma doesn't
-  gem "rack-timeout", "0.2.4"
+  gem "rack-timeout", "~> 0.3"
 end
 
 group :development, :test do
