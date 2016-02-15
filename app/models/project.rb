@@ -1,3 +1,4 @@
+# Activities that People Track Energy/Time against
 class Project < ActiveRecord::Base
   has_many :logs
   has_many :accounts, through: :logs

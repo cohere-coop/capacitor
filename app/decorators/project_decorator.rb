@@ -1,5 +1,6 @@
 require "capacity_converter"
 
+# UI focused methods for Project objects
 class ProjectDecorator < Draper::Decorator
   delegate_all
   using CapacityConverter

@@ -1,3 +1,4 @@
+# ViewModel for Account object
 class AccountDecorator < Draper::Decorator
   delegate_all
   using CapacityConverter

@@ -1,3 +1,4 @@
+# Individual person
 class Account < ActiveRecord::Base
   devise :database_authenticatable
   devise :registerable

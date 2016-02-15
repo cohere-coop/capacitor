@@ -1,3 +1,4 @@
+# Web UI controller for Logs
 class LogsController < ApplicationController
   before_action :setup_variables, only: [:new, :create, :edit, :update]
 
