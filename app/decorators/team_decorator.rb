@@ -1,3 +1,4 @@
+# HTML focused methods for Team models
 class TeamDecorator < Draper::Decorator
   delegate_all
 

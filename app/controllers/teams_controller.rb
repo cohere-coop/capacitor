@@ -1,3 +1,4 @@
+# Controller actions for /teams
 class TeamsController < ApplicationController
   before_action :setup_variables, only: [:new, :create, :edit, :update, :destroy]
   before_action :forbid_non_owners, only: [:edit, :update, :destroy]

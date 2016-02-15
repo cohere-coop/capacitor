@@ -1,3 +1,4 @@
+# UI focused methods for groups of log entries
 class LogsDecorator < Draper::CollectionDecorator
   RANGE_OF_TIME = (0...4)
   def ranges

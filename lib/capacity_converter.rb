@@ -1,5 +1,5 @@
 require "active_support/core_ext/string/inflections"
-
+# Refines numbers so they can be converted to business days (8==1 business day)
 module CapacityConverter
   refine Integer do
     QUARTER_DAYS_TO_WORDS_MAPPING = [

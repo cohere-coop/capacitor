@@ -1,4 +1,5 @@
 class Log < ActiveRecord::Base
+  # Reduces a collection of logs based on conditions by building up an AREL Where Query
   class Filter
     attr_reader :collection, :conditions
     def initialize(collection:, conditions: {})

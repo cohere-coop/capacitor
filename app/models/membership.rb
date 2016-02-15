@@ -1,3 +1,4 @@
+# Joins Accounts to Teams
 class Membership < ActiveRecord::Base
   belongs_to :team
   belongs_to :account
