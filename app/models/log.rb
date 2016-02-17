@@ -1,6 +1,6 @@
 # Single entry tracking how much time someone spent on an activity
 class Log < ActiveRecord::Base
-  belongs_to :project
+  belongs_to :activity
   belongs_to :account
 
   validates :amount, presence: true
