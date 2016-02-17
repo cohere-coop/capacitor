@@ -1,50 +1,41 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_self
- *= require jquery-ui/datepicker
- */
-@import "normalize";
-@import "bourbon";
-@import "grid-settings";
-@import "neat";
-@import "bitters/base";
+//= require_self
+//= require jquery-ui/datepicker
 
-@import "lib";
-@import "variables";
-@import "nav";
-@import "filters";
-@import "activities";
+@import 'normalize';
+@import 'bourbon';
+@import 'grid-settings';
+@import 'neat';
+@import 'bitters/base';
+
+@import 'lib';
+@import 'variables';
+@import 'nav';
+@import 'filters';
+@import 'activities';
 
 body {
   background-color: $background-color;
 }
 
-body > header, body > main, body > footer {
+body > header,
+body > main,
+body > footer {
   @include outer-container;
   margin-bottom: 1em;
 }
 
-h1.brand {
+.brand {
   text-align: center;
+
   img {
     max-height: 10em;
   }
 }
 
-input[type="checkbox"] + label {
+[type='checkbox'] + label {
   display: inline;
-  margin-right: 3.0em;
   margin-left: .25em;
+  margin-right: 3em;
 }
 
 fieldset {

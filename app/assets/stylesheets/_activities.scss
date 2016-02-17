@@ -1,19 +1,26 @@
 .activities {
   @include outer-container;
+
   .contents {
+
     article {
-      @include span-columns(4);
-      @include omega(3n);
-      background-color: $dark-blue;
-      font-size: 1.4rem;
-      margin-bottom: $gutter;
-      padding: 10px;
-      text-align: center;
-      footer {
-        a {
-          @extend button;
-        }
-      }
+      @extend %project;
+    }
+  }
+}
+
+%project {
+  @include span-columns(4);
+  @include omega(3n);
+  background-color: $dark-blue;
+  font-size: 1.4rem;
+  margin-bottom: $gutter;
+  padding: 10px;
+  text-align: center;
+
+  footer {
+    a {
+      @extend %button;
     }
   }
 }
