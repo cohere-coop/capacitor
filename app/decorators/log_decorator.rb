@@ -7,7 +7,7 @@ class LogDecorator < Draper::Decorator
   using CapacityConverter
 
   def summary
-    "#{project.name}, #{amount}, #{worked_at}"
+    "#{activity.name}, #{amount}, #{worked_at}"
   end
 
   def amount

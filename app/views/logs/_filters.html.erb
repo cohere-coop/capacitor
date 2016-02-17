@@ -1,10 +1,10 @@
 <ul class="filters">
   <li class="filter">
-    <%= link_to "By Project", "#", class: "filter-link" %>
+    <%= link_to "By Activity", "#", class: "filter-link" %>
     <div class="filter-content">
       <ul>
-        <% current_account.projects.uniq.each do |project| %>
-          <li><%= link_to project.name, logs_path(projects: [project.id]) %></li>
+        <% current_account.activities.uniq.each do |activity| %>
+          <li><%= link_to activity.name, logs_path(activities: [activity.id]) %></li>
         <% end %>
       </ul>
     </div>

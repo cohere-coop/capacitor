@@ -38,15 +38,15 @@ describe Log do
       expect(results).to include(billable_log)
     end
 
-    it "filters projects" do
-      project_a = FactoryGirl.create(:project)
-      project_b = FactoryGirl.create(:project)
-      project_a_log = FactoryGirl.create(:log, project: project_a)
-      project_b_log = FactoryGirl.create(:log, project: project_b)
+    it "filters activities" do
+      activity_a = FactoryGirl.create(:activity)
+      activity_b = FactoryGirl.create(:activity)
+      activity_a_log = FactoryGirl.create(:log, activity: activity_a)
+      activity_b_log = FactoryGirl.create(:log, activity: activity_b)
 
-      results = described_class.filter(projects: [project_a.id])
-      expect(results).not_to include(project_b_log)
-      expect(results).to include(project_a_log)
+      results = described_class.filter(activities: [activity_a.id])
+      expect(results).not_to include(activity_b_log)
+      expect(results).to include(activity_a_log)
     end
   end
 end

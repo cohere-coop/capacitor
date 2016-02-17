@@ -23,7 +23,7 @@
 @import "variables";
 @import "nav";
 @import "filters";
-@import "projects";
+@import "activities";
 
 body {
   background-color: $background-color;
@@ -50,4 +50,3 @@ input[type="checkbox"] + label {
 fieldset {
   background-color: transparent;
 }
-

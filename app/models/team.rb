@@ -2,8 +2,8 @@
 class Team < ActiveRecord::Base
   belongs_to :leader, class_name: "Account"
 
-  has_many :teams_projects
-  has_many :projects, through: :teams_projects
+  has_many :teams_activities
+  has_many :activities, through: :teams_activities
 
   has_many :memberships
   has_many :accounts, through: :memberships
