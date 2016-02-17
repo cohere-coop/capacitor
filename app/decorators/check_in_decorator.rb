@@ -1,3 +1,4 @@
+# Decorator for Check Ins
 class CheckInDecorator < Draper::Decorator
   delegate_all
 
@@ -9,5 +10,4 @@ class CheckInDecorator < Draper::Decorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
-
 end

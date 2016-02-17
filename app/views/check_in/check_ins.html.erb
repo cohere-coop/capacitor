@@ -1,0 +1,18 @@
+<section id="check-in">
+  <h3>Please Check In</h3>
+  <p><%= current_account.project%></p>
+
+  <%= f.label :what_day_is_this_for %>
+  <%= f.text_field :worked_at, class: "datepicker" %>
+  <%= render partial: "error_for_field", locals: { model: @log, field: :worked_at } %>
+
+  <%= f.label :quality, "How'd it go?" %>
+  <%= f.select :quality, options_for_select(CheckInHelper::ATTENTION_QUALITY, @log.quality) %>
+  <%= render partial: "error_for_field", locals: { model: @log, field: :quality } %>
+
+  <%= f.label :notes %>
+  <%= f.text_area :notes %>
+  <%= render partial: "error_for_field", locals: { model: @log, field: :notes } %>
+
+
+</section>
