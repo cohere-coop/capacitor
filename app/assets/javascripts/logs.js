@@ -1,4 +1,5 @@
-(function(){
+(function() {
+
     $(document).ready(function () {
         enableDropdownForLogFilters();
     });
@@ -28,4 +29,4 @@
         // makes link that was clicked active
         $link.addClass('is-active');
     }
-})();
+}());
