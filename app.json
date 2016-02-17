@@ -1,6 +1,6 @@
 {
   "name": "Capacitor",
-  "description": "Project tracking interface.",
+  "description": "Burnout awareness + prevention tool",
   "repository": "https://github.com/zincmade/capacitor",
   "success_url": "/",
   "scripts": {

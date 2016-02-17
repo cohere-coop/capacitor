@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     sessions: "account/sessions"
   }
 
-  resources :projects, only: [:index, :new, :create, :edit, :update] do
+  resources :activities, only: [:index, :new, :create, :edit, :update] do
     resources :logs, only: [:new, :create, :edit, :update]
   end
 

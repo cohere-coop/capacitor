@@ -6,9 +6,9 @@ feature "Logging time" do
   let(:worked_at) { "2015-05-06" }
   let(:log) { Log.find_by(worked_at: worked_at) }
 
-  Given!(:project) { FactoryGirl.create(:project) }
+  Given!(:activity) { FactoryGirl.create(:activity) }
 
-  When { click_link_or_button "#{project.id}_new_log_entry" }
+  When { click_link_or_button "#{activity.id}_new_log_entry" }
 
   When { select("1 half day", from: "Amount") }
   When { select("😌", from: "How'd it go?") }
@@ -31,8 +31,8 @@ end
 feature "Editing time" do
   include_context "account login"
 
-  Given!(:project) { FactoryGirl.create(:project) }
-  Given!(:log) { current_account.logs.create(project: project, quality: 1, amount: 1, worked_at: 1.day.ago) }
+  Given!(:activity) { FactoryGirl.create(:activity) }
+  Given!(:log) { current_account.logs.create(activity: activity, quality: 1, amount: 1, worked_at: 1.day.ago) }
   Given!(:decorated_log) { log.decorate }
 
   When { within("##{decorated_log.dom_id}") { click_link_or_button("Edit") } }

@@ -6,7 +6,7 @@ FactoryGirl.define do
     quality 1
     worked_at 5.days.ago
     do_not_bill false
-    project
+    activity
     account
     factory :recent_log do
       worked_at 1.day.ago

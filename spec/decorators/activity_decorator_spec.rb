@@ -1,15 +1,15 @@
 require "rails_helper"
 
-RSpec.describe ProjectDecorator, type: :decorator do
+RSpec.describe ActivityDecorator, type: :decorator do
   using CapacityConverter
 
-  Given(:project) do
-    instance_double(Project, capacity: capacity,
-                             capacity_remaining: capacity_remaining,
-                             quality_by_week: { "2015-05-20" => 3 })
+  Given(:activity) do
+    instance_double(Activity, capacity: capacity,
+                              capacity_remaining: capacity_remaining,
+                              quality_by_week: { "2015-05-20" => 3 })
   end
   Given(:capacity_remaining) { 8 }
-  Given(:decorator) { described_class.new(project) }
+  Given(:decorator) { described_class.new(activity) }
   Given(:capacity) { 5 }
 
   context "capacity is -1" do

@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th>Team name</th>
-      <th>Projects</th>
+      <th>Activities</th>
       <th>Team Lead</th>
       <th>Members</th>
       <th></th>
@@ -13,7 +13,7 @@
   <% current_account.teams.decorate.each do |team| %>
     <tr id="<%=team.dom_id%>">
       <td><%= team.name %></td>
-      <td><%= team.projects.pluck(:name).join(", ") %></td>
+      <td><%= team.activities.pluck(:name).join(", ") %></td>
       <td><%= team.leader.name %></td>
       <td><%= team.accounts.pluck(:name).join(", ") %></td>
       <td>
