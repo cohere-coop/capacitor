@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016213851) do
+ActiveRecord::Schema.define(version: 20160223213720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 20151016213851) do
   add_index "accounts", ["reset_password_sent_at"], name: "index_accounts_on_reset_password_sent_at", using: :btree
   add_index "accounts", ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true, using: :btree
   add_index "accounts", ["updated_at"], name: "index_accounts_on_updated_at", using: :btree
+
+  create_table "checkins", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "log_counts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "logs", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.integer  "amount",      default: 0,     null: false
