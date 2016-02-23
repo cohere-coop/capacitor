@@ -3,6 +3,6 @@ class PagesController < ApplicationController
   before_action :authenticate_account!
 
   def dashboard
-    @projects = Project.active.order(:name).decorate
+    @activities = Activity.active.order(:name).decorate
   end
 end

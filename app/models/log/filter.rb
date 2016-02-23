@@ -18,7 +18,7 @@ class Log < ActiveRecord::Base
     def clauses
       clauses = []
       clauses += time_clauses
-      clauses += project_clauses
+      clauses += activity_clauses
       clauses
     end
 
@@ -29,9 +29,9 @@ class Log < ActiveRecord::Base
       clauses
     end
 
-    def project_clauses
+    def activity_clauses
       clauses = []
-      clauses.push(project_id: conditions[:projects]) if conditions[:projects]
+      clauses.push(activity_id: conditions[:activities]) if conditions[:activities]
       clauses.push(do_not_bill: false) if conditions[:billable]
       clauses
     end

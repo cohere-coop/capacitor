@@ -3,8 +3,8 @@
   <%= f.text_field :name %>
   <%= render partial: "error_for_field", locals: { model: @team, field: :name } %>
 <fieldset>
-  <legend> Projects </legend>
-  <%= collection_check_boxes(:team, :project_ids, Project.all, :id, :name) %>
+  <legend> Activities </legend>
+  <%= collection_check_boxes(:team, :activity_ids, Activity.all, :id, :name) %>
 </fieldset>
 
 <fieldset>

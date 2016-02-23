@@ -1,17 +1,17 @@
-<%= form_for([ @project, @log]) do |f| %>
+<%= form_for([ @activity, @log]) do |f| %>
   <%= f.label :amount  %>
-  <%= f.select :amount, options_for_select(ProjectHelper::AMOUNT_OPTIONS, @log.amount) %>
+  <%= f.select :amount, options_for_select(ActivityHelper::AMOUNT_OPTIONS, @log.amount) %>
   <%= render partial: "error_for_field", locals: { model: @log, field: :amount } %>
 
   <%= f.label :quality, "How'd it go?" %>
-  <%= f.select :quality, options_for_select(ProjectHelper::QUALITY_OPTIONS, @log.quality) %>
+  <%= f.select :quality, options_for_select(ActivityHelper::QUALITY_OPTIONS, @log.quality) %>
   <%= render partial: "error_for_field", locals: { model: @log, field: :quality } %>
 
   <%= f.label :worked_at %>
   <%= f.text_field :worked_at, class: "datepicker" %>
   <%= render partial: "error_for_field", locals: { model: @log, field: :worked_at } %>
 
-  <% if @project.billable %>
+  <% if @activity.billable %>
     <label>
       <%= f.check_box :do_not_bill %>Do Not Bill
     </label>

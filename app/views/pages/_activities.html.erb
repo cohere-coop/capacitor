@@ -1,0 +1,29 @@
+<section class="activities">
+  <h3>Pick a Activity to Work On</h3>
+  <p><%= link_to "Create a new activity", new_activity_path %></p>
+  <div class="contents">
+    <% @activities.each do |activity| %>
+      <article id="<%= activity.dom_id %>">
+        <header>
+          <h3>
+            <%= link_to activity.name, new_activity_log_path(activity), id: "#{activity.id}_new_log_entry" %>
+            &mdash;
+            <%= link_to "Edit", edit_activity_path(activity) %>
+          </h3>
+        </header>
+        <p><%= activity.capacity_remaining %> of work left</p>
+        <p><%= activity.weekly_capacity_remaining %> of <%= activity.weekly_burn_rate %> per week</p>
+        <p><%= activity.recent_capacity_remaining %> of <%= activity.weekly_burn_rate %> in the past 7 days</p>
+        <p>
+          <% activity.quality_by_week.each do |face| %>
+            <%= face %>
+          <% end %>
+        </p>
+
+        <footer>
+          <%= link_to "Start Work", new_activity_log_path(activity), class: "btn" %>
+        </footer>
+      </article>
+    <% end %>
+  </div>
+</section>

@@ -54,12 +54,26 @@ ActiveRecord::Schema.define(version: 20160223213720) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+  create_table "activities", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "name",             default: "",   null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "capacity",         default: 0,    null: false
+    t.integer  "weekly_burn_rate", default: 0,    null: false
+    t.boolean  "billable",         default: true, null: false
+    t.boolean  "active",           default: true, null: false
+  end
+
+  add_index "activities", ["capacity"], name: "index_activities_on_capacity", using: :btree
+  add_index "activities", ["created_at"], name: "index_activities_on_created_at", using: :btree
+  add_index "activities", ["name"], name: "index_activities_on_name", using: :btree
+  add_index "activities", ["updated_at"], name: "index_activities_on_updated_at", using: :btree
 
   create_table "logs", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.integer  "amount",      default: 0,     null: false
     t.integer  "quality",                     null: false
     t.boolean  "do_not_bill", default: false, null: false
-    t.uuid     "project_id",                  null: false
+    t.uuid     "activity_id",                 null: false
     t.uuid     "account_id",                  null: false
     t.date     "worked_at",                   null: false
     t.datetime "created_at",                  null: false
@@ -68,9 +82,9 @@ ActiveRecord::Schema.define(version: 20160223213720) do
   end
 
   add_index "logs", ["account_id"], name: "index_logs_on_account_id", using: :btree
+  add_index "logs", ["activity_id"], name: "index_logs_on_activity_id", using: :btree
   add_index "logs", ["amount"], name: "index_logs_on_amount", using: :btree
   add_index "logs", ["created_at"], name: "index_logs_on_created_at", using: :btree
-  add_index "logs", ["project_id"], name: "index_logs_on_project_id", using: :btree
   add_index "logs", ["quality"], name: "index_logs_on_quality", using: :btree
   add_index "logs", ["updated_at"], name: "index_logs_on_updated_at", using: :btree
   add_index "logs", ["worked_at"], name: "index_logs_on_worked_at", using: :btree
@@ -84,21 +98,6 @@ ActiveRecord::Schema.define(version: 20160223213720) do
   add_index "memberships", ["account_id"], name: "index_memberships_on_account_id", using: :btree
   add_index "memberships", ["team_id"], name: "index_memberships_on_team_id", using: :btree
 
-  create_table "projects", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.string   "name",             default: "",   null: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.integer  "capacity",         default: 0,    null: false
-    t.integer  "weekly_burn_rate", default: 0,    null: false
-    t.boolean  "billable",         default: true, null: false
-    t.boolean  "active",           default: true, null: false
-  end
-
-  add_index "projects", ["capacity"], name: "index_projects_on_capacity", using: :btree
-  add_index "projects", ["created_at"], name: "index_projects_on_created_at", using: :btree
-  add_index "projects", ["name"], name: "index_projects_on_name", using: :btree
-  add_index "projects", ["updated_at"], name: "index_projects_on_updated_at", using: :btree
-
   create_table "teams", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "name",       default: "", null: false
     t.uuid     "leader_id",               null: false
@@ -109,14 +108,14 @@ ActiveRecord::Schema.define(version: 20160223213720) do
   add_index "teams", ["leader_id"], name: "index_teams_on_leader_id", using: :btree
   add_index "teams", ["name"], name: "index_teams_on_name", using: :btree
 
-  create_table "teams_projects", force: :cascade do |t|
-    t.uuid     "team_id",    null: false
-    t.uuid     "project_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "teams_activities", force: :cascade do |t|
+    t.uuid     "team_id",     null: false
+    t.uuid     "activity_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_index "teams_projects", ["project_id"], name: "index_teams_projects_on_project_id", using: :btree
-  add_index "teams_projects", ["team_id"], name: "index_teams_projects_on_team_id", using: :btree
+  add_index "teams_activities", ["activity_id"], name: "index_teams_activities_on_activity_id", using: :btree
+  add_index "teams_activities", ["team_id"], name: "index_teams_activities_on_team_id", using: :btree
 
 end

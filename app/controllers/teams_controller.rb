@@ -50,8 +50,8 @@ class TeamsController < ApplicationController
             end
   end
 
-  private def load_projects
-    @projects = Project.active
+  private def load_activities
+    @activities = Activity.active
   end
 
   private def load_accounts
@@ -60,12 +60,12 @@ class TeamsController < ApplicationController
 
   private def setup_variables
     load_team
-    load_projects
+    load_activities
     load_accounts
   end
 
   private def team_params
-    params.require(:team).permit(:name, project_ids: [], account_ids: []).merge(leader: current_account)
+    params.require(:team).permit(:name, activity_ids: [], account_ids: []).merge(leader: current_account)
   end
 
   private def forbid_non_owners

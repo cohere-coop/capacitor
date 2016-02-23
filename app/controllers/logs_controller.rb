@@ -32,7 +32,7 @@ class LogsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:project_id])
+    @activity = Activity.find(params[:activity_id])
     @log = Log.find(params[:id])
   end
 
@@ -47,19 +47,19 @@ class LogsController < ApplicationController
 
   private def log_params
     params.require(:log).permit(:quality, :amount, :worked_at, :do_not_bill, :notes)
-      .merge(account: current_account, project: Project.find(params[:project_id]))
+      .merge(account: current_account, activity: Activity.find(params[:activity_id]))
   end
 
   private def track_log_creation(log)
     track_event("Capacity Logged", worked_at: log.worked_at,
                                    amount: log.amount,
                                    billable: log.billable?,
-                                   project_name: log.project.name,
-                                   project_id: log.project.id)
+                                   activity_name: log.activity.name,
+                                   activity_id: log.activity.id)
   end
 
-  private def load_project
-    @project = Project.find(params[:project_id]) if params[:project_id]
+  private def load_activity
+    @activity = Activity.find(params[:activity_id]) if params[:activity_id]
   end
 
   private def load_log
@@ -73,7 +73,7 @@ class LogsController < ApplicationController
   end
 
   private def setup_variables
-    load_project
+    load_activity
     load_log
   end
 end

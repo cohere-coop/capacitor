@@ -1,10 +1,10 @@
 # Activities that People Track Energy/Time against
-class Project < ActiveRecord::Base
+class Activity < ActiveRecord::Base
   has_many :logs
   has_many :accounts, through: :logs
 
-  has_many :teams_projects
-  has_many :teams, through: :teams_projects
+  has_many :teams_activities
+  has_many :teams, through: :teams_activities
 
   validates :name, :capacity, :weekly_burn_rate, presence: true
 

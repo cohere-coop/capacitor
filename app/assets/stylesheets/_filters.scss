@@ -5,22 +5,23 @@
   line-height: 1.5;
   padding: 0;
 
-  li.filter {
-    list-style: none;
+  .filter {
     display: inline;
+    list-style: none;
 
     .subfilter {
-      list-style: none;
       display: inline;
+      list-style: none;
     }
   }
 
-  a.filter-link {
+  .filter-link {
+    @include inline-block;
+
+    border-top: 0;
     font-weight: 400;
     padding: ($base-spacing / 2) $gutter;
     text-decoration: none;
-    @include inline-block;
-    border-top: 0;
 
     &:focus {
       outline: none;
@@ -31,17 +32,17 @@
     }
   }
 
-  a.link {
-    font-weight: 400;
-    padding: ($base-spacing / 2) $gutter;
+  .link {
     @include inline-block;
     border-top: 0;
+    font-weight: 400;
+    padding: ($base-spacing / 2) $gutter;
   }
 
   .filter-content {
     display: none;
+    float: left;
     padding: $base-spacing $gutter;
     width: 100%;
-    float: left;
   }
 }
