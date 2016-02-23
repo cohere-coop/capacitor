@@ -1,14 +1,3 @@
 machine:
   environment:
     CODECLIMATE_REPO_TOKEN: 40fd488627355e3e12fd14b84e18e1e7b8ee40d2271823ecd2427f02f4aad61d
-deployment:
-  production:
-    branch: production
-    commands:
-      - git push git@heroku.com:capacitor-prod.git $CIRCLE_SHA1:master
-      - heroku run rake db:migrate --app capacitor-prod
-  staging:
-    branch: primary
-    commands:
-      - git push git@heroku.com:capacitor-staging.git $CIRCLE_SHA1:master
-      - heroku run rake db:migrate --app capacitor-staging
