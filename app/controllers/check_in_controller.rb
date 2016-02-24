@@ -1,2 +1,0 @@
-class CheckInController < ApplicationController
-end

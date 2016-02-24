@@ -1,0 +1,19 @@
+<section id="new-check-in">
+  <%= form_for check_in do |check_in_form| %>
+      <%= fields_for check_in.log_entries do |log_fields| %>
+        <h4><%= log_fields.object.activity_name %></h4>
+        <%= log_fields.label :what_day_is_this_for %>
+        <%= log_fields.text_field :worked_at, class: "datepicker" %>
+        <%= render partial: "error_for_field", locals: { model: log_fields.object, field: :worked_at } %>
+
+        <%= log_fields.label :quality, "How'd it go?" %>
+        <%= log_fields.select :quality, options_for_select(CheckInHelper::ATTENTION_QUALITY) %>
+        <%= render partial: "error_for_field", locals: { model: log_fields.object, field: :quality } %>
+
+        <%= log_fields.label :notes %>
+        <%= log_fields.text_area :notes %>
+        <%= render partial: "error_for_field", locals: { model: log_fields.object, field: :notes } %>
+      <% end %>
+      <%= check_in_form.submit %>
+  <% end %>
+</section>

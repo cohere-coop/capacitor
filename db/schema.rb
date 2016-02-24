@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20160223213720) do
   add_index "activities", ["name"], name: "index_activities_on_name", using: :btree
   add_index "activities", ["updated_at"], name: "index_activities_on_updated_at", using: :btree
 
-  create_table "checkins", force: :cascade do |t|
+  create_table "check_ins", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

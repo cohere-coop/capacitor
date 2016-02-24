@@ -1,6 +1,6 @@
 class CreateCheckins < ActiveRecord::Migration
   def change
-    create_table :checkins do |t|
+    create_table :check_ins do |t|
 
       t.timestamps null: false
     end
