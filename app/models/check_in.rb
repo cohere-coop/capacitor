@@ -6,10 +6,12 @@ class CheckIn < ActiveRecord::Base
   def log_entries_attributes=
   end
 
+  def worked_at
+  end
+
   def log_entries
-    Activity.all.each do |activity|
+    Activity.all.map do |activity|
       logs.new(activity: activity)
     end
-    return logs
   end
 end
