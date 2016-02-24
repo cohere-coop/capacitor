@@ -79,7 +79,4 @@ test:
 #     url: <%= ENV["DATABASE_URL"] %>
 #
 production:
-  <<: *default
-  database: capacitor_production
-  username: capacitor
-  password: <%= ENV["CAPACITOR_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>

@@ -4,6 +4,9 @@ ruby "2.2.4"
 
 gem "rails", "~> 4.2"
 
+# Autoloads the .env file for secrets
+gem "dotenv-rails", "~> 2.0", require: "dotenv/rails-now", group: [:development, :tes]
+
 # Used for user authentication
 gem "devise", "~> 3.5"
 
@@ -74,9 +77,6 @@ group :development, :test do
 
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
   gem "byebug", "~> 5.0"
-
-  # Autoloads the .env file for secrets
-  gem "dotenv-rails", "~> 2.0"
 
   # The rspec testing framework intergation for rails
   gem "rspec-rails", "~> 3.2"
