@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20160223213720) do
   add_index "activities", ["updated_at"], name: "index_activities_on_updated_at", using: :btree
 
   create_table "check_ins", force: :cascade do |t|
+    t.integer  "account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -75,6 +76,7 @@ ActiveRecord::Schema.define(version: 20160223213720) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.text     "notes"
+    t.integer  "check_in_id"
   end
 
   add_index "logs", ["account_id"], name: "index_logs_on_account_id", using: :btree

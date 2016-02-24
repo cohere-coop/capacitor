@@ -1,6 +1,6 @@
 <section id="new-check-in">
-  <%= form_for check_in do |check_in_form| %>
-      <%= fields_for check_in.log_entries do |log_fields| %>
+  <%= form_for @check_in do |check_in_form| %>
+      <%= check_in_form.fields_for :log_entries do |log_fields| %>
         <h4><%= log_fields.object.activity_name %></h4>
         <%= log_fields.label :what_day_is_this_for %>
         <%= log_fields.text_field :worked_at, class: "datepicker" %>
