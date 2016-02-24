@@ -25,7 +25,7 @@ accounts:
     password: "password"
     weekly_expected_capacity: 10
 
-projects:
+activities:
   -
     name: "Capacitor"
     capacity: -1
