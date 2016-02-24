@@ -4,8 +4,10 @@ class CheckIn < ActiveRecord::Base
   accepts_nested_attributes_for :logs
 
   def log_entries_attributes=
+
   end
 
+  # TODO: Make this an attribute on the check_in model!
   def worked_at
   end
 
