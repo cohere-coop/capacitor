@@ -6,10 +6,10 @@ unless Rails.env.production?
   accounts = seeds["accounts"].map do |seed|
     Account.create_with(seed).find_or_create_by(email: seed["email"])
   end
-  projects = seeds["projects"].map do |seed|
-    Project.create_with(seed).find_or_create_by(name: seed["name"])
+  activities = seeds["activities"].map do |seed|
+    Activity.create_with(seed).find_or_create_by(name: seed["name"])
   end
   seeds["logs"].map do |seed|
-    Log.create!(seed.merge(account: accounts.first, project: projects.first))
+    Log.create!(seed.merge(account: accounts.first, activity: activities.first))
   end
 end
