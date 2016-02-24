@@ -40,7 +40,6 @@ module Capacitor
     end
 
     mail_options = { from: "hello@capacitorapp.com" }
-    mail_options["X-MC-Subaccount"] = ENV["MANDRILL_SUBACCOUNT"] if ENV["MANDRILL_SUBACCOUNT"]
     config.action_mailer.default_options = mail_options
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
