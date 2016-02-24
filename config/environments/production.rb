@@ -3,7 +3,14 @@ Rails.application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
-  # config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+  app_host = if ENV["APP_DOMAIN"]
+               ENV["APP_DOMAIN"]
+             else
+               "#{ENV['HEROKU_APP_NAME']}.herokuapp.com"
+             end
+
+  config.action_mailer.default_url_options = { host: app_host,
+                                               protocol: "https" }
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
