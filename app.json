@@ -7,15 +7,16 @@
     "postdeploy": "bin/rake db:migrate"
   },
   "env": {
-    "LANG": { "required": true },
-    "WEB_CONCURRENCY": { "required": true },
-    "MAX_THREADS": { "required": true },
-    "MIN_THREADS": { "required": true },
     "RACK_ENV": { "required": true },
     "RAILS_ENV": { "required": true },
+    "HEROKU_APP_NAME": { "required": true },
     "RAILS_SERVE_STATIC_FILES": { "required": true },
-    "SECRET_KEY_BASE": { "required": true },
+    "SECRET_KEY_BASE": { "required": true, "generator": "secret" },
+    "DEVISE_SESSION_TOKEN_PRIVATE": { "required": true, "generator": "secret"},
     "SEGMENT_TOKEN": { "required": true },
-    "RACK_TIMEOUT": { "required": true }
+    "SMTP_HOST": { "required": true },
+    "SMTP_USERNAME": { "required": true },
+    "SMTP_PASSWORD": { "required": true },
+    "SMTP_PORT": { "requried": true },
   }
 }

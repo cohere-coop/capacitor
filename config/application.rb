@@ -30,6 +30,17 @@ module Capacitor
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join("my", "locales", "*.{rb,yml}").to_s]
     # config.i18n.default_locale = :de
+    if ENV["SMTP_HOST"] && ENV["SMTP_USERNAME"] && ENV["SMTP_PASSWORD"]
+      config.action_mailer.smtp_settings = {
+        address: ENV["SMTP_HOST"],
+        user_name: ENV["SMTP_USERNAME"],
+        password: ENV["SMTP_PASSWORD"],
+        port: ENV["SMTP_PORT"] || 25
+      }
+    end
+
+    mail_options = { from: "hello@capacitorapp.com" }
+    config.action_mailer.default_options = mail_options
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.beginning_of_week = :sunday
