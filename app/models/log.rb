@@ -27,6 +27,10 @@ class Log < ActiveRecord::Base
     recent(2.months.ago)
   end
 
+  def activity_name
+    activity.name
+  end
+
   def self.filter(conditions)
     Filter.new(collection: all, conditions: conditions).results
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217192151) do
+ActiveRecord::Schema.define(version: 20160223213720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,12 @@ ActiveRecord::Schema.define(version: 20160217192151) do
   add_index "activities", ["name"], name: "index_activities_on_name", using: :btree
   add_index "activities", ["updated_at"], name: "index_activities_on_updated_at", using: :btree
 
+  create_table "check_ins", force: :cascade do |t|
+    t.integer  "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "logs", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.integer  "amount",      default: 0,     null: false
     t.integer  "quality",                     null: false
@@ -70,6 +76,7 @@ ActiveRecord::Schema.define(version: 20160217192151) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.text     "notes"
+    t.integer  "check_in_id"
   end
 
   add_index "logs", ["account_id"], name: "index_logs_on_account_id", using: :btree
