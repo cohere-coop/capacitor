@@ -9,6 +9,10 @@
 
           <%= render partial: "error_for_field", locals: { model: log_fields.object, field: :worked_at } %>
 
+          <%= log_fields.label :amount, "How many hours did you work?" %>
+          <%= log_fields.select :amount, options_for_select(CheckInHelper::HOURS_WORKED) %>
+          <%= render partial: "error_for_field", locals: { model: log_fields.object, field: :amount } %>
+
           <%= log_fields.label :quality, "How'd it go?" %>
           <%= log_fields.select :quality, options_for_select(CheckInHelper::ATTENTION_QUALITY) %>
           <%= render partial: "error_for_field", locals: { model: log_fields.object, field: :quality } %>

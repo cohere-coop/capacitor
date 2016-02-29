@@ -4,7 +4,8 @@ class CheckInsController < ApplicationController
   end
 
   def create
-    
+    if @check_in.save
+      
   end
 
   def new
