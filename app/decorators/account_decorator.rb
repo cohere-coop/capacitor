@@ -18,4 +18,8 @@ class AccountDecorator < Draper::Decorator
   def remaining_recent_capacity
     account.remaining_recent_capacity.to_business_days
   end
+
+  def active_activities
+    activities.active.order(:name).decorate
+  end
 end

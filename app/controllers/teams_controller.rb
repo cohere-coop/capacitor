@@ -51,7 +51,7 @@ class TeamsController < ApplicationController
   end
 
   private def load_activities
-    @activities = Activity.active
+    @activities = current_account.activities.active
   end
 
   private def load_accounts

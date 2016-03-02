@@ -1,11 +1,11 @@
 # CRUD controller for Activities model
 class ActivitiesController < ApplicationController
   def new
-    @activity = Activity.new
+    @activity = current_account.activities.new
   end
 
   def create
-    @activity = Activity.new(activity_params)
+    @activity = current_account.activities.new(activity_params)
 
     if @activity.save
       flash[:notice] = "New activity created"
@@ -16,11 +16,11 @@ class ActivitiesController < ApplicationController
   end
 
   def edit
-    @activity = Activity.find(params[:id])
+    @activity = current_account.activities.find(params[:id])
   end
 
   def update
-    @activity = Activity.find(params[:id])
+    @activity = current_account.activities.find(params[:id])
 
     if @activity.update_attributes(activity_params)
       flash[:notice] = "Activity #{@activity.name} was updated"
@@ -32,5 +32,6 @@ class ActivitiesController < ApplicationController
 
   def activity_params
     params.require(:activity).permit(:name, :capacity, :weekly_burn_rate, :billable, :active)
+          .merge(owner: current_account)
   end
 end
