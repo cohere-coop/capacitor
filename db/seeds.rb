@@ -2,14 +2,17 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
 unless Rails.env.production?
-  seeds = YAML.load_file(Rails.root.join("db", "seeds.yml"))
-  accounts = seeds["accounts"].map do |seed|
-    Account.create_with(seed).find_or_create_by(email: seed["email"])
-  end
-  activities = seeds["activities"].map do |seed|
-    Activity.create_with(seed).find_or_create_by(name: seed["name"])
-  end
-  seeds["logs"].map do |seed|
-    Log.create!(seed.merge(account: accounts.first, activity: activities.first))
+  [{ name: "Admin", email: "admin@example.com", password: "password" }].each do |user|
+    account = Account.create_with(user).find_or_create_by(email: user[:email])
+    [{ name: "Capacitor", capacity: -1, weekly_burn_rate: 2, billable: false, active: true },
+     { name: "Transistor", capacity: 0, weekly_burn_rate: 0, billable: true, active: true },
+     { name: "Voltage", capacity: 25, weekly_burn_rate: 3, billable: true, active: false },
+     { name: "Generator", capacity: 40, weekly_burn_rate: 0, billable: true, active: true }].each do |activity|
+      activity = account.activities.create_with(activity).find_or_create_by!(name: activity[:name])
+      5.times do |x|
+        Log.create!(account: account, activity: activity, worked_at: x.days.ago,
+                    amount: rand(1..8), quality: rand(1..5))
+      end
+    end
   end
 end

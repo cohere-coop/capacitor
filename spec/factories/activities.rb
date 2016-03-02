@@ -6,5 +6,6 @@ FactoryGirl.define do
     capacity 15
     weekly_burn_rate 4
     billable true
+    owner
   end
 end

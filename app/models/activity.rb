@@ -1,12 +1,12 @@
 # Activities that People Track Energy/Time against
 class Activity < ActiveRecord::Base
   has_many :logs
-  has_many :accounts, through: :logs
+  belongs_to :owner, class_name: "Account"
 
   has_many :teams_activities
   has_many :teams, through: :teams_activities
 
-  validates :name, :capacity, :weekly_burn_rate, presence: true
+  validates :name, :capacity, :weekly_burn_rate, :owner, presence: true
 
   scope :active, lambda {
     where(active: true)

@@ -4,7 +4,7 @@
   <%= render partial: "error_for_field", locals: { model: @team, field: :name } %>
 <fieldset>
   <legend> Activities </legend>
-  <%= collection_check_boxes(:team, :activity_ids, Activity.all, :id, :name) %>
+  <%= collection_check_boxes(:team, :activity_ids, current_account.activities.all, :id, :name) %>
 </fieldset>
 
 <fieldset>

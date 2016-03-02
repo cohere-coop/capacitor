@@ -1,13 +1,13 @@
 require "rails_helper"
 
 feature "Creating teams" do
-  Given!(:activity_1) { FactoryGirl.create(:activity, name: "Activity 1") }
-  Given!(:activity_2) { FactoryGirl.create(:activity, name: "Activity 2") }
+  include_context "account login"
+
+  Given!(:activity_1) { FactoryGirl.create(:activity, name: "Activity 1", owner: current_account) }
+  Given!(:activity_2) { FactoryGirl.create(:activity, name: "Activity 2", owner: current_account) }
   Given!(:zee) { FactoryGirl.create(:account, name: "Zee Spencer") }
   Given!(:dicko) { FactoryGirl.create(:account, name: "Dicko Sow") }
   let(:team) { Team.find_by(name: "Team A") }
-
-  include_context "account login"
 
   When { visit teams_path }
   When { click_link_or_button "Create a team" }

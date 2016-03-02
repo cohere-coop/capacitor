@@ -32,7 +32,7 @@ describe Activity do
       log1 = FactoryGirl.create(:log, activity: activity, quality: 5, worked_at: 1.week.ago)
       log2 = FactoryGirl.create(:log, activity: activity, quality: 1, worked_at: 2.weeks.ago)
       expect(activity.quality_by_week).to include(log1.worked_at.beginning_of_week => 5,
-                                                 log2.worked_at.beginning_of_week => 1)
+                                                  log2.worked_at.beginning_of_week => 1)
     end
     it "rounds non-even numbers instead of truncating them" do
       log1 = FactoryGirl.create(:recent_log, activity: activity, quality: 4)
