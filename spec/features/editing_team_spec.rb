@@ -3,7 +3,7 @@ require "rails_helper"
 feature "Editing teams" do
   include_context "account login"
 
-  Given!(:activity_1) { FactoryGirl.create(:activity, name: "Activity 1") }
+  Given!(:activity_1) { FactoryGirl.create(:activity, name: "Activity 1", owner: current_account) }
   Given!(:zee) { FactoryGirl.create(:account, name: "Zee Spencer") }
 
   Given!(:team) { FactoryGirl.create(:team, name: "Unicorns") }

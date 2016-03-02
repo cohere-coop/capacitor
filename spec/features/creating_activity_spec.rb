@@ -9,5 +9,5 @@ feature "Creating activities" do
   When { fill_in "Weekly burn rate", with: 5 }
   When { click_link_or_button "Create activity" }
 
-  Then { expect(Activity.find_by(name: "Activity A")).to be_persisted }
+  Then { expect(current_account.activities.find_by(name: "Activity A")).to be_persisted }
 end

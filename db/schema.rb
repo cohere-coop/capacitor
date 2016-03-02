@@ -11,17 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217192151) do
+ActiveRecord::Schema.define(version: 20160302183817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
   create_table "accounts", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.string   "name",                                 default: "",                   null: false
-    t.string   "email",                                default: "",                   null: false
-    t.uuid     "uuid",                                 default: "uuid_generate_v4()"
-    t.string   "encrypted_password",                                                  null: false
+    t.string   "name",                     default: "",                           null: false
+    t.string   "email",                    default: "",                           null: false
+    t.string   "encrypted_password",                                              null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -53,6 +52,7 @@ ActiveRecord::Schema.define(version: 20160217192151) do
     t.integer  "weekly_burn_rate", default: 0,    null: false
     t.boolean  "billable",         default: true, null: false
     t.boolean  "active",           default: true, null: false
+    t.uuid     "owner_id"
   end
 
   add_index "activities", ["capacity"], name: "index_activities_on_capacity", using: :btree
