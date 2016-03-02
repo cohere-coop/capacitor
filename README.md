@@ -10,7 +10,7 @@ Coverage](https://codeclimate.com/github/zincmade/capacitor/badges/coverage.svg)
 
 ## Getting Started
 
-1. Make sure you have the Ruby and Rails versions required in the [Gemfile](https://github.com/zincmade/capacitor/blob/primary/Gemfile)
+1. Make sure you have the Ruby version required in the [Gemfile](https://github.com/zincmade/capacitor/blob/primary/Gemfile)
 2. `bundle install`
 3. `cp .env.example .env`
 4. `bin/rake db:create db:migrate`
