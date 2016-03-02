@@ -13,14 +13,6 @@ RSpec.describe Account, type: :model do
     "casper@example.com"
   end
 
-  it "auto-generates a uuid at the database level" do
-    # We reload to pull the fields back from the DB since
-    # Rails doesn't know about the default value that was
-    # set on creation by postgresql.
-    account.reload
-    expect(account.uuid).to be_present
-  end
-
   context "validations" do
     describe "name" do
       let(:name) do

@@ -8,7 +8,7 @@ class Account < ActiveRecord::Base
   devise :validatable
 
   has_many :logs
-  has_many :activities, through: :logs
+  has_many :activities, foreign_key: :owner_id
 
   has_many :memberships
   has_many :teams, through: :memberships

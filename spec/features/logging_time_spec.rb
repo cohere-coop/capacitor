@@ -6,7 +6,7 @@ feature "Logging time" do
   let(:worked_at) { "2015-05-06" }
   let(:log) { Log.find_by(worked_at: worked_at) }
 
-  Given!(:activity) { FactoryGirl.create(:activity) }
+  Given!(:activity) { FactoryGirl.create(:activity, owner: current_account) }
 
   When { click_link_or_button "#{activity.id}_new_log_entry" }
 
@@ -31,7 +31,7 @@ end
 feature "Editing time" do
   include_context "account login"
 
-  Given!(:activity) { FactoryGirl.create(:activity) }
+  Given!(:activity) { FactoryGirl.create(:activity, owner: current_account) }
   Given!(:log) { current_account.logs.create(activity: activity, quality: 1, amount: 1, worked_at: 1.day.ago) }
   Given!(:decorated_log) { log.decorate }
 

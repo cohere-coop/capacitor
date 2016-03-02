@@ -1,10 +1,10 @@
 require "rails_helper"
 
 feature "Edit activities" do
-  Given!(:activity) { FactoryGirl.create(:activity, name: "Activity A", capacity: 10) }
-  Given!(:decorated_activity) { activity.decorate }
-
   include_context "account login"
+
+  Given!(:activity) { FactoryGirl.create(:activity, name: "Activity A", capacity: 10, owner: current_account) }
+  Given!(:decorated_activity) { activity.decorate }
 
   When { within("##{decorated_activity.dom_id}") { click_link_or_button "Edit" } }
 

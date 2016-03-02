@@ -32,8 +32,6 @@ class LogsController < ApplicationController
   end
 
   def edit
-    @activity = Activity.find(params[:activity_id])
-    @log = Log.find(params[:id])
   end
 
   def update
@@ -47,7 +45,7 @@ class LogsController < ApplicationController
 
   private def log_params
     params.require(:log).permit(:quality, :amount, :worked_at, :do_not_bill, :notes)
-      .merge(account: current_account, activity: Activity.find(params[:activity_id]))
+      .merge(account: current_account, activity: @activity)
   end
 
   private def track_log_creation(log)
@@ -59,7 +57,7 @@ class LogsController < ApplicationController
   end
 
   private def load_activity
-    @activity = Activity.find(params[:activity_id]) if params[:activity_id]
+    @activity = current_account.activities.find(params[:activity_id]) if params[:activity_id]
   end
 
   private def load_log
