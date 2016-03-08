@@ -1,6 +1,7 @@
 # Single entry tracking how much time someone spent on an activity
 class Log < ActiveRecord::Base
   belongs_to :activity
+  delegate :name, to: :activity, prefix: true
   belongs_to :account
 
   validates :amount, presence: true
@@ -25,10 +26,6 @@ class Log < ActiveRecord::Base
 
   scope :up_to_two_months_ago, -> do
     recent(2.months.ago)
-  end
-
-  def activity_name
-    activity.name
   end
 
   def self.filter(conditions)
