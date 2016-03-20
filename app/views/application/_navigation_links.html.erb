@@ -1,6 +1,11 @@
 <% if account_signed_in? %>
   <%= link_to "Dashboard", root_path %>
   <%= link_to "Logs", logs_path %>
+
+  <% if current_account.features.check_in? %>
+    <%= link_to "Check In", new_check_in_path %>
+  <% end %>
+
   <%= link_to "Teams", teams_path %>
   <%= link_to "Account", edit_account_registration_path %>
   <%= link_to "Sign out", destroy_account_session_path, method: "delete" %>

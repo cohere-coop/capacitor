@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     sessions: "account/sessions"
   }
 
+  resources :check_ins, only: [:new, :create]
+
   resources :activities, only: [:index, :new, :create, :edit, :update] do
     resources :logs, only: [:new, :create, :edit, :update]
   end

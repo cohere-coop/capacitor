@@ -8,8 +8,13 @@ FactoryGirl.define do
     do_not_bill false
     activity
     account
+
     factory :recent_log do
       worked_at 1.day.ago
+    end
+
+    factory :todays_log do
+      worked_at 0.days.ago
     end
 
     factory :old_log do

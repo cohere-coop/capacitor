@@ -11,28 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302183817) do
+ActiveRecord::Schema.define(version: 20160320174926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+  enable_extension "hstore"
 
   create_table "accounts", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.string   "name",                     default: "",                           null: false
-    t.string   "email",                    default: "",                           null: false
-    t.string   "encrypted_password",                                              null: false
+    t.string   "name",                                 default: "",    null: false
+    t.string   "email",                                default: "",    null: false
+    t.string   "encrypted_password",                                   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                        default: 0,                    null: false
+    t.integer  "sign_in_count",                        default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                                                          null: false
-    t.datetime "updated_at",                                                          null: false
-    t.integer  "weekly_expected_capacity",             default: 0,                    null: false
-    t.string   "time_zone",                limit: 255, default: "UTC",                null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.integer  "weekly_expected_capacity",             default: 0,     null: false
+    t.string   "time_zone",                limit: 255, default: "UTC", null: false
+    t.hstore   "features"
   end
 
   add_index "accounts", ["created_at"], name: "index_accounts_on_created_at", using: :btree
@@ -60,6 +62,13 @@ ActiveRecord::Schema.define(version: 20160302183817) do
   add_index "activities", ["name"], name: "index_activities_on_name", using: :btree
   add_index "activities", ["updated_at"], name: "index_activities_on_updated_at", using: :btree
 
+  create_table "check_ins", force: :cascade do |t|
+    t.integer  "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "worked_at"
+  end
+
   create_table "logs", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.integer  "amount",      default: 0,     null: false
     t.integer  "quality",                     null: false
@@ -70,6 +79,7 @@ ActiveRecord::Schema.define(version: 20160302183817) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.text     "notes"
+    t.integer  "check_in_id"
   end
 
   add_index "logs", ["account_id"], name: "index_logs_on_account_id", using: :btree
