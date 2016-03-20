@@ -11,11 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320113455) do
+ActiveRecord::Schema.define(version: 20160320174926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+  enable_extension "hstore"
 
   create_table "accounts", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "name",                                 default: "",    null: false
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(version: 20160320113455) do
     t.datetime "updated_at",                                           null: false
     t.integer  "weekly_expected_capacity",             default: 0,     null: false
     t.string   "time_zone",                limit: 255, default: "UTC", null: false
+    t.hstore   "features"
   end
 
   add_index "accounts", ["created_at"], name: "index_accounts_on_created_at", using: :btree

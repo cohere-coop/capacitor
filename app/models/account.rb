@@ -17,6 +17,8 @@ class Account < ActiveRecord::Base
 
   validates :name, presence: true
 
+  serialize :features, Features
+
   def total_recent_capacity
     logs.recent.pluck(:amount).sum
   end
