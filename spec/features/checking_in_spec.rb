@@ -25,11 +25,11 @@ feature "Checking in" do
   let(:worked_at) { 1.day.ago.strftime("%Y-%m-%d") }
   let(:fun_log_entry) { fun_activity.logs.last }
   let(:work_log_entry) { work_activity.logs.last }
-
+  Given { (current_account.features.check_in = true) && current_account.save }
   Given!(:fun_activity) { FactoryGirl.create(:activity, name: "Have Fun") }
   Given!(:work_activity) { FactoryGirl.create(:activity, name: "Do Work") }
 
-  When { click_link_or_button "Check in" }
+  When { click_link_or_button "Check In" }
   When { fill_in("What day is this for?", with: worked_at) }
 
   When { select_quantity(fun_activity, "1~2 hours") }

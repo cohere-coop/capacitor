@@ -19,6 +19,9 @@ gem "haml", "~> 4.0"
 # Provides a wrapper object for models
 gem "draper", "~> 1.4"
 
+# ActiveModel on steroids!
+gem "virtus", "~> 1.0"
+
 # Use SCSS for stylesheets
 gem "sass-rails", "~> 5.0"
 
