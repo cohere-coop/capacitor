@@ -4,7 +4,7 @@ describe Activity do
   describe "#weekly_capacity_remaining" do
     it "subtracts the recently logged amount from the weekly burn rate" do
       activity = FactoryGirl.create(:activity, weekly_burn_rate: 12)
-      FactoryGirl.create(:recent_log, amount: 5, activity: activity)
+      FactoryGirl.create(:todays_log, amount: 5, activity: activity)
       expect(activity.weekly_capacity_remaining).to eql(7)
     end
 
