@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20160302183817) do
     t.integer  "account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "worked_at",  null: false
   end
 
   create_table "logs", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
