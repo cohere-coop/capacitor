@@ -9,10 +9,6 @@ class CheckIn < ActiveRecord::Base
     self.logs_attributes = log_entries_attributes
   end
 
-  # TODO: Make this an attribute on the check_in model!
-  def worked_at
-  end
-
   def log_entries
     Activity.all.map do |activity|
       logs.new(activity: activity)
