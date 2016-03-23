@@ -8,6 +8,7 @@ class CheckInsController < ApplicationController
     @check_in = CheckIn.new(check_in_params)
     if @check_in.save
       flash[:notice] = "check in created!"
+      track_check_in_creation(@check_in)
       redirect_to root_path
     else
       render :new
@@ -45,5 +46,10 @@ class CheckInsController < ApplicationController
                                           :quality,
                                           :notes,
                                           :activity_id]]
+  end
+
+  private def track_check_in_creation(check_in)
+    track_event("Check in created", log_count: check_in.logs.count,
+                                    worked_at: check_in.logs.first.worked_at)
   end
 end
