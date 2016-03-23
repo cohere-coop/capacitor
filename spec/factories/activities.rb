@@ -7,5 +7,10 @@ FactoryGirl.define do
     weekly_burn_rate 4
     billable true
     owner
+
+    factory :archived_activity do
+      sequence(:name) { |i| "Archived Activity #{i}" }
+      active false
+    end
   end
 end
