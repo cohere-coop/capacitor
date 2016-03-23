@@ -15,14 +15,14 @@ feature "Logging time" do
   When { fill_in("Worked at", with: worked_at) }
 
   context "when tracking time as billable" do
-    When { click_link_or_button("Log Capacity") }
+    When { click_link_or_button("Track Activity") }
     Then { expect(log.do_not_bill).to be(false) }
     Then { expect(log).to be_persisted }
   end
 
   context "when tracking time as do not bill" do
     When { check("Do Not Bill") }
-    When { click_link_or_button("Log Capacity") }
+    When { click_link_or_button("Track Activity") }
     Then { expect(log.do_not_bill).to be(true) }
     Then { expect(log).to be_persisted }
   end
@@ -37,6 +37,6 @@ feature "Editing time" do
 
   When { within("##{decorated_log.dom_id}") { click_link_or_button("Edit") } }
   When { select("😄", from: "How'd it go?") }
-  When { click_link_or_button("Log Capacity") }
+  When { click_link_or_button("Track Activity") }
   Then { expect(log.reload.quality).to eql(5) }
 end
