@@ -1,0 +1,11 @@
+.check-in {
+  .amount-field,
+  .quality-field,
+  .notes-field {
+    @include span-columns(4);
+  }
+
+  .activity {
+    @include outer-container;
+  }
+}
