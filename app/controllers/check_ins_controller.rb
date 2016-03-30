@@ -25,10 +25,9 @@ class CheckInsController < ApplicationController
   end
 
   private def merge_worked_at_and_account_into_log_entries(check_in_params)
-    worked_at = check_in_params[:worked_at]
     check_in_params[:log_entries_attributes].each do |_id, log_entry|
       log_entry[:account] = current_account
-      log_entry[:worked_at] = worked_at
+      log_entry[:worked_at] = check_in_params[:worked_at]
     end
   end
 
