@@ -4,12 +4,12 @@
   .contents {
 
     article {
-      @extend %project;
+      @extend %activity;
     }
   }
 }
 
-%project {
+%activity {
   @include span-columns(4);
   @include omega(3n);
   background-color: $dark-blue;
