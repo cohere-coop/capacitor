@@ -1,16 +1,3 @@
-<table>
-  <thead>
-    <tr>
-      <th>Activity</th>
-      <th>Billable?</th>
-      <th>Notes</th>
-    </tr>
-  </thead>
-  <%- check_in.each do |check_in| %>
-    <tr>
-      <td><%= log.activity.name %></td>
-      <td><%= log.amount %></td>
-      <td><%=check_in.notes%></td>
-    </tr>
-  <%- end %>
-</table>
+<%- check_ins.each do |check_in| %>
+ <li> <%= check_in.worked_at %></li>
+<%- end %>
