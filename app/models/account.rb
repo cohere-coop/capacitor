@@ -9,6 +9,7 @@ class Account < ActiveRecord::Base
 
   has_many :logs
   has_many :activities, foreign_key: :owner_id
+  has_many :check_ins
 
   has_many :memberships
   has_many :teams, through: :memberships
