@@ -1,3 +1,4 @@
+require "rails_helper"
 feature "Reviewing logged capacity" do
   include_context "account login"
 
