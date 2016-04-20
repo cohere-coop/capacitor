@@ -7,6 +7,6 @@ class PagesController < ApplicationController
   end
 
   helper_method def check_ins
-    @check_ins ||= current_account.check_ins
+    @check_ins ||= current_account.check_ins.recent.decorate
   end
 end

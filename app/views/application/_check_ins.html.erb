@@ -1,3 +1,6 @@
 <%- check_ins.each do |check_in| %>
- <li> <%= check_in.worked_at %></li>
+ <li>
+
+  <%= check_in.summary %>
+</li>
 <%- end %>

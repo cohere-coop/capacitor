@@ -25,4 +25,16 @@ class CheckInDecorator < Draper::Decorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
+
+
+
+
+  delegate_all
+  using CapacityConverter
+
+  def summary
+    "#{check_in.worked_at}"
+  end
+
+
 end
