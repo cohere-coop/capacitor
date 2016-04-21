@@ -1,0 +1,5 @@
+<%- check_ins.each do |check_in| %>
+  <li id="<%=check_in.dom_id%>">
+   <%= check_in.summary %>
+  </li>
+<%- end %>

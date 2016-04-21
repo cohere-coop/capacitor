@@ -5,6 +5,10 @@ class CheckIn < ActiveRecord::Base
 
   accepts_nested_attributes_for :logs
 
+  scope :recent, -> (start_at = 7.days.ago) do
+    where(worked_at: start_at...Time.zone.now)
+  end
+
   def log_entries_attributes=(log_entries_attributes)
     self.logs_attributes = log_entries_attributes
   end
