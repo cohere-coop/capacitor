@@ -36,7 +36,7 @@ class CheckInDecorator < Draper::Decorator
   end
 
   def logs_summary
-    logs.map{|log| "#{log.activity.name}: #{log.amount}"}.join('; ')
+    logs.map { |log| "#{log.activity.name}: #{log.amount}" }.join(";")
   end
 
   def worked_at
@@ -46,5 +46,4 @@ class CheckInDecorator < Draper::Decorator
   def dom_id
     "check_in-#{id}"
   end
-
 end
