@@ -12,4 +12,7 @@ class MissingCheckInNotifier
       MissingCheckInMailer.missing_check_in(account, 1.day.ago).deliver_now
     end
   end
+
+  def self.do_not_notify
+  end
 end
