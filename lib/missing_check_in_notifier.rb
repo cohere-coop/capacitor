@@ -12,6 +12,6 @@ class MissingCheckInNotifier
       if account.features.check_in = true
         MissingCheckInMailer.missing_check_in(account, 1.day.ago).deliver_now
       end
-      end
     end
+  end
 end
