@@ -7,6 +7,8 @@ describe MissingCheckInNotifier do
     When { default_url_options[:host] = "example.com" }
     Given!(:account_without_check_in_yesterday) { FactoryGirl.create(:account) }
     Given!(:account_who_checked_in_yesterday) { FactoryGirl.create(:account_who_checked_in_yesterday) }
+    Given { account_without_check_in_yesterday.features.check_in = true }
+    Given { account_who_checked_in_yesterday.features.check_in = true }
     Given(:sent_email) { ActionMailer::Base.deliveries.last }
 
     When { described_class.notify }
