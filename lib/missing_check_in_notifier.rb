@@ -9,7 +9,9 @@ class MissingCheckInNotifier
 
   def self.notify
     inactive_accounts.each do |account|
-      MissingCheckInMailer.missing_check_in(account, 1.day.ago).deliver_now
+      if account.features.check_in?
+        MissingCheckInMailer.missing_check_in(account, 1.day.ago).deliver_now
+      end
     end
   end
 end
