@@ -20,6 +20,16 @@ class Account < ActiveRecord::Base
 
   serialize :features, Features
 
+  def enable_feature(feature)
+    features.send(:"#{feature}=", true)
+    save
+  end
+
+  def disable_feature(feature)
+    features.send(:"#{feature}=", false)
+    save
+  end
+
   def total_recent_capacity
     logs.recent.pluck(:amount).sum
   end

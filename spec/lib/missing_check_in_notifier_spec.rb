@@ -13,12 +13,8 @@ describe MissingCheckInNotifier do
 
     context "when the accounts have check in enabled" do
       Given do
-        account_without_check_in_yesterday.features.check_in = true
-        account_without_check_in_yesterday.save
-      end
-      Given do
-        account_who_checked_in_yesterday.features.check_in = true
-        account_who_checked_in_yesterday.save
+        account_without_check_in_yesterday.enable_feature(:check_in)
+        account_who_checked_in_yesterday.enable_feature(:check_in)
       end
 
       When { described_class.notify }
@@ -31,12 +27,8 @@ describe MissingCheckInNotifier do
 
     context "when the accounts do not have check in enabled" do
       Given do
-        account_without_check_in_yesterday.features.check_in = false
-        account_without_check_in_yesterday.save
-      end
-      Given do
-        account_who_checked_in_yesterday.features.check_in = false
-        account_who_checked_in_yesterday.save
+        account_without_check_in_yesterday.disable_feature(:check_in)
+        account_who_checked_in_yesterday.disable_feature(:check_in)
       end
 
       When { described_class.notify }
