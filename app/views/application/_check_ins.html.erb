@@ -1,5 +1,6 @@
 <%- check_ins.each do |check_in| %>
   <li id="<%=check_in.dom_id%>">
-   <%= link_to(check_in.summary, edit_check_in_path(check_in)) %>
+    <%= check_in.summary %>
+   <%= link_to("Edit", edit_check_in_path(check_in)) %>
   </li>
 <%- end %>
