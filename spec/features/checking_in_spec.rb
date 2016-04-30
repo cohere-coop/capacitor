@@ -53,29 +53,6 @@ feature "Checking in" do
     Then { fun_log_entry.amount == 2 }
   end
 
-  describe "Edit a bunch of activities" do
-    When { click_link_or_button("Edit") }
-    When { fill_in("What day is this for?", with: "2016-05-03") }
-
-    When { select_quantity(fun_activity, "2~4 hours") }
-    When { fill_in_notes(fun_activity, "Not so much fun, but still fun") }
-    When { select_quality(fun_activity, "Good! I was REALLY focused") }
-
-    When { select_quantity(work_activity, "6~8 hours") }
-    When { fill_in_notes(work_activity, "Did more than I thought!!! ") }
-    When { select_quality(work_activity, "Great! It was Like I was super powered!") }
-
-    When { click_link_or_button("Update Check in") }
-
-    Then { work_log_entry.notes == "Did more than I thought!!!" }
-    Then { work_log_entry.quality == 4 }
-    Then { work_log_entry.amount == 8 }
-
-    Then { fun_log_entry.notes == "Not so much fun but still fun" }
-    Then { fun_log_entry.quality == 3 }
-    Then { fun_log_entry.amount == 4 }
-  end
-
   describe "Archived activities" do
     Given!(:archived_activity) { FactoryGirl.create(:archived_activity) }
 
