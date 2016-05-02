@@ -12,8 +12,8 @@ feature "Edit check in" do
 
   describe "Edit a bunch of activities" do
     it "Edits activites within a check in" do
-      within(:xpath, "//div[@id=check_in.dom_id]") do
-        click_link_or_button("Edit")
+      within(:xpath, "//li[@id='#{check_in.dom_id}']") do
+        click_link("Edit")
       end
 
       When { fill_in("What day is this for?", with: "2016-05-03") }
