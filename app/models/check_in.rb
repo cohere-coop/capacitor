@@ -10,7 +10,9 @@ class CheckIn < ActiveRecord::Base
   end
 
   def log_entries_attributes=(log_entries_attributes)
-    self.logs_attributes = log_entries_attributes
+    self.logs_attributes = log_entries_attributes.map do |_key,attrs|
+      attrs.merge(account: account, worked_at: worked_at)
+    end
   end
 
   def log_entries
