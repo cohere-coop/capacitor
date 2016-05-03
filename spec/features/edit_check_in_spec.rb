@@ -7,13 +7,10 @@ feature "Edit check in" do
   let(:fun_log_entry) { fun_activity.logs.last }
   let(:work_log_entry) { work_activity.logs.last }
   Given { (current_account.features.check_in = true) && current_account.save }
-  Given!(:fun_activity) { FactoryGirl.create(:activity, name: "Have Fun") }
-  Given!(:work_activity) { FactoryGirl.create(:activity, name: "Do Work") }
-
   describe "Edit a bunch of activities" do
     it "Edits activites within a check in" do
-      within(:xpath, "//li[@id='#{check_in.dom_id}']") do
-        click_link("Edit")
+      within(:xpath, "//li[@id=\"#{check_in.dom_id}\"]") do
+        click_link_or_button("Edit")
       end
 
       When { fill_in("What day is this for?", with: "2016-05-03") }
