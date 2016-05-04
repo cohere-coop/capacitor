@@ -40,7 +40,7 @@ describe MissingCheckInNotifier do
 
       When { described_class.notify }
 
-      Then { ActionMailer::Base.deliveries.length == 0 }
+      Then { ActionMailer::Base.deliveries.empty? }
     end
   end
 end

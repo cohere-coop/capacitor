@@ -15,7 +15,7 @@ class CheckIn < ActiveRecord::Base
 
   def log_entries
     Activity.active.map do |activity|
-      logs.new(activity: activity)
+      logs.find_by(activity: activity) || logs.new(activity: activity)
     end
   end
 end
