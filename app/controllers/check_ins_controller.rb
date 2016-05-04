@@ -6,6 +6,7 @@ class CheckInsController < ApplicationController
 
   def create
     @check_in = current_account.check_ins.new(check_in_params)
+    prevent_logging_against_others_activities
     if @check_in.save
       flash[:notice] = "check in created!"
       track_check_in_creation(@check_in)
@@ -22,9 +23,15 @@ class CheckInsController < ApplicationController
   def update
     @check_in = current_account.check_ins.find(params[:id])
     prevent_changing_others_logs
+    prevent_logging_against_others_activities
     @check_in.update(check_in_params)
     flash[:notice] = "Check In updated!"
     redirect_to root_path
+  end
+
+  private def prevent_logging_against_others_activities
+    activity_ids = check_in_params[:log_entries_attributes].map { |_, attrs| attrs[:activity_id] }.compact
+    raise "YOU DID A BAD!" if current_account.activities.where(id: activity_ids).count != activity_ids.count
   end
 
   private def prevent_changing_others_logs
