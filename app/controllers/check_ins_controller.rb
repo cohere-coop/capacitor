@@ -1,11 +1,11 @@
 # /check_ins/{new, create}
 class CheckInsController < ApplicationController
   def new
-    @check_in = CheckIn.new
+    @check_in = current_account.check_ins.new
   end
 
   def create
-    @check_in = CheckIn.new(check_in_params)
+    @check_in = current_account.check_ins.new(check_in_params)
     if @check_in.save
       flash[:notice] = "check in created!"
       track_check_in_creation(@check_in)

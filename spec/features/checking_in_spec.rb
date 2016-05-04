@@ -26,8 +26,8 @@ feature "Checking in" do
   let(:fun_log_entry) { fun_activity.logs.last }
   let(:work_log_entry) { work_activity.logs.last }
   Given { (current_account.features.check_in = true) && current_account.save }
-  Given!(:fun_activity) { FactoryGirl.create(:activity, name: "Have Fun") }
-  Given!(:work_activity) { FactoryGirl.create(:activity, name: "Do Work") }
+  Given!(:fun_activity) { FactoryGirl.create(:activity, name: "Have Fun", owner: current_account) }
+  Given!(:work_activity) { FactoryGirl.create(:activity, name: "Do Work", owner: current_account) }
 
   When { click_link_or_button "Check In" }
 
