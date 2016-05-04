@@ -15,6 +15,23 @@ class CheckInsController < ApplicationController
     end
   end
 
+  def edit
+    @check_in = current_account.check_ins.find(params[:id])
+  end
+
+  def update
+    @check_in = current_account.check_ins.find(params[:id])
+    prevent_changing_others_logs
+    @check_in.update(check_in_params)
+    flash[:notice] = "Check In updated!"
+    redirect_to root_path
+  end
+
+  private def prevent_changing_others_logs
+    log_ids = check_in_params[:log_entries_attributes].map { |_, attrs| attrs[:id] }.compact
+    raise "YOU DID A BAD!" if current_account.logs.where(id: log_ids).count != log_ids.count
+  end
+
   private def check_in_params
     check_in_params =
       params.require(:check_in).permit(permitted_check_in_params)
@@ -44,7 +61,8 @@ class CheckInsController < ApplicationController
     [:worked_at, log_entries_attributes: [:amount,
                                           :quality,
                                           :notes,
-                                          :activity_id]]
+                                          :activity_id,
+                                          :id]]
   end
 
   private def track_check_in_creation(check_in)
