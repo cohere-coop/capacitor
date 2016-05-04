@@ -2,10 +2,17 @@ require "missing_check_in_notifier"
 require "rails_helper"
 
 describe MissingCheckInNotifier do
+  before do
+    ActionMailer::Base.deliveries.clear
+  end
+
+  after do
+    ActionMailer::Base.deliveries.clear
+  end
+
   describe ".notify" do
     include Rails.application.routes.url_helpers
     Given { default_url_options[:host] = "example.com" }
-    Given { ActionMailer::Base.deliveries.clear }
     Given!(:account_without_check_in_yesterday) { FactoryGirl.create(:account) }
     Given!(:account_who_checked_in_yesterday) { FactoryGirl.create(:account_who_checked_in_yesterday) }
 
