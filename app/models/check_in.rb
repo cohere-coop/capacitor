@@ -7,6 +7,8 @@ class CheckIn < ActiveRecord::Base
 
   accepts_nested_attributes_for :logs
 
+  default_scope { order(worked_at: :desc) }
+
   scope :recent, -> (start_at = 7.days.ago) do
     where(worked_at: start_at...Time.zone.now)
   end

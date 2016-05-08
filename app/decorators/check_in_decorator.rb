@@ -27,20 +27,17 @@ class CheckInDecorator < Draper::Decorator
   #   end
 
   delegate_all
-  using CapacityConverter
-
-  decorates_association :logs
 
   def summary
-    "#{worked_at} | #{logs_summary}"
+    "#{worked_at} - #{logs_summary} "
   end
 
   def logs_summary
-    logs.map { |log| "#{log.activity.name}: #{log.amount}" }.join(";")
+    logs.map { |log| "#{log.activity.name}: #{log.amount} hours" }.join(" ; ")
   end
 
   def worked_at
-    check_in.worked_at.strftime("%A %B %-d, %Y | %H%P")
+    check_in.worked_at.strftime("%A %B %-d")
   end
 
   def dom_id
