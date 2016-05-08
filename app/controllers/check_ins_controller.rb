@@ -33,6 +33,7 @@ class CheckInsController < ApplicationController
   end
 
   private def check_in_params
+    return {} unless params.key?(:check_in)
     check_in_params =
       params.require(:check_in).permit(permitted_check_in_params)
     check_in_params[:account] = current_account
