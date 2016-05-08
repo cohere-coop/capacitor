@@ -1,11 +1,11 @@
 # /check_ins/{new, create}
 class CheckInsController < ApplicationController
   def new
-    @check_in = CheckIn.new
+    @check_in = current_account.check_ins.new
   end
 
   def create
-    @check_in = CheckIn.new(check_in_params)
+    @check_in = current_account.check_ins.new(check_in_params)
     if @check_in.save
       flash[:notice] = "check in created!"
       track_check_in_creation(@check_in)
@@ -21,15 +21,14 @@ class CheckInsController < ApplicationController
 
   def update
     @check_in = current_account.check_ins.find(params[:id])
-    prevent_changing_others_logs
     @check_in.update(check_in_params)
     flash[:notice] = "Check In updated!"
     redirect_to root_path
   end
 
-  private def prevent_changing_others_logs
-    log_ids = check_in_params[:log_entries_attributes].map { |_, attrs| attrs[:id] }.compact
-    raise "YOU DID A BAD!" if current_account.logs.where(id: log_ids).count != log_ids.count
+  private def ensure_access!(attributes_collection, field, relation)
+    @account_owns_all_policy ||= AccountOwnsAllPolicy.new(current_account)
+    @account_owns_all_policy.ensure_access!(attributes_collection, field, relation)
   end
 
   private def check_in_params
@@ -38,6 +37,8 @@ class CheckInsController < ApplicationController
     check_in_params[:account] = current_account
     remove_empty_log_entries(check_in_params)
     merge_worked_at_and_account_into_log_entries(check_in_params)
+    ensure_access!(check_in_params[:log_entries_attributes], :id, :logs)
+    ensure_access!(check_in_params[:log_entries_attributes], :activity_id, :activities)
     check_in_params
   end
 

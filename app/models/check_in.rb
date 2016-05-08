@@ -3,6 +3,8 @@ class CheckIn < ActiveRecord::Base
   has_many :logs
   belongs_to :account
 
+  validates :account, presence: true
+
   accepts_nested_attributes_for :logs
 
   scope :recent, -> (start_at = 7.days.ago) do
@@ -14,7 +16,7 @@ class CheckIn < ActiveRecord::Base
   end
 
   def log_entries
-    Activity.active.map do |activity|
+    account.activities.active.map do |activity|
       logs.find_by(activity: activity) || logs.new(activity: activity)
     end
   end
