@@ -25,8 +25,8 @@ feature "Edit check in" do
   let(:worked_at) { 1.day.ago.strftime("%Y-%m-%d") }
   let(:fun_log_entry) { fun_activity.logs.last }
   let(:work_log_entry) { work_activity.logs.last }
-  Given!(:fun_activity) { FactoryGirl.create(:activity, name: "Have Fun") }
-  Given!(:work_activity) { FactoryGirl.create(:activity, name: "Do Work") }
+  Given!(:fun_activity) { FactoryGirl.create(:activity, name: "Have Fun", owner: current_account) }
+  Given!(:work_activity) { FactoryGirl.create(:activity, name: "Do Work", owner: current_account) }
   Given!(:check_in) { FactoryGirl.create(:check_in, account: current_account) }
   Given(:decorated_check_in) { check_in.decorate }
   Given { (current_account.features.check_in = true) && current_account.save }
