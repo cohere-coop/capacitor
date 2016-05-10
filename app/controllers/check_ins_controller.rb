@@ -1,7 +1,7 @@
 # /check_ins/{new, create}
 class CheckInsController < ApplicationController
   def new
-    @check_in = current_account.check_ins.new
+    @check_in = current_account.check_ins.new(check_in_params)
   end
 
   def create
@@ -32,6 +32,7 @@ class CheckInsController < ApplicationController
   end
 
   private def check_in_params
+    return {} unless params.key?(:check_in)
     check_in_params =
       params.require(:check_in).permit(permitted_check_in_params)
     check_in_params[:account] = current_account
@@ -43,14 +44,14 @@ class CheckInsController < ApplicationController
   end
 
   private def merge_worked_at_and_account_into_log_entries(check_in_params)
-    check_in_params[:log_entries_attributes].each do |_id, log_entry|
+    check_in_params.fetch(:log_entries_attributes, {}).each do |_id, log_entry|
       log_entry[:account] = current_account
       log_entry[:worked_at] = check_in_params[:worked_at]
     end
   end
 
   private def remove_empty_log_entries(check_in_params)
-    check_in_params[:log_entries_attributes].each do |id, log_entry|
+    check_in_params.fetch(:log_entries_attributes, {}).each do |id, log_entry|
       if log_entry[:quality].blank? || log_entry[:amount].blank?
         check_in_params[:log_entries_attributes].delete(id)
         next

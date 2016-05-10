@@ -5,7 +5,7 @@
   </head>
   <body>
     <p>
-      Psssstt! Remember to <%= link_to "check-in for #{@friendly_date}", new_check_in_url %>
+      Psssstt! Remember to <%= link_to "check-in for #{@friendly_date}", new_check_in_url(check_in: { worked_at: @friendly_date }) %>
     </p>
     <p> --Team Capacitor
     </p>
