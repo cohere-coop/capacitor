@@ -11,7 +11,7 @@ class CheckInsController < ApplicationController
       track_check_in_creation(@check_in)
       redirect_to root_path
     else
-      render :new
+      render :edit
     end
   end
 
@@ -21,9 +21,12 @@ class CheckInsController < ApplicationController
 
   def update
     @check_in = current_account.check_ins.find(params[:id])
-    @check_in.update(check_in_params)
-    flash[:notice] = "Check In updated!"
-    redirect_to root_path
+    if @check_in.update(check_in_params)
+      flash[:notice] = "Check In updated!"
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   private def ensure_access!(attributes_collection, field, relation)
@@ -36,7 +39,6 @@ class CheckInsController < ApplicationController
     check_in_params =
       params.require(:check_in).permit(permitted_check_in_params)
     check_in_params[:account] = current_account
-    remove_empty_log_entries(check_in_params)
     merge_worked_at_and_account_into_log_entries(check_in_params)
     ensure_access!(check_in_params[:log_entries_attributes], :id, :logs)
     ensure_access!(check_in_params[:log_entries_attributes], :activity_id, :activities)
@@ -69,6 +71,6 @@ class CheckInsController < ApplicationController
 
   private def track_check_in_creation(check_in)
     track_event("Check in created", log_count: check_in.logs.count,
-                                    worked_at: check_in.logs.first.worked_at)
+                                    worked_at: check_in.worked_at)
   end
 end
