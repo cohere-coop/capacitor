@@ -40,6 +40,7 @@ class CheckInsController < ApplicationController
       params.require(:check_in).permit(permitted_check_in_params)
     check_in_params[:account] = current_account
     merge_worked_at_and_account_into_log_entries(check_in_params)
+    remove_empty_log_entries(check_in_params)
     ensure_access!(check_in_params[:log_entries_attributes], :id, :logs)
     ensure_access!(check_in_params[:log_entries_attributes], :activity_id, :activities)
     check_in_params
@@ -54,10 +55,10 @@ class CheckInsController < ApplicationController
 
   private def remove_empty_log_entries(check_in_params)
     check_in_params.fetch(:log_entries_attributes, {}).each do |id, log_entry|
-      if log_entry[:quality].blank? || log_entry[:amount].blank?
-        check_in_params[:log_entries_attributes].delete(id)
-        next
-      end
+      next unless log_entry[:quality].blank? &&
+                  log_entry[:amount].blank? &&
+                  log_entry[:notes].blank?
+      check_in_params[:log_entries_attributes].delete(id)
     end
   end
 
