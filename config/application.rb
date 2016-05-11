@@ -42,6 +42,8 @@ module Capacitor
     mail_options = { from: "hello@capacitorapp.com" }
     config.action_mailer.default_options = mail_options
 
+    config.autoload_paths << Rails.root.join("lib")
+
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.beginning_of_week = :sunday
     config.active_record.raise_in_transactional_callbacks = true

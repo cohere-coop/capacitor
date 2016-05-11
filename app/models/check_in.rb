@@ -10,8 +10,8 @@ class CheckIn < ActiveRecord::Base
 
   default_scope { order(worked_at: :desc) }
 
-  scope :recent, -> (start_at = 7.days.ago) do
-    where(worked_at: start_at...Time.zone.now)
+  scope :recent, -> (start_at = 7.days.ago.beginning_of_day) do
+    where(worked_at: start_at...Time.zone.now.end_of_day)
   end
 
   def log_entries_attributes=(log_entries_attributes)
@@ -24,17 +24,6 @@ class CheckIn < ActiveRecord::Base
     update_newly_created_logs_with_attrs
 
     logs
-  end
-
-  def missed_check_in
-    (7.days.ago..Time.zone.today).each do |day|
-      existing_check_in = current_user.check_ins.find_by(worked_at: day)
-      if existing_check_in
-        redirect_to check_in
-      else
-        redirect_to new_check_in_path
-      end
-    end
   end
 
   private def find_or_build_logs_for_each_activity
