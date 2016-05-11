@@ -17,15 +17,6 @@ class CheckInDecorator < Draper::Decorator
                        ["Good! I was REALLY focused", 3],
                        ["Great! It was Like I was super powered!", 4]].freeze
 
-  # Define presentation-specific methods here. Helpers are accessed through
-  # `helpers` (aka `h`). You can override attributes, for example:
-  #
-  #   def created_at
-  #     helpers.content_tag :span, class: 'time' do
-  #       object.created_at.strftime("%a %m/%d/%y")
-  #     end
-  #   end
-
   delegate_all
 
   def summary
@@ -36,11 +27,32 @@ class CheckInDecorator < Draper::Decorator
     logs.map { |log| "#{log.activity.name}: #{log.amount} hours" }.join(" ; ")
   end
 
+  using FriendlyDateString
   def worked_at
-    check_in.worked_at.strftime("%A %B %-d")
+    check_in.worked_at.to_friendly_s
+  end
+
+  def action_text
+    if persisted?
+      "Edit"
+    else
+      "Check in"
+    end
+  end
+
+  def edit_path
+    if persisted?
+      h.edit_check_in_path(self)
+    else
+      h.new_check_in_path(check_in: { worked_at: object.worked_at })
+    end
   end
 
   def dom_id
-    "check_in-#{id}"
+    if persisted?
+      "check_in-#{id}"
+    else
+      "check-in-#{object.worked_at}"
+    end
   end
 end

@@ -7,6 +7,6 @@ class PagesController < ApplicationController
   end
 
   helper_method def check_ins
-    @check_ins ||= current_account.check_ins.recent.decorate
+    @check_ins ||= CheckIns::Account.new(current_account).recent_check_ins.map(&:decorate)
   end
 end
