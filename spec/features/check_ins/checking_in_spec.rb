@@ -29,7 +29,6 @@ feature "Checking in" do
   Given!(:fun_activity) { FactoryGirl.create(:activity, name: "Have Fun", owner: current_account) }
   Given!(:work_activity) { FactoryGirl.create(:activity, name: "Do Work", owner: current_account) }
 
-
   describe "Checking in via the check-in link the dashboard" do
     When { click_link_or_button "Check In" }
 
@@ -45,26 +44,31 @@ feature "Checking in" do
 
     When { click_link_or_button("Create Check in") }
 
-    Then { work_log_entry.notes == "DID SO MUCH" }
-    Then { work_log_entry.quality == 3 }
-    Then { work_log_entry.amount == 6 }
+    Then do
+      expect(work_log_entry.notes).to eql "DID SO MUCH"
+      expect(work_log_entry.quality).to eql 3
+      expect(work_log_entry.amount).to eql 6
 
-    Then { fun_log_entry.notes == "SO MUCH FUN" }
-    Then { fun_log_entry.quality == 4 }
-    Then { fun_log_entry.amount == 2 }
+      expect(fun_log_entry.notes).to eql "SO MUCH FUN"
+      expect(fun_log_entry.quality).to eql 4
+      expect(fun_log_entry.amount).to eql 2
+    end
   end
+
   describe "Last 7 days are listed for checking in" do
+    using FriendlyDateString
+
     Given!(:check_in) { FactoryGirl.create(:check_in, account: current_account, worked_at: Time.zone.now) }
     Then do
-      expect(page).to have_content("#{0.days.ago.to_date.strftime("%A %B %-d")} - Edit")
+      expect(page).to have_content("#{0.days.ago.to_friendly_date_s} - Edit")
       6.times do |n|
-        expect(page).to have_content("#{(n+1).days.ago.to_date.strftime("%A %B %-d")} - Check in")
+        expect(page).to have_content("#{(n + 1).days.ago.to_friendly_date_s} - Check in")
       end
     end
   end
 
   describe "Checking in via the list of recent check ins" do
-    When { within("#check-in-#{2.days.ago.to_date}") { click_link_or_button "Check in"} }
+    When { within("#check-in-#{2.days.ago.to_date}") { click_link_or_button "Check in" } }
     Then { expect(find("#check_in_worked_at").value).to eql 2.days.ago.to_date.to_s }
   end
 

@@ -27,8 +27,9 @@ class CheckInDecorator < Draper::Decorator
     logs.map { |log| "#{log.activity.name}: #{log.amount} hours" }.join(" ; ")
   end
 
+  using FriendlyDateString
   def worked_at
-    check_in.worked_at.strftime("%A %B %-d")
+    check_in.worked_at.to_friendly_s
   end
 
   def action_text
