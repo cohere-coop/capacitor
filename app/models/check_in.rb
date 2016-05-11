@@ -26,6 +26,17 @@ class CheckIn < ActiveRecord::Base
     logs
   end
 
+  def missed_check_in
+    (7.days.ago..Time.zone.today).each do |day|
+      existing_check_in = current_user.check_ins.find_by(worked_at: day)
+      if existing_check_in
+        redirect_to check_in
+      else
+        redirect_to new_check_in_path
+      end
+    end
+  end
+
   private def find_or_build_logs_for_each_activity
     account.activities.active.map do |activity|
       logs.find_by(activity: activity) ||
