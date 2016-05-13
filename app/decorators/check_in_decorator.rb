@@ -12,10 +12,11 @@ class CheckInDecorator < Draper::Decorator
                   ["14+ hours", 16]].freeze
 
   ATTENTION_QUALITY = [[nil],
-                       ["Bad, I was pretty distracted", 1],
-                       ["Medicore, I was neither overly focused nor distracted", 2],
-                       ["Good! I was REALLY focused", 3],
-                       ["Great! It was Like I was super powered!", 4]].freeze
+                       ["Terrible! I couldn't focus AT ALL", 1],
+                       ["Bad, I was pretty distracted", 2],
+                       ["Medicore, I was neither overly focused nor distracted", 3],
+                       ["Good! I was REALLY focused", 4],
+                       ["Great! It was Like I was super powered!", 5]].freeze
 
   delegate_all
 
