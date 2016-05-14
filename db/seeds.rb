@@ -1,7 +1,7 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
-unless Rails.env.production?
+if ENV["IS_STAGING"] || !Rails.env.production?
   [{ name: "Admin", email: "admin@example.com", password: "password" }].each do |user|
     account = Account.create_with(user).find_or_create_by(email: user[:email])
     [{ name: "Capacitor", capacity: -1, weekly_burn_rate: 2, billable: false, active: true },
