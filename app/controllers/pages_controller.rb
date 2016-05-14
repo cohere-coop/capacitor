@@ -4,6 +4,11 @@ class PagesController < ApplicationController
 
   def dashboard
     @activities = current_account.active_activities
+    if current_account.features.check_in?
+      render "check_ins/dashboard"
+    else
+      render :dashboard
+    end
   end
 
   helper_method def check_ins

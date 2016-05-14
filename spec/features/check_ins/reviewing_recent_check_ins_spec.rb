@@ -2,6 +2,7 @@ require "rails_helper"
 feature "Reviewing recent check ins" do
   include_context "account login"
 
+  Given { current_account.enable_feature(:check_in) }
   Given!(:recent_check_in) { FactoryGirl.create(:recent_check_in, account: current_account).decorate }
   Given!(:old_check_in) { FactoryGirl.create(:old_check_in, account: current_account).decorate }
 

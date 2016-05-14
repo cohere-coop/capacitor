@@ -1,6 +1,2 @@
-<%= render partial: "check_ins" %>
 <%= render partial: "activities" %>
-<section id="recent_logs">
-  <h3>Your Recent Entries</h3>
-  <%= render partial: "logs", locals: { logs: current_account.recent_logs } %>
-</section>
+<%= render partial: "logs/recent", locals: { account: current_account } %>
