@@ -1,4 +1,12 @@
 
-<%= render partial: "check_ins/week_in_review" %>
-<%= link_to "Create a new activity to track time against", new_activity_path %>
+<section id="activities-list">
+  <%= render partial: "check_ins/week_in_review" %>
+  <h3>Activities you track time against</h3>
+  <ul>
+    <%- activities.each do |activity| %>
+    <li id="<%= activity.dom_id %>"><%= activity.name %> <%= link_to "Edit", edit_activity_path(activity) %></li>
+    <%- end %>
+    <li><%= link_to "Create a new activity to track time against", new_activity_path %></li>
+  </ul>
+</section>
 <%= render partial: "logs/recent", locals: { account: current_account } %>
