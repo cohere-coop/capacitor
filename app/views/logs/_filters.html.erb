@@ -22,10 +22,11 @@
       </ul>
     </div>
   </li>
-
-  <li class="filter">
-    <%= link_to "Only Billable", logs_path(billable: true), class: "link" %>
-  </li>
+  <%- if current_account.features.bills_time? %>
+    <li class="filter">
+      <%= link_to "Only Billable", logs_path(billable: true), class: "link" %>
+    </li>
+  <%- end %>
   <li class="filter">
     <%= link_to "No filter", logs_path, class: "link" %>
   </li>
