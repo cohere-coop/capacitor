@@ -10,8 +10,8 @@ class CheckIn < ActiveRecord::Base
 
   default_scope { order(worked_at: :desc) }
 
-  scope :recent, -> (start_at = 7.days.ago) do
-    where(worked_at: start_at...Time.zone.now)
+  scope :recent, -> (start_at = 7.days.ago.beginning_of_day) do
+    where(worked_at: start_at...Time.zone.now.end_of_day)
   end
 
   def log_entries_attributes=(log_entries_attributes)

@@ -11,20 +11,13 @@ class CheckInDecorator < Draper::Decorator
                   ["12~14 hours", 14],
                   ["14+ hours", 16]].freeze
 
-  ATTENTION_QUALITY = [[nil],
-                       ["Bad, I was pretty distracted", 1],
-                       ["Medicore, I was neither overly focused nor distracted", 2],
-                       ["Good! I was REALLY focused", 3],
-                       ["Great! It was Like I was super powered!", 4]].freeze
+  ATTENTION_LABELS = ["Terrible! I couldn't focus AT ALL",
+                      "Bad, I was pretty distracted",
+                      "Medicore, I was neither overly focused nor distracted",
+                      "Good! I was REALLY focused",
+                      "Great! It was Like I was super powered!"].freeze
 
-  # Define presentation-specific methods here. Helpers are accessed through
-  # `helpers` (aka `h`). You can override attributes, for example:
-  #
-  #   def created_at
-  #     helpers.content_tag :span, class: 'time' do
-  #       object.created_at.strftime("%a %m/%d/%y")
-  #     end
-  #   end
+  ATTENTION_QUALITY = [[nil]] + ATTENTION_LABELS.zip(Journal::ATTENTION_LEVELS)
 
   delegate_all
 
@@ -32,15 +25,43 @@ class CheckInDecorator < Draper::Decorator
     "#{worked_at} - #{logs_summary} "
   end
 
+  def amount_options(amount)
+    h.options_for_select(HOURS_WORKED, amount)
+  end
+
+  def quality_options(quality)
+    h.options_for_select(ATTENTION_QUALITY, quality)
+  end
+
   def logs_summary
     logs.map { |log| "#{log.activity.name}: #{log.amount} hours" }.join(" ; ")
   end
 
   def worked_at
-    check_in.worked_at.strftime("%A %B %-d")
+    check_in.worked_at.try { |v| v.to_formatted_s(:friendly_date) }
+  end
+
+  def action_text
+    if persisted?
+      "Edit"
+    else
+      "Check in"
+    end
+  end
+
+  def edit_path
+    if persisted?
+      h.edit_check_in_path(self)
+    else
+      h.new_check_in_path(check_in: { worked_at: object.worked_at })
+    end
   end
 
   def dom_id
-    "check_in-#{id}"
+    if persisted?
+      "check_in-#{id}"
+    else
+      "check-in-#{object.worked_at}"
+    end
   end
 end
