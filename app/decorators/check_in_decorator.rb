@@ -16,6 +16,7 @@ class CheckInDecorator < Draper::Decorator
                       "Medicore, I was neither overly focused nor distracted",
                       "Good! I was REALLY focused",
                       "Great! It was Like I was super powered!"].freeze
+
   ATTENTION_QUALITY = [[nil]] + ATTENTION_LABELS.zip(Journal::ATTENTION_LEVELS)
 
   delegate_all
