@@ -4,12 +4,13 @@
   "repository": "https://github.com/zincmade/capacitor",
   "success_url": "/",
   "scripts": {
-    "postdeploy": "bin/rake db:migrate"
+    "postdeploy": "bin/rake db:migrate db:seed"
   },
   "env": {
     "RACK_ENV": { "required": true },
     "RAILS_ENV": { "required": true },
     "HEROKU_APP_NAME": { "required": true },
+    "IS_STAGING": { "required": true },
     "RAILS_SERVE_STATIC_FILES": { "required": true },
     "SECRET_KEY_BASE": { "required": true, "generator": "secret" },
     "DEVISE_SESSION_TOKEN_PRIVATE": { "required": true, "generator": "secret"},
