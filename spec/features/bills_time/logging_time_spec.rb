@@ -2,6 +2,7 @@ require "rails_helper"
 
 feature "Logging time" do
   include_context "account login"
+  Given { current_account.disable_feature(:check_in) }
 
   let(:worked_at) { "2015-05-06" }
   let(:log) { Log.find_by(worked_at: worked_at) }
