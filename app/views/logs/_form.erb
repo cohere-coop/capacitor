@@ -16,10 +16,11 @@
       <label>
         <%= f.check_box :do_not_bill %>Do Not Bill
       </label>
+      <%= render partial: "error_for_field", locals: { model: @log, field: :do_not_bill } %>
     <% end %>
   <% end %>
 
-  <%= render partial: "error_for_field", locals: { model: @log, field: :do_not_bill } %>
+
 
   <%= f.label :notes %>
   <%= f.text_area :notes %>
