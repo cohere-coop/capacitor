@@ -29,7 +29,7 @@ feature "Edit check in" do
   Given!(:work_activity) { FactoryGirl.create(:activity, name: "Do Work", owner: current_account) }
   Given!(:check_in) { FactoryGirl.create(:check_in, account: current_account) }
   Given(:decorated_check_in) { check_in.decorate }
-  Given { (current_account.features.check_in = true) && current_account.save }
+  Given { current_account.enable_feature(:check_in) }
   describe "Edit a bunch of activities" do
     When do
       check_in.logs.create(activity: fun_activity, quality: 4, amount: 2, worked_at: check_in.worked_at)
