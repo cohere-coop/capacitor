@@ -24,13 +24,20 @@ class CheckInDecorator < Draper::Decorator
     "#{worked_at} - #{logs_summary} "
   end
 
+  def amount_options(amount)
+    h.options_for_select(HOURS_WORKED, amount)
+  end
+
+  def quality_options(quality)
+    h.options_for_select(ATTENTION_QUALITY, quality)
+  end
+
   def logs_summary
     logs.map { |log| "#{log.activity.name}: #{log.amount} hours" }.join(" ; ")
   end
 
-  using FriendlyDateString
   def worked_at
-    check_in.worked_at.to_friendly_s
+    check_in.worked_at.try { |v| v.to_formatted_s(:friendly_date) }
   end
 
   def action_text
