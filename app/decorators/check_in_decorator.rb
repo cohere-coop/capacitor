@@ -11,12 +11,12 @@ class CheckInDecorator < Draper::Decorator
                   ["12~14 hours", 14],
                   ["14+ hours", 16]].freeze
 
-  ATTENTION_QUALITY = [[nil],
-                       ["Terrible! I couldn't focus AT ALL", 1],
-                       ["Bad, I was pretty distracted", 2],
-                       ["Medicore, I was neither overly focused nor distracted", 3],
-                       ["Good! I was REALLY focused", 4],
-                       ["Great! It was Like I was super powered!", 5]].freeze
+  ATTENTION_LABELS = ["Terrible! I couldn't focus AT ALL",
+                      "Bad, I was pretty distracted",
+                      "Medicore, I was neither overly focused nor distracted",
+                      "Good! I was REALLY focused",
+                      "Great! It was Like I was super powered!"].freeze
+  ATTENTION_QUALITY = [[nil]] + ATTENTION_LABELS.zip(Journal::ATTENTION_LEVELS)
 
   delegate_all
 
