@@ -4,7 +4,7 @@
   "repository": "https://github.com/zincmade/capacitor",
   "success_url": "/",
   "scripts": {
-    "postdeploy": "bin/rake db:migrate"
+    "postdeploy": "bin/rake db:migrate db:seed"
   },
   "env": {
     "RACK_ENV": { "required": true },
