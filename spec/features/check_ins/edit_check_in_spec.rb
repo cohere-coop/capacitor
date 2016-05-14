@@ -53,11 +53,11 @@ feature "Edit check in" do
     end
     Then do
       expect(work_log_entry.notes).to eql "Did more than I thought!!!"
-      expect(work_log_entry.quality).to eql 4
+      expect(work_log_entry.quality).to eql 5
       expect(work_log_entry.amount).to eql 8
 
       expect(fun_log_entry.notes).to eql "Not so much fun, but still fun"
-      expect(fun_log_entry.quality).to eql 3
+      expect(fun_log_entry.quality).to eql 4
       expect(fun_log_entry.amount).to eql 4
     end
   end
