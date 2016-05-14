@@ -5,7 +5,9 @@
         <th>Capacity Worked</th>
         <th>Date Worked</th>
         <th>Quality</th>
-        <th>Billable?</th>
+        <%- if current_account.features.bills_time? %>
+          <th>Billable?</th>
+        <%- end %>
         <th>Notes</th>
         <th></th>
       </tr>
@@ -16,7 +18,9 @@
         <td><%= log.amount %></td>
         <td><%= log.worked_at %></td>
         <td><%= log.smiley_face %></td>
-        <td><%= log.billable? %></td>
+        <%- if current_account.features.bills_time? %>
+          <td><%= log.billable? %></td>
+        <%- end %>
         <td><%=log.notes%></td>
         <td><%= link_to "Edit", edit_activity_log_path(id: log, activity_id: log.activity) %>
             &ndash;

@@ -14,10 +14,12 @@
   <%= f.number_field :weekly_burn_rate %>
   <%= render partial: "error_for_field", locals: { model: @activity, field: :weekly_burn_rate } %>
 
-  <%= f.label "" do %>
-    <%= f.check_box :billable %>
-    Billable?
-  <% end %>
+  <%- if current_account.features.bills_time? %>
+    <%= f.label "" do %>
+      <%= f.check_box :billable %>
+      Billable?
+    <% end %>
+  <%- end %>
 
   <%= f.label "" do %>
     <%= f.check_box :active %>
