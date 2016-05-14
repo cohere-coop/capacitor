@@ -4,6 +4,7 @@ class Features
 
   attribute :check_in, Boolean, default: true
   attribute :bills_time, Boolean, default: false
+  attribute :has_teams, Boolean, default: false
 
   def self.dump(features)
     features.to_hash
