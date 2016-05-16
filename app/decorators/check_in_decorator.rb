@@ -11,11 +11,13 @@ class CheckInDecorator < Draper::Decorator
                   ["12~14 hours", 14],
                   ["14+ hours", 16]].freeze
 
-  ATTENTION_QUALITY = [[nil],
-                       ["Bad, I was pretty distracted", 1],
-                       ["Medicore, I was neither overly focused nor distracted", 2],
-                       ["Good! I was REALLY focused", 3],
-                       ["Great! It was Like I was super powered!", 4]].freeze
+  ATTENTION_LABELS = ["Terrible! I couldn't focus AT ALL",
+                      "Bad, I was pretty distracted",
+                      "Medicore, I was neither overly focused nor distracted",
+                      "Good! I was REALLY focused",
+                      "Great! It was Like I was super powered!"].freeze
+
+  ATTENTION_QUALITY = [[nil]] + ATTENTION_LABELS.zip(Journal::ATTENTION_LEVELS)
 
   delegate_all
 
@@ -23,13 +25,20 @@ class CheckInDecorator < Draper::Decorator
     "#{worked_at} - #{logs_summary} "
   end
 
+  def amount_options(amount)
+    h.options_for_select(HOURS_WORKED, amount)
+  end
+
+  def quality_options(quality)
+    h.options_for_select(ATTENTION_QUALITY, quality)
+  end
+
   def logs_summary
     logs.map { |log| "#{log.activity.name}: #{log.amount} hours" }.join(" ; ")
   end
 
-  using FriendlyDateString
   def worked_at
-    check_in.worked_at.to_friendly_s
+    check_in.worked_at.try { |v| v.to_formatted_s(:friendly_date) }
   end
 
   def action_text

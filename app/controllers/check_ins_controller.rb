@@ -1,5 +1,7 @@
 # /check_ins/{new, create}
 class CheckInsController < ApplicationController
+  decorates_assigned :check_in
+
   def new
     @check_in = current_account.check_ins.new(check_in_params)
   end

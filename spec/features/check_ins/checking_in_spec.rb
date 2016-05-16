@@ -25,7 +25,7 @@ feature "Checking in" do
   let(:worked_at) { 1.day.ago.strftime("%Y-%m-%d") }
   let(:fun_log_entry) { fun_activity.logs.last }
   let(:work_log_entry) { work_activity.logs.last }
-  Given { (current_account.features.check_in = true) && current_account.save }
+  Given { current_account.enable_feature(:check_in) }
   Given!(:fun_activity) { FactoryGirl.create(:activity, name: "Have Fun", owner: current_account) }
   Given!(:work_activity) { FactoryGirl.create(:activity, name: "Do Work", owner: current_account) }
 
@@ -46,23 +46,21 @@ feature "Checking in" do
 
     Then do
       expect(work_log_entry.notes).to eql "DID SO MUCH"
-      expect(work_log_entry.quality).to eql 3
+      expect(work_log_entry.quality).to eql 4
       expect(work_log_entry.amount).to eql 6
 
       expect(fun_log_entry.notes).to eql "SO MUCH FUN"
-      expect(fun_log_entry.quality).to eql 4
+      expect(fun_log_entry.quality).to eql 5
       expect(fun_log_entry.amount).to eql 2
     end
   end
 
   describe "Last 7 days are listed for checking in" do
-    using FriendlyDateString
-
     Given!(:check_in) { FactoryGirl.create(:check_in, account: current_account, worked_at: Time.zone.now) }
     Then do
-      expect(page).to have_content("#{0.days.ago.to_friendly_date_s} - Edit")
+      expect(page).to have_content("#{0.days.ago.to_formatted_s(:friendly_date)} - Edit")
       6.times do |n|
-        expect(page).to have_content("#{(n + 1).days.ago.to_friendly_date_s} - Check in")
+        expect(page).to have_content("#{(n + 1).days.ago.to_formatted_s(:friendly_date)} - Check in")
       end
     end
   end

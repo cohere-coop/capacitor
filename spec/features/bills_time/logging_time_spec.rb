@@ -6,7 +6,7 @@ feature "Logging time" do
 
   let(:worked_at) { "2015-05-06" }
   let(:log) { Log.find_by(worked_at: worked_at) }
-
+  Given { current_account.enable_feature(:bills_time) }
   Given!(:activity) { FactoryGirl.create(:activity, owner: current_account) }
 
   When { click_link_or_button "#{activity.id}_new_log_entry" }
@@ -14,13 +14,18 @@ feature "Logging time" do
   When { select("1 half day", from: "Amount") }
   When { select("😌", from: "How'd it go?") }
   When { fill_in("Worked at", with: worked_at) }
-  When { click_link_or_button("Track Activity") }
 
-  Then do
-    expect(log).to be_persisted
-    expect(log.worked_at).to eql(Date.parse(worked_at))
-    expect(log.quality).to eql(4)
-    expect(log.amount).to eql(4)
+  context "when tracking time as billable" do
+    When { click_link_or_button("Track Activity") }
+    Then { expect(log.do_not_bill).to be(false) }
+    Then { expect(log).to be_persisted }
+  end
+
+  context "when tracking time as do not bill" do
+    When { check("Do Not Bill") }
+    When { click_link_or_button("Track Activity") }
+    Then { expect(log.do_not_bill).to be(true) }
+    Then { expect(log).to be_persisted }
   end
 end
 

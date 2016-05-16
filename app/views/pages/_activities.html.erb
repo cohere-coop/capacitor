@@ -1,8 +1,9 @@
 <section class="activities">
-  <h3>Pick a Activity to Work On</h3>
-  <p><%= link_to "Create a new activity", new_activity_path %></p>
+
+  <h3>What activity have you spent time on?</h3>
+
   <div class="contents">
-    <% @activities.each do |activity| %>
+  <% activities.each do |activity| %>
       <article id="<%= activity.dom_id %>">
         <header>
           <h3>
@@ -25,5 +26,7 @@
         </footer>
       </article>
     <% end %>
+
+  <p><%= link_to "Create a new activity to track time against", new_activity_path %></p>
   </div>
 </section>

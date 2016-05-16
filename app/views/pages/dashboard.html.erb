@@ -1,13 +1,2 @@
-<section id="week_in_review">
-  <h3> Your Week In Review: </h3>
-  <p><%= current_account.remaining_weekly_capacity %> from <%=
-  current_account.weekly_expected_capacity %> remaining for this week.</p>
-  <p><%= current_account.remaining_recent_capacity %> of <%=
-  current_account.weekly_expected_capacity %> remaining from the past 7 days.</p>
-</section>
-<%= render partial: "check_ins" %>
 <%= render partial: "activities" %>
-<section id="recent_logs">
-  <h3>Your Recent Entries</h3>
-  <%= render partial: "logs", locals: { logs: current_account.recent_logs } %>
-</section>
+<%= render partial: "logs/recent", locals: { account: current_account } %>

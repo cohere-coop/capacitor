@@ -11,13 +11,16 @@
   <%= f.text_field :worked_at, class: "datepicker" %>
   <%= render partial: "error_for_field", locals: { model: @log, field: :worked_at } %>
 
-  <% if @activity.billable %>
-    <label>
-      <%= f.check_box :do_not_bill %>Do Not Bill
-    </label>
+  <%- if current_account.features.bills_time? %>
+    <% if @activity.billable %>
+      <label>
+        <%= f.check_box :do_not_bill %>Do Not Bill
+      </label>
+      <%= render partial: "error_for_field", locals: { model: @log, field: :do_not_bill } %>
+    <% end %>
   <% end %>
 
-  <%= render partial: "error_for_field", locals: { model: @log, field: :do_not_bill } %>
+
 
   <%= f.label :notes %>
   <%= f.text_area :notes %>

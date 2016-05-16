@@ -9,17 +9,17 @@ feature "Edit activities" do
   When { within("##{decorated_activity.dom_id}") { click_link_or_button "Edit" } }
 
   context "successfully edits activity" do
-    When { fill_in "Capacity", with: 8 }
+    When { fill_in "Name", with: "Activity B" }
     When { click_link_or_button "Save" }
 
-    Then { expect(activity.reload.capacity).to eql(8) }
+    Then { expect(activity.reload.name).to eql("Activity B") }
   end
 
   context "unsuccessfully edits activity" do
-    When { fill_in "Capacity", with: "" }
+    When { fill_in "Name", with: "" }
     When { click_link_or_button "Save" }
 
-    Then { expect(activity.reload.capacity).to eql(10) }
-    Then { expect(page).to have_content("Capacity can't be blank") }
+    Then { expect(activity.reload.name).to eql("Activity A") }
+    Then { expect(page).to have_content("Name can't be blank") }
   end
 end
