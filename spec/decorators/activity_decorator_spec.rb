@@ -14,12 +14,12 @@ RSpec.describe ActivityDecorator, type: :decorator do
 
   context "capacity is -1" do
     Given(:capacity) { -1 }
-    Then { expect(decorator.capacity_remaining).to eql "Infinity" }
+    Then { expect(decorator.capacity_remaining).to be_blank }
   end
 
-  context "capacity is an actual number" do
+  context "capacity is a number" do
     Given(:capacity) { 100 }
-    Then { expect(decorator.capacity_remaining).to eql capacity_remaining.to_business_days }
+    Then { expect(decorator.capacity_remaining).to eql "#{capacity_remaining} hours" }
   end
 
   describe "#quality_by_week" do
