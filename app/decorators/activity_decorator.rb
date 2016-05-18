@@ -5,12 +5,18 @@ class ActivityDecorator < Draper::Decorator
   delegate_all
   using CapacityConverter
 
+  def summary
+    summary = name
+    summary += "(#{capacity_remaining})" if owner.features.bills_time? && activity.capacity != -1
+    summary
+  end
+
   def capacity_remaining
-    if activity.capacity == -1
-      "Infinity"
-    else
-      activity.capacity_remaining.to_business_days
-    end
+    "#{activity.capacity_remaining} hours" if activity.capacity != -1
+  end
+
+  def dom_id
+    "activity-#{activity.id}"
   end
 
   def weekly_burn_rate
@@ -37,9 +43,5 @@ class ActivityDecorator < Draper::Decorator
     else
       "No capacity"
     end
-  end
-
-  def dom_id
-    "activity-#{activity.id}"
   end
 end
