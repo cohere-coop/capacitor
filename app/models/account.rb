@@ -19,6 +19,7 @@ class Account < ActiveRecord::Base
   validates :name, presence: true
 
   serialize :features, Features
+  serialize :settings, Settings
 
   def enable_feature(feature)
     features.send(:"#{feature}=", true)
@@ -44,5 +45,8 @@ class Account < ActiveRecord::Base
 
   def remaining_weekly_capacity
     weekly_expected_capacity - total_weekly_capacity
+  end
+
+  def settings_attributes=(attributes)
   end
 end
