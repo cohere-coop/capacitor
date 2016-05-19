@@ -20,6 +20,7 @@ class CheckInsController < ApplicationController
 
   def edit
     @check_in = current_account.check_ins.find(params[:id])
+    track_began_editing_check_in(@check_in)
   end
 
   def update
@@ -86,5 +87,10 @@ class CheckInsController < ApplicationController
   private def track_check_in_updated(check_in)
     track_event("Check in updated", log_count: check_in.logs.count,
                                     worked_at: check_in.worked_at)
+  end
+
+  private def track_began_editing_check_in(check_in)
+    track_event("Check in began editing", log_count: check_in.logs.count,
+                                          worked_at: check_in.worked_at)
   end
 end
