@@ -8,13 +8,11 @@
     <%= f.label :capacity %>
     <%= f.number_field :capacity %>
     <%= render partial: "error_for_field", locals: { model: @activity, field: :capacity } %>
-  <%- end %>
 
-  <%= f.label :weekly_burn_rate %>
-  <%= f.number_field :weekly_burn_rate %>
-  <%= render partial: "error_for_field", locals: { model: @activity, field: :weekly_burn_rate } %>
+    <%= f.label :weekly_burn_rate %>
+    <%= f.number_field :weekly_burn_rate %>
+    <%= render partial: "error_for_field", locals: { model: @activity, field: :weekly_burn_rate } %>
 
-  <%- if current_account.features.bills_time? %>
     <%= f.label "" do %>
       <%= f.check_box :billable %>
       Billable?
