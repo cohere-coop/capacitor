@@ -26,6 +26,7 @@ class CheckInsController < ApplicationController
     @check_in = current_account.check_ins.find(params[:id])
     if @check_in.update(check_in_params)
       flash[:notice] = "Check In updated!"
+      track_check_in_updated(@check_in)
       redirect_to root_path
     else
       render :edit
@@ -79,6 +80,11 @@ class CheckInsController < ApplicationController
 
   private def track_check_in_creation(check_in)
     track_event("Check in created", log_count: check_in.logs.count,
+                                    worked_at: check_in.worked_at)
+  end
+
+  private def track_check_in_updated(check_in)
+    track_event("Check in updated", log_count: check_in.logs.count,
                                     worked_at: check_in.worked_at)
   end
 end
