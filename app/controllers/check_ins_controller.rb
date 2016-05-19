@@ -4,6 +4,7 @@ class CheckInsController < ApplicationController
 
   def new
     @check_in = current_account.check_ins.new(check_in_params)
+    track_began_checking_in(@check_in)
   end
 
   def create
@@ -71,6 +72,10 @@ class CheckInsController < ApplicationController
                                           :notes,
                                           :activity_id,
                                           :id]]
+  end
+
+  private def track_began_checking_in(check_in)
+    track_event("Check in began", worked_at: check_in.worked_at)
   end
 
   private def track_check_in_creation(check_in)
