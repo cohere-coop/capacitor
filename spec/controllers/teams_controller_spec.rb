@@ -9,7 +9,7 @@ RSpec.describe TeamsController, type: :controller do
       Given(:account) { FactoryGirl.create(:account) }
       Given { sign_in(account) }
 
-      When { get :edit, id: team.id }
+      When { get :edit, params: { id: team.id } }
 
       Then { expect(response.status).to eq(302) }
       And { expect(response).to redirect_to(teams_path) }
