@@ -11,30 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511170833) do
+ActiveRecord::Schema.define(version: 20160518181634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
   enable_extension "hstore"
+  enable_extension "citext"
 
   create_table "accounts", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.string   "name",                     default: "",                           null: false
-    t.string   "email",                    default: "",                           null: false
-    t.string   "encrypted_password",                                              null: false
+    t.string   "name",                                 default: "",    null: false
+    t.string   "email",                                default: "",    null: false
+    t.string   "encrypted_password",                                   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",            default: 0,                            null: false
+    t.integer  "sign_in_count",                        default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                                                      null: false
-    t.datetime "updated_at",                                                      null: false
-    t.integer  "weekly_expected_capacity", default: 0,                            null: false
-    t.string   "time_zone",                default: "Central Time (US & Canada)", null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.integer  "weekly_expected_capacity",             default: 0,     null: false
+    t.string   "time_zone",                limit: 255, default: "UTC", null: false
     t.hstore   "features"
+    t.jsonb    "settings",                             default: {},    null: false
   end
 
   add_index "accounts", ["created_at"], name: "index_accounts_on_created_at", using: :btree

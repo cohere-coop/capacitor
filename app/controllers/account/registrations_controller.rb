@@ -21,6 +21,11 @@ class Account
       end
     end
 
+    def update
+      byebug
+      super
+    end
+
     # GET /resource/edit
     # def edit
     #   super
@@ -54,7 +59,7 @@ class Account
 
     # You can put the params you want to permit in the empty array.
     def configure_account_update_params
-      devise_parameter_sanitizer.for(:account_update) << [:name, :time_zone]
+      devise_parameter_sanitizer.for(:account_update) << [:name, :time_zone, settings_attributes: [:check_in_reminder_time] ]
     end
 
     # The path used after sign up.
