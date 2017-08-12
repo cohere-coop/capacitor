@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ControllerHelpers
   def sign_in(account)
     allow(request.env["warden"]).to receive(:authenticate!).and_return(account)

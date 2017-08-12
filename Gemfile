@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
-ruby "2.3.0"
+ruby "2.4.1"
 
 gem "rails", "~> 4.2"
 
 # Autoloads the .env file for secrets
-gem "dotenv-rails", "~> 2.0", require: "dotenv/rails-now", group: [:development, :tes]
+gem "dotenv-rails", "~> 2.0", require: "dotenv/rails-now", group: %i[development tes]
 
 # Used for user authentication
 gem "devise", "~> 3.5"
@@ -67,22 +69,27 @@ group :development do
   gem "spring", "~> 1.3"
 
   # Catches style issues
-  gem "rubocop", "0.37.2"
+  gem "rubocop", "~> 0.48.0"
 
   # Specifically pulls in cops for rspec
-  gem "rubocop-rspec", "~> 1.3"
+  gem "rubocop-rspec", "~> 1.15"
 end
 
 group :development, :test do
-  gem "codeclimate-test-reporter", group: :test, require: nil
-
+  # Allows us to drop some binding.prs
   gem "pry-rails"
 
-  # Call "byebug" anywhere in the code to stop execution and get a debugger console
-  gem "byebug", "~> 5.0"
+  # Gives us fixtures
+  gem "factory_girl_rails", "~> 4.5"
 
+  # This turns off the noisy asset logs
+  gem "quiet_assets"
+end
+
+group :test do
+  gem "simplecov", require: false
   # The rspec testing framework intergation for rails
-  gem "rspec-rails", "~> 3.2"
+  gem "rspec-rails", "~> 3.6"
 
   # Allows for easy testing of the web
   gem "capybara", "~> 2.4"
@@ -90,12 +97,11 @@ group :development, :test do
   # Lets capybara take screenshots of tests
   gem "capybara-screenshot", "~> 1.0"
 
-  # Gives us fixtures
-  gem "factory_girl_rails", "~> 4.5"
-
   # Allows for special Given/When/Then syntax
-  gem "rspec-given", "~> 3.5"
+  gem "rspec-given", "~> 3.8"
 
-  # This turns off the noisy asset logs
-  gem "quiet_assets"
+  # Allows us to write validation tests cleanly
+  gem "shoulda-matchers", "~> 3.1"
+
+  gem "rspec_junit_formatter"
 end

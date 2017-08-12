@@ -1,13 +1,13 @@
+# frozen_string_literal: true
+
 # Controller actions for /teams
 class TeamsController < ApplicationController
-  before_action :setup_variables, only: [:new, :create, :edit, :update, :destroy]
-  before_action :forbid_non_owners, only: [:edit, :update, :destroy]
+  before_action :setup_variables, only: %i[new create edit update destroy]
+  before_action :forbid_non_owners, only: %i[edit update destroy]
 
-  def index
-  end
+  def index; end
 
-  def new
-  end
+  def new; end
 
   def create
     if @team.save
@@ -19,8 +19,7 @@ class TeamsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @team.update_attributes(team_params)

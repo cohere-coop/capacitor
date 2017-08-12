@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "capacity_converter"
 # ViewModel for Log object
 class LogDecorator < Draper::Decorator

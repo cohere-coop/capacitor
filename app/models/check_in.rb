@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Entry page used for tracking what was done during their activity
 class CheckIn < ActiveRecord::Base
   has_many :logs
@@ -10,9 +12,9 @@ class CheckIn < ActiveRecord::Base
 
   default_scope { order(worked_at: :desc) }
 
-  scope :recent, -> (start_at = 7.days.ago.beginning_of_day) do
+  scope(:recent, ->(start_at = 7.days.ago.beginning_of_day) do
     where(worked_at: start_at...Time.zone.now.end_of_day)
-  end
+  end)
 
   def log_entries_attributes=(log_entries_attributes)
     @log_entries_attributes = self.logs_attributes = log_entries_attributes
@@ -29,17 +31,15 @@ class CheckIn < ActiveRecord::Base
   private def find_or_build_logs_for_each_activity
     account.activities.active.map do |activity|
       logs.find_by(activity: activity) ||
-      logs.detect { |l| l.activity == activity } ||
-      logs.new(activity: activity)
+        logs.detect { |l| l.activity == activity } ||
+        logs.new(activity: activity)
     end
   end
 
   private def update_newly_created_logs_with_attrs
-    if log_entries_attributes
-      log_entries_attributes.each do |_, attrs|
-        log = logs.detect { |entry| entry.activity_id == attrs[:activity_id] }
-        log.update(attrs)
-      end
+    log_entries_attributes&.each do |_, attrs|
+      log = logs.detect { |entry| entry.activity_id == attrs[:activity_id] }
+      log.update(attrs)
     end
   end
 end

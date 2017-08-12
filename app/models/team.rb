@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Groups of Accounts.
 class Team < ActiveRecord::Base
   belongs_to :leader, class_name: "Account"

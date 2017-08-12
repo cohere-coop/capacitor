@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Single entry tracking how much time someone spent on an activity
 class Log < ActiveRecord::Base
   belongs_to :activity
@@ -11,22 +13,22 @@ class Log < ActiveRecord::Base
 
   default_scope { order(worked_at: :desc) }
 
-  scope :billable, -> do
+  scope(:billable, -> do
     where(do_not_bill: false)
-  end
+  end)
 
-  scope :recent, ->(start_at = 7.days.ago) do
+  scope(:recent, ->(start_at = 7.days.ago) do
     where(worked_at: start_at..Time.zone.now.to_date)
-  end
+  end)
 
-  scope :from_weeks_ago, ->(weeks_ago = 0) do
+  scope(:from_weeks_ago, ->(weeks_ago = 0) do
     week = weeks_ago.weeks.ago
     where(worked_at: week.beginning_of_week..week.end_of_week)
-  end
+  end)
 
-  scope :up_to_two_months_ago, -> do
+  scope(:up_to_two_months_ago, -> do
     recent(2.months.ago)
-  end
+  end)
 
   def self.filter(conditions)
     Filter.new(collection: all, conditions: conditions).results

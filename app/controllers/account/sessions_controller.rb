@@ -1,4 +1,6 @@
 
+# frozen_string_literal: true
+
 class Account
   # Overrides `create` for tracking purposes
   class SessionsController < Devise::SessionsController

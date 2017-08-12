@@ -1,0 +1,72 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+       - image: circleci/ruby:2.4.1-node-browsers
+         environment:
+           - CC_TEST_REPORTER_ID=40fd488627355e3e12fd14b84e18e1e7b8ee40d2271823ecd2427f02f4aad61d
+           - DATABASE_URL=postgres://ubuntu@localhost:5432/circle_test
+           - PG_HOST=localhost
+           - PG_USER=ubuntu
+           - RAILS_ENV=test
+           - RACK_ENV=test
+       - image: circleci/postgres:9.4
+         environment:
+           - POSTGRES_USER=ubuntu
+           - POSTGRES_DB=circle_test
+
+    working_directory: ~/capacitor
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-bundle-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - save_cache:
+          paths:
+            - vendor/bundle
+          key: v1-bundle-{{ checksum "Gemfile.lock" }}
+
+      # Database setup
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
+
+      - run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+      - run: chmod +x ./cc-test-reporter
+      # run tests!
+      - run: sudo mkdir -p $CIRCLE_TEST_REPORTS/simplecov
+      - run: ./cc-test-reporter before-build
+      - run:
+          name: run tests
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+
+            echo $TEST_FILES
+
+            bundle exec rspec --format progress \
+                            --format RspecJunitFormatter \
+                            --out /tmp/test-results/rspec.xml \
+                            --format progress
+
+      - run: ./cc-test-reporter format-coverage -t simplecov $CIRCLE_ARTIFACTS/coverage/.resultset.json
+      - run: ./cc-test-reporter upload-coverage
+      # collect reports
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results

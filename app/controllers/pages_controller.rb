@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Controller for the Dashboard view
 class PagesController < ApplicationController
   before_action :authenticate_account!

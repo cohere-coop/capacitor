@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :capacitor do
   desc "Notify accounts that they have not checked in for the previous day by noon"
   task notify_accounts_of_missing_checkins: :environment do

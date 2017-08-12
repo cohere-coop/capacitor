@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Log < ActiveRecord::Base
   # Reduces a collection of logs based on conditions by building up an AREL Where Query
   class Filter

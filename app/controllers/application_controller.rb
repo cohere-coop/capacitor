@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Base controller for Web/UI Views
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.

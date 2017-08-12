@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # CRUD controller for Activities model
 class ActivitiesController < ApplicationController
   def new

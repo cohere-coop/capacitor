@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CheckIns
   # ViewModel exposing check ins specific functionality for a given account
   class Account < SimpleDelegator
