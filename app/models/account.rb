@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Individual person
 class Account < ActiveRecord::Base
   devise :database_authenticatable

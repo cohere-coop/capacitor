@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 # Web UI controller for Logs
 class LogsController < ApplicationController
-  before_action :setup_variables, only: [:new, :create, :edit, :update]
+  before_action :setup_variables, only: %i[new create edit update]
 
   def index
     @logs = LogsDecorator.new(current_account.logs.filter(params))
   end
 
-  def new
-  end
+  def new; end
 
   def create
     if @log.save
@@ -31,8 +32,7 @@ class LogsController < ApplicationController
     redirect_to root_path
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @log.update(log_params)

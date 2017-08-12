@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511170833) do
+ActiveRecord::Schema.define(version: 20170812043001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20160511170833) do
   create_table "accounts", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "name",                     default: "",                           null: false
     t.string   "email",                    default: "",                           null: false
-    t.string   "encrypted_password",                                              null: false
+    t.string   "encrypted_password"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

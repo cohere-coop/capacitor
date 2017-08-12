@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # UI focused methods for groups of log entries
 class LogsDecorator < Draper::CollectionDecorator
   RANGE_OF_TIME = (0...4)
@@ -26,7 +28,7 @@ class LogsDecorator < Draper::CollectionDecorator
   end
 
   def label_for(qty, measure)
-    return "This #{measure}" if qty == 0
+    return "This #{measure}" if qty.zero?
     return "Last #{measure}" if qty == 1
     "#{qty} #{measure.pluralize(qty)} ago"
   end

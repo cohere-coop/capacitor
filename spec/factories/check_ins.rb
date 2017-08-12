@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :check_in, aliases: [:recent_check_in] do
     account

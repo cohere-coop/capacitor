@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Finds and notifies accounts of missing check in from one day ago
 class MissingCheckInNotifier
   def self.inactive_accounts

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # /check_ins/{new, create}
 class CheckInsController < ApplicationController
   decorates_assigned :check_in
@@ -68,11 +70,11 @@ class CheckInsController < ApplicationController
   end
 
   private def permitted_check_in_params
-    [:worked_at, log_entries_attributes: [:amount,
-                                          :quality,
-                                          :notes,
-                                          :activity_id,
-                                          :id]]
+    [:worked_at, log_entries_attributes: %i[amount
+                                            quality
+                                            notes
+                                            activity_id
+                                            id]]
   end
 
   private def track_began_checking_in(check_in)

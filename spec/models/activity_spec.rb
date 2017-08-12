@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 describe Activity do
@@ -5,24 +7,25 @@ describe Activity do
     it "subtracts the recently logged amount from the weekly burn rate" do
       activity = FactoryGirl.create(:activity, weekly_burn_rate: 12)
       FactoryGirl.create(:todays_log, amount: 5, activity: activity)
-      expect(activity.weekly_capacity_remaining).to eql(7)
+      expect(activity.weekly_capacity_remaining).to be(7)
     end
 
     it "does not subract do not bill logs" do
       activity = FactoryGirl.create(:activity, weekly_burn_rate: 12)
       FactoryGirl.create(:recent_log, amount: 5, activity: activity, do_not_bill: true)
-      expect(activity.weekly_capacity_remaining).to eql(12)
+      expect(activity.weekly_capacity_remaining).to be(12)
     end
   end
   describe "#capacity_remaining" do
     it "does not take into account non-billable work" do
       activity = FactoryGirl.create(:activity, capacity: 12)
       FactoryGirl.create(:recent_log, amount: 5, activity: activity, do_not_bill: true)
-      expect(activity.capacity_remaining).to eql(12)
+      expect(activity.capacity_remaining).to be(12)
     end
   end
   describe "#quality_by_week" do
     let(:activity) { FactoryGirl.create(:activity) }
+
     it "averages each week's quality into a hash" do
       log1 = FactoryGirl.create(:recent_log, activity: activity, quality: 5)
       FactoryGirl.create(:recent_log, activity: activity, quality: 1)

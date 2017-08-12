@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # ViewModel for Account object
 class AccountDecorator < Draper::Decorator
   delegate_all

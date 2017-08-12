@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Account
   # Override of Devise Regisrations Controller to track events + allow custom data
   class RegistrationsController < Devise::RegistrationsController
@@ -49,12 +51,12 @@ class Account
 
     # You can put the params you want to permit in the empty array.
     def configure_sign_up_params
-      devise_parameter_sanitizer.for(:sign_up) << [:name, :time_zone]
+      devise_parameter_sanitizer.for(:sign_up) << %i[name time_zone]
     end
 
     # You can put the params you want to permit in the empty array.
     def configure_account_update_params
-      devise_parameter_sanitizer.for(:account_update) << [:name, :time_zone]
+      devise_parameter_sanitizer.for(:account_update) << %i[name time_zone]
     end
 
     # The path used after sign up.

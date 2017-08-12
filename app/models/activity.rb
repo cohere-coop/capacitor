@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Activities that People Track Energy/Time against
 class Activity < ActiveRecord::Base
   has_many :logs
@@ -8,9 +10,7 @@ class Activity < ActiveRecord::Base
 
   validates :name, :capacity, :weekly_burn_rate, :owner, presence: true
 
-  scope :active, lambda {
-    where(active: true)
-  }
+  scope(:active, -> { where(active: true) })
 
   def capacity_logged
     logs.billable.pluck(:amount).sum

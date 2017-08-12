@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Ensures account has a relation where all the ids match the field of passed
 # in collection of attributes
 class AccountOwnsAllPolicy

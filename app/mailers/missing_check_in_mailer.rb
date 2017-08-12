@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Email sent when missing check in after a day
 class MissingCheckInMailer < ActionMailer::Base
   def missing_check_in(account, date_to_check_in)

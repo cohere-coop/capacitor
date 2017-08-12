@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 workers(Integer(ENV["WEB_CONCURRENCY"] || 2))
 threads(Integer(ENV["MIN_THREADS"] || 5), Integer(ENV["MAX_THREADS"] || 5))
 

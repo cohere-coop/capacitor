@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Decorator for Check Ins
 class CheckInDecorator < Draper::Decorator
   HOURS_WORKED = [[nil],

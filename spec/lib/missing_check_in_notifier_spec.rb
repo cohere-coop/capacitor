@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "missing_check_in_notifier"
 require "rails_helper"
 
@@ -16,7 +18,7 @@ describe MissingCheckInNotifier do
     Given!(:account_without_check_in_yesterday) { FactoryGirl.create(:account) }
     Given!(:account_who_checked_in_yesterday) { FactoryGirl.create(:account_who_checked_in_yesterday) }
 
-    let(:sent_email) { ActionMailer::Base.deliveries.last }
+    subject(:sent_email) { ActionMailer::Base.deliveries.last }
 
     context "when the accounts have check in enabled" do
       Given do

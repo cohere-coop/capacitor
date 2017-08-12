@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.describe TeamsController, type: :controller do
   describe "#edit" do
-    it "forbids non-owners" do
-      team = FactoryGirl.create(:team)
-      account = FactoryGirl.create(:account)
+    context "When not the team owner" do
+      Given(:team) { FactoryGirl.create(:team) }
+      Given(:account) { FactoryGirl.create(:account) }
+      Given { sign_in(account) }
 
-      sign_in(account)
+      When { get :edit, id: team.id }
 
-      get :edit, id: team.id
-      expect(response.status).to eq(302)
-      expect(response).to redirect_to(teams_path)
+      Then { expect(response.status).to eq(302) }
+      And { expect(response).to redirect_to(teams_path) }
     end
   end
 end

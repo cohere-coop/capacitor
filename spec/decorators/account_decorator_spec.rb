@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.describe AccountDecorator, type: :decorator do
@@ -9,7 +11,7 @@ RSpec.describe AccountDecorator, type: :decorator do
     described_class.new(account)
   end
 
-  before(:each) do
+  before do
     allow(account).to receive(:weekly_expected_capacity).and_return(weekly_expected_capacity_value)
   end
 

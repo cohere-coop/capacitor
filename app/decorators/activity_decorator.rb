@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "capacity_converter"
 
 # UI focused methods for Activity objects
@@ -30,7 +32,7 @@ class ActivityDecorator < Draper::Decorator
   end
 
   def weekly_capacity_remaining
-    if activity.weekly_capacity_remaining > 0
+    if activity.weekly_capacity_remaining.positive?
       activity.weekly_capacity_remaining.to_business_days
     else
       "No capacity"
@@ -38,7 +40,7 @@ class ActivityDecorator < Draper::Decorator
   end
 
   def recent_capacity_remaining
-    if activity.recent_capacity_remaining > 0
+    if activity.recent_capacity_remaining.positive?
       activity.recent_capacity_remaining.to_business_days
     else
       "No capacity"

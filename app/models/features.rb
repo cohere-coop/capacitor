@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Co-erces an HStore object of feature flags into a ruby model
 class Features
   include Virtus.model

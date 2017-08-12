@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.shared_context "account login" do
   Given!(:current_account) { FactoryGirl.create(:account) }
   around do |example|
