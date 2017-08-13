@@ -38,7 +38,7 @@ class CheckInsController < ApplicationController
 
   private def ensure_access!(attributes_collection, field, relation)
     @account_owns_all_policy ||= AccountOwnsAllPolicy.new(current_account)
-    @account_owns_all_policy.ensure_access!(attributes_collection, field, relation)
+    @account_owns_all_policy.ensure_access!(attributes_collection.to_h, field, relation)
   end
 
   private def check_in_params

@@ -4,22 +4,19 @@ source "https://rubygems.org"
 
 ruby "2.4.1"
 
-gem "rails", "~> 4.2"
-
-# Autoloads the .env file for secrets
-gem "dotenv-rails", "~> 2.0", require: "dotenv/rails-now", group: %i[development tes]
+gem "rails", "~> 5.1"
 
 # Used for user authentication
-gem "devise", "~> 3.5"
+gem "devise", "~> 4.3"
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 0.18"
 
 # Use .haml for views
-gem "haml", "~> 4.0"
+gem "haml-rails", "~> 1.0"
 
 # Provides a wrapper object for models
-gem "draper", "~> 1.4"
+gem "draper", "~> 3.0"
 
 # ActiveModel on steroids!
 gem "virtus", "~> 1.0"
@@ -50,24 +47,16 @@ gem "neat", "~> 1.7"
 gem "bitters", "1.2.0"
 
 group :production do
-  # Does some special heroku magic
-  gem "rails_12factor", "0.0.3"
-
   # A concurrent web server
-  gem "puma", "~> 2.11"
+  gem "puma", "~> 3.9"
 
   # This gem makes rack requests time out...because puma doesn't
-  gem "rack-timeout", "~> 0.3"
+  gem "rack-timeout", "~> 0.4"
 end
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> in
-  # views
-  gem "web-console", "~> 2.1"
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem "spring", "~> 1.3"
-
+  # Allows auto-loading of files
+  gem "listen"
   # Catches style issues
   gem "rubocop", "~> 0.48.0"
 
@@ -76,14 +65,14 @@ group :development do
 end
 
 group :development, :test do
+  # Autoloads the .env file for secrets
+  gem "dotenv-rails", "~> 2.2", require: "dotenv/rails-now"
+
   # Allows us to drop some binding.prs
-  gem "pry-rails"
+  gem "pry-rails", "~> 0.3.6"
 
   # Gives us fixtures
-  gem "factory_girl_rails", "~> 4.5"
-
-  # This turns off the noisy asset logs
-  gem "quiet_assets"
+  gem "factory_girl_rails", "~> 4.8"
 end
 
 group :test do

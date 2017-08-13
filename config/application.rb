@@ -1,26 +1,19 @@
 # frozen_string_literal: true
 
-require File.expand_path("../boot", __FILE__)
+require_relative "boot"
 
-# encoding: UTF-8
-
-# Pick the frameworks you want:
-require "active_model/railtie"
-require "active_job/railtie"
-require "active_record/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "action_view/railtie"
-require "sprockets/railtie"
-# require "rails/test_unit/railtie"
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development or :production.
+# you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
 module Capacitor
-  # Main application that is loaded into Rack
+  # Main rails application
   class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 5.1
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -45,10 +38,10 @@ module Capacitor
     config.action_mailer.default_options = mail_options
 
     config.autoload_paths << Rails.root.join("lib")
+    config.eager_load_paths << Rails.root.join('lib')
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.beginning_of_week = :sunday
-    config.active_record.raise_in_transactional_callbacks = true
     config.encoding = "utf-8"
   end
 end
