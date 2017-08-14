@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
-threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
+require_relative "../lib/settings"
+
+threads_count = Settings.app_server_max_threads
 threads threads_count, threads_count
 
-port        ENV.fetch("PORT") { 3000 }
-environment ENV.fetch("RAILS_ENV") { "development" }
-workers ENV.fetch("WEB_CONCURRENCY") { 2 }
+port        Settings.app_server_port
+environment Settings.app_server_environment
+workers     Settings.app_server_concurrency
 
 preload_app!
 
@@ -16,7 +18,6 @@ end
 on_worker_boot do
   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
 end
-
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart

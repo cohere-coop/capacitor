@@ -14,7 +14,7 @@ describe MissingCheckInNotifier do
 
   describe ".notify" do
     include Rails.application.routes.url_helpers
-    Given { default_url_options[:host] = "example.com" }
+    Given { default_url_options.merge!(Settings.url_options) }
     Given!(:account_without_check_in_yesterday) { FactoryGirl.create(:account) }
     Given!(:account_who_checked_in_yesterday) { FactoryGirl.create(:account_who_checked_in_yesterday) }
 

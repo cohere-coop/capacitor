@@ -13,5 +13,11 @@ FactoryGirl.define do
         create :check_in, account: account, worked_at: 1.day.ago
       end
     end
+
+    trait :unique do
+      guid = SecureRandom.uuid
+      name "Unique #{guid}"
+      email "unique-#{guid}@example.com"
+    end
   end
 end

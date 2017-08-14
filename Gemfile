@@ -80,16 +80,21 @@ group :test do
   # The rspec testing framework intergation for rails
   gem "rspec-rails", "~> 3.6"
 
-  # Allows for easy testing of the web
+  # Mailcatcher!
+  gem "mailcatcher"
+
+  # Feature testing!
+  gem "cucumber"
+  gem "site_prism"
+
+  # Easy-ish Web testing!
   gem "capybara", "~> 2.4"
+  gem "capybara-selenium"
 
-  # Lets capybara take screenshots of tests
-  gem "capybara-screenshot", "~> 1.0"
-
-  # Allows for special Given/When/Then syntax
+  # Grants rspec Given/When/Then syntax
   gem "rspec-given", "~> 3.8"
 
-  # Allows us to write validation tests cleanly
+  # Write validation tests cleanly
   gem "shoulda-matchers", "~> 3.1"
 
   gem "rspec_junit_formatter"
