@@ -5,12 +5,13 @@
 require File.expand_path("../config/application", __FILE__)
 
 unless Rails.env.production?
-  require "rspec/core/rake_task"
-  RSpec::Core::RakeTask.new(:spec)
-
   require "rubocop/rake_task"
   RuboCop::RakeTask.new
+
+  require "cucumber/rake/task"
+
+  Cucumber::Rake::Task.new(:features)
 end
 Rails.application.load_tasks
 
-task "default" => %w[spec rubocop]
+task "default" => %w[rubocop features]

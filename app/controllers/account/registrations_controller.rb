@@ -16,6 +16,7 @@ class Account
       super do |account|
         if account.persisted?
           account.reload
+          RegistrationMailer.welcome_email(account).deliver_later
           track_event("Account created")
         else
           track_event("Account creation failed")

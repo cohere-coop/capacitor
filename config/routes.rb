@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   resources :teams
 
   root to: "pages#dashboard"
+
+  resource :status, only: %i[show]
 end
