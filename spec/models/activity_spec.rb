@@ -3,13 +3,15 @@
 require "rails_helper"
 
 describe Activity do
-  context 'scopes' do
+  context "scopes" do
     let!(:active_activity) { FactoryGirl.create(:activity, active: true) }
     let!(:inactive_activity) { FactoryGirl.create(:activity, active: false) }
-    describe 'active' do
-      subject { Activity.all.active }
+
+    describe "active" do
+      subject { described_class.all.active }
+
       it { is_expected.to include(active_activity) }
-      it { is_expected.to_not include(inactive_activity) }
+      it { is_expected.not_to include(inactive_activity) }
     end
   end
 
