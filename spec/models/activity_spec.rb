@@ -3,6 +3,16 @@
 require "rails_helper"
 
 describe Activity do
+  context 'scopes' do
+    let!(:active_activity) { FactoryGirl.create(:activity, active: true) }
+    let!(:inactive_activity) { FactoryGirl.create(:activity, active: false) }
+    describe 'active' do
+      subject { Activity.all.active }
+      it { is_expected.to include(active_activity) }
+      it { is_expected.to_not include(inactive_activity) }
+    end
+  end
+
   describe "#weekly_capacity_remaining" do
     it "subtracts the recently logged amount from the weekly burn rate" do
       activity = FactoryGirl.create(:activity, weekly_burn_rate: 12)
