@@ -1,6 +1,5 @@
 <nav>
   <% if account_signed_in? %>
-    <%= link_to "Dashboard", root_path %>
     <%= link_to "Logs", logs_path %>
 
     <% if current_account.features.check_in? %>

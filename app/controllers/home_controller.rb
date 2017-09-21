@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-# Controller for the Dashboard view
-class PagesController < ApplicationController
+class HomeController < ApplicationController
   before_action :authenticate_account!
   decorates_assigned :check_ins
   decorates_assigned :activities
