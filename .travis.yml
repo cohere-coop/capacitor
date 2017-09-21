@@ -2,10 +2,11 @@ env:
   global:
     - CC_TEST_REPORTER_ID=72ef38796ce30615e64513031e7a3f0b007782505773e01b940dcbaad869b5ca
 language: ruby
+cache: bundler
+rvm:
+  - 2.4.1
 services:
   - postgresql
-rvm: 
-  - 2.4.1
 before_script:
   - psql -c 'create database capacitor_test;' -U postgres
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
