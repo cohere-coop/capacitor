@@ -9,4 +9,3 @@ class TeamsActivity < ActiveRecord::Base
   validates :team, :activity, presence: true
   validates :activity, uniqueness: { scope: :team }
 end
-
