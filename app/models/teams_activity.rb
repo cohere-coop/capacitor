@@ -7,4 +7,5 @@ class TeamsActivity < ActiveRecord::Base
   belongs_to :activity
 
   validates :team, :activity, presence: true
+  validates :activity, uniqueness: { scope: :team }
 end

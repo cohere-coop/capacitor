@@ -7,6 +7,7 @@ class Membership < ActiveRecord::Base
 
   validates :team, :account, presence: true
   validates :level, inclusion: { in: %w[member leader] }
+  validates :account, uniqueness: { scope: :team }
 
   def make_leader
     update_attributes(level: "leader")
