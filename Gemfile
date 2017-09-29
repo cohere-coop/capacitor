@@ -12,6 +12,9 @@ gem "devise", "~> 4.3"
 # Use postgresql as the database for Active Record
 gem "pg", "~> 0.18"
 
+# Exception tracking
+gem "raygun4ruby"
+
 # Use .haml for views
 gem "haml-rails", "~> 1.0"
 
