@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Home page of the application
 class HomeController < ApplicationController
   before_action :authenticate_account!
   decorates_assigned :check_ins

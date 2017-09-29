@@ -1,15 +1,15 @@
-<%= form_for @team do |f| %>
+<%= form_for team do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
-  <%= render partial: "error_for_field", locals: { model: @team, field: :name } %>
+  <%= render partial: "error_for_field", locals: { model: team, field: :name } %>
 <fieldset>
   <legend> Activities </legend>
-  <%= collection_check_boxes(:team, :activity_ids, current_account.activities.all, :id, :name) %>
+  <%= collection_check_boxes(:team, :activity_ids, current_account.owned_activities.all, :id, :name) %>
 </fieldset>
 
 <fieldset>
   <legend> Accounts </legend>
-  <%= collection_check_boxes(:team, :account_ids, Account.all, :id, :name) %>
+  <%= collection_check_boxes(:team, :member_ids, Account.all, :id, :name) %>
 </fieldset>
   <%= f.submit submit_text %>
 <% end %>

@@ -10,7 +10,8 @@ class Account < ActiveRecord::Base
   devise :validatable
 
   has_many :logs
-  has_many :activities, foreign_key: :owner_id
+  has_many :owned_activities, foreign_key: :owner_id,
+                              source: :activity, class_name: "Activity"
   has_many :check_ins
 
   has_many :memberships
@@ -21,6 +22,10 @@ class Account < ActiveRecord::Base
   validates :name, presence: true
 
   serialize :features, Features
+
+  def activities
+    LoggableActivitiesQuery.new(account: self).records
+  end
 
   def enable_feature(feature)
     features.send(:"#{feature}=", true)
