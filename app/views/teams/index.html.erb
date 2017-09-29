@@ -3,9 +3,9 @@
 <table>
   <thead>
     <tr>
-      <th>Team name</th>
+      <th>Name</th>
       <th>Activities</th>
-      <th>Team Lead</th>
+      <th>Leaders</th>
       <th>Members</th>
       <th></th>
     </tr>
@@ -14,8 +14,8 @@
     <tr id="<%=team.dom_id%>">
       <td><%= team.name %></td>
       <td><%= team.activities.pluck(:name).join(", ") %></td>
-      <td><%= team.leader.name %></td>
-      <td><%= team.accounts.pluck(:name).join(", ") %></td>
+      <td><%= team.leaders.pluck(:name).join(", ") %></td>
+      <td><%= team.members.pluck(:name).join(", ") %></td>
       <td>
         <% if can_manage?(team) %>
           <%= link_to "Edit", edit_team_path(team) %>
