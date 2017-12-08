@@ -1,4 +1,4 @@
-class CreateCheckIns < ActiveRecord::Migration
+class CreateCheckIns < ActiveRecord::Migration[4.2]
   def change
     create_table :check_ins do |t|
       t.references :account, null: false

@@ -1,4 +1,4 @@
-class DestroyAndRecreateCheckInsTableWithUuids < ActiveRecord::Migration
+class DestroyAndRecreateCheckInsTableWithUuids < ActiveRecord::Migration[4.2]
   def change
     drop_table :check_ins
     create_table :check_ins, id: :uuid  do |t|

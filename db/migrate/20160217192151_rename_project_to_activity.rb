@@ -1,4 +1,4 @@
-class RenameProjectToActivity < ActiveRecord::Migration
+class RenameProjectToActivity < ActiveRecord::Migration[4.2]
   def change
     rename_table :projects, :activities
     rename_column :logs, :project_id, :activity_id
