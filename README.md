@@ -12,9 +12,8 @@ Coverage](https://codeclimate.com/github/wecohere/capacitor/badges/coverage.svg)
 
 1. Make sure you have the Ruby version required in the [Gemfile](https://github.com/wecohere/capacitor/blob/primary/Gemfile)
 2. `bundle install`
-3. `cp .env.example .env`
-4. `bin/rake db:create db:migrate`
-5. `bin/rake db:test:prepare`
+3. `cp .env.example .env.development`
+4. `bin/rake db:create db:setup db:test:prepare`
 6. `bin/rspec`
 7. `bin/rails s`
 
