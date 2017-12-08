@@ -1,4 +1,4 @@
-class InitSchema < ActiveRecord::Migration
+class InitSchema < ActiveRecord::Migration[4.2]
   def up
     enable_extension "plpgsql"
     enable_extension "uuid-ossp"

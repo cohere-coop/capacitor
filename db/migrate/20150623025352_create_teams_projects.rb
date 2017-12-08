@@ -1,4 +1,4 @@
-class CreateTeamsProjects < ActiveRecord::Migration
+class CreateTeamsProjects < ActiveRecord::Migration[4.2]
   def change
     create_table :teams_projects do |t|
       t.uuid :team_id, null: false, index: true
