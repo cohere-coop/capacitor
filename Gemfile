@@ -73,6 +73,8 @@ group :development, :test do
 
   # Allows us to drop some binding.prs
   gem "pry-rails", "~> 0.3.6"
+  gem "byebug"
+  gem "pry-byebug"
 
   # Gives us fixtures
   gem "factory_girl_rails", "~> 4.8"
