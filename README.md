@@ -18,5 +18,19 @@ Coverage](https://codeclimate.com/github/wecohere/capacitor/badges/coverage.svg)
 6. `bin/rspec`
 7. `bin/rails s`
 
+## Development
+
+In order to run the feature tests, you will need to have a mailcatcher server running.
+
+```
+bin/mailcatcher
+```
+
+Leave that running while you run Cucumber:
+
+```
+bin/cucumber
+```
+
 ## Throughput Graph
 [![Throughput Graph](https://graphs.waffle.io/wecohere/capacitor/throughput.svg)](https://waffle.io/wecohere/capacitor/metrics)

@@ -4,6 +4,7 @@ require "capybara/cucumber"
 require "selenium-webdriver"
 require "site_prism"
 require "pry"
+require "byebug"
 require "factory_girl"
 require "active_support"
 require "active_support/core_ext"
@@ -22,7 +23,7 @@ FactoryGirl.find_definitions
 Capybara.app_host = Settings.app_url
 
 Before do
-  WaitForUp.new(Settings.smtp_status_url, name: "Mail API").wait
+  WaitForUp.new(Settings.smtp_status_url, name: "Mail API", hint: "Is mailcatcher running?").wait
   WaitForUp.new(Settings.app_status_url, name: "Rails App").wait
 end
 
