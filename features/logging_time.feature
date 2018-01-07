@@ -1,11 +1,13 @@
-scenario: logging time in the future
-    Given that I am on the Check In page
-    When I select a day in the future from "what day is this for"
-    Then I am prevented from submitting the form
-    And I am told that the "what day is this for" field is invalid because the day is in the future
+Feature: Logging Time
 
-scenario: logging time in increments greater than one day
-    Given that I am on the Check In page
-    When I check in for 10~12 hours
-    Then I go to the Logs page
-    And I see 10~12 hours for that log entry
+Scenario: logging time in the future
+    Given I am on the Check In page
+    When I perform checkin with a date in the future
+    Then I am told that my checkin date must not be in the future
+    And I remain on the Check In page
+
+Scenario: logging time in increments greater than one day
+    Given I am on the Check In page
+    When I perform checkin with a work duration 10~12 hours 
+    And I go to the Logs page
+    Then I see 10~12 hours for that log entry
