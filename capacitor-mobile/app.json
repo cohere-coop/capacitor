@@ -1,5 +1,8 @@
 {
   "expo": {
-    "sdkVersion": "23.0.0"
+    "name": "Capacitor Mobile",
+    "slug": "capacitor-mobile",
+    "sdkVersion": "23.0.0",
+    "orientation": "portrait"
   }
 }
