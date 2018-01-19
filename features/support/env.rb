@@ -14,7 +14,7 @@ require "dotenv"
 root = Pathname.new(Dir.pwd)
 Dotenv.load(root.join(".env.development.local"), root.join(".env.development"),
             root.join(".env"))
-require_relative "models"
+require_relative "account"
 require_relative "app"
 
 World(App::Helper)

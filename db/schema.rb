@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170928235724) do
+ActiveRecord::Schema.define(version: 20180119155640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20170928235724) do
     t.integer "weekly_expected_capacity", default: 0, null: false
     t.string "time_zone", default: "Central Time (US & Canada)", null: false
     t.hstore "features"
+    t.integer "check_in_reminder_hour", default: 8
     t.index ["created_at"], name: "index_accounts_on_created_at"
     t.index ["current_sign_in_at"], name: "index_accounts_on_current_sign_in_at"
     t.index ["email"], name: "index_accounts_on_email", unique: true

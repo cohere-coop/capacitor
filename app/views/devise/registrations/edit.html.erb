@@ -36,6 +36,11 @@
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+    <%= f.label :check_in_reminder_time %>
+    <%= f.select :check_in_reminder_time, TimeOfDay.acceptable_values, include_blank: true %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>

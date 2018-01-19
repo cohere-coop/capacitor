@@ -52,13 +52,18 @@ class Account
 
     # You can put the params you want to permit in the empty array.
     def configure_sign_up_params
-      devise_parameter_sanitizer.permit(:sign_up, keys: %i[name time_zone])
+      devise_parameter_sanitizer.permit(:sign_up, keys: %i[name time_zone check_in_reminder_time])
     end
 
     # You can put the params you want to permit in the empty array.
     def configure_account_update_params
-      devise_parameter_sanitizer.permit(:account_update, keys: %i[name time_zone])
+      devise_parameter_sanitizer.permit(:account_update, keys: %i[name time_zone check_in_reminder_time])
     end
+
+    # def update_resource(resource, account_update_params)
+    #   super
+    #   byebug
+    # end
 
     # The path used after sign up.
     # def after_sign_up_path_for(resource)

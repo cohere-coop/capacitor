@@ -52,4 +52,15 @@ class Account < ActiveRecord::Base
   def remaining_weekly_capacity
     weekly_expected_capacity - total_weekly_capacity
   end
+
+  def check_in_reminder_time
+    time = TimeOfDay.from_hour_of_day(check_in_reminder_hour)
+    # time_relative_to_today = Date.today.beginning_of_day + check_in_reminder_hour.hours
+    # time_relative_to_today.strftime("%-l:00%p")
+  end
+
+  def check_in_reminder_time=(value)
+    time = TimeOfDay.from_string(value)
+    self.check_in_reminder_hour = time.hour_of_day
+  end
 end

@@ -73,6 +73,7 @@ GEM
       selenium-webdriver
     childprocess (0.7.1)
       ffi (~> 1.0, >= 1.0.11)
+    chronic (0.10.2)
     coderay (1.1.1)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -109,6 +110,10 @@ GEM
       activemodel-serializers-xml (~> 1.0)
       activesupport (~> 5.0)
       request_store (~> 1.0)
+    email_spec (2.1.1)
+      htmlentities (~> 4.3.3)
+      launchy (~> 2.1)
+      mail (~> 2.6)
     equalizer (0.0.11)
     erubi (1.6.1)
     erubis (2.7.0)
@@ -139,6 +144,7 @@ GEM
       haml (>= 4.0, < 6)
       nokogiri (>= 1.6.0)
       ruby_parser (~> 3.5)
+    htmlentities (4.3.4)
     httparty (0.15.6)
       multi_xml (>= 0.5.2)
     i18n (0.8.6)
@@ -150,6 +156,8 @@ GEM
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (1.8.6)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -343,6 +351,7 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.8)
+    timecop (0.9.1)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
     uglifier (2.7.2)
@@ -371,10 +380,12 @@ DEPENDENCIES
   byebug
   capybara (~> 2.4)
   capybara-selenium
+  chronic
   cucumber
   devise (~> 4.3)
   dotenv-rails (~> 2.2)
   draper (~> 3.0)
+  email_spec
   factory_girl_rails (~> 4.8)
   haml-rails (~> 1.0)
   jquery-rails (~> 4.1)
@@ -400,6 +411,7 @@ DEPENDENCIES
   shoulda-matchers (~> 3.1)
   simplecov
   site_prism
+  timecop
   uglifier (~> 2.7)
   virtus (~> 1.0)
 
