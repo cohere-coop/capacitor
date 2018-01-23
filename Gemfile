@@ -12,6 +12,7 @@ gem "doorkeeper", "~> 4.2"
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 0.18"
+gem "graphql", "~> 1.7"
 
 # Exception tracking
 gem "raygun4ruby"
@@ -105,3 +106,5 @@ group :test do
 
   gem "rspec_junit_formatter"
 end
+
+gem 'graphiql-rails', group: :development

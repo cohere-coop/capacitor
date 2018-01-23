@@ -127,6 +127,9 @@ GEM
       sorcerer (>= 0.3.7)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    graphiql-rails (1.4.8)
+      rails
+    graphql (1.7.8)
     haml (5.0.2)
       temple (>= 0.8.0)
       tilt
@@ -379,6 +382,8 @@ DEPENDENCIES
   dotenv-rails (~> 2.2)
   draper (~> 3.0)
   factory_girl_rails (~> 4.8)
+  graphiql-rails
+  graphql (~> 1.7)
   haml-rails (~> 1.0)
   jquery-rails (~> 4.1)
   jquery-ui-rails (~> 5.0)
