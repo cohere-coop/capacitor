@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Doorkeeper.configure do
   # Change the ORM that doorkeeper will use (needs plugins)
   orm :active_record
@@ -12,7 +14,8 @@ Doorkeeper.configure do
     end
   end
 
-  # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
+  # If you want to restrict access to the web interface for adding oauth authorized applications, you need to
+  # declare the block below.
   # admin_authenticator do
   #   # Put your admin authentication logic here.
   #   # Example implementation:
@@ -51,7 +54,7 @@ Doorkeeper.configure do
   # Optional parameter confirmation: true (default false) if you want to enforce ownership of
   # a registered application
   # Note: you must also run the rails g doorkeeper:application_owner generator to provide the necessary support
-  # enable_application_owner confirmation: false
+  enable_application_owner confirmation: false
 
   # Define access token scopes for your provider
   # For more information go to
@@ -72,8 +75,10 @@ Doorkeeper.configure do
   # access_token_methods :from_bearer_authorization, :from_access_token_param, :from_bearer_param
 
   # Change the native redirect uri for client apps
-  # When clients register with the following redirect uri, they won't be redirected to any server and the authorization code will be displayed within the provider
-  # The value can be any string. Use nil to disable this feature. When disabled, clients must provide a valid URL
+  # When clients register with the following redirect uri, they won't be redirected to any server and the
+  # authorization code will be displayed within the provider
+  # The value can be any string. Use nil to disable this feature. When disabled, clients must provide a valid
+  # URL
   # (Similar behaviour: https://developers.google.com/accounts/docs/OAuth2InstalledApp#choosingredirecturi)
   #
   # native_redirect_uri 'urn:ietf:wg:oauth:2.0:oob'
