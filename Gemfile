@@ -8,6 +8,7 @@ gem "rails", "~> 5.1"
 
 # Used for user authentication
 gem "devise", "~> 4.3"
+gem "doorkeeper", "~> 4.2"
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 0.18"
