@@ -35,5 +35,11 @@ module Capacitor
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.beginning_of_week = :sunday
     config.encoding = "utf-8"
+
+    config.to_prepare do
+      Doorkeeper::ApplicationsController.layout "application"
+      Doorkeeper::AuthorizationsController.layout "application"
+      Doorkeeper::AuthorizedApplicationsController.layout "application"
+    end
   end
 end

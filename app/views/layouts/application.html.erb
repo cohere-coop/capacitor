@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Capacitor</title>
-    <%= render partial: "meta" %>
+    <%= render partial: "application/meta" %>
     <link rel="canonical" href="">
     <link rel="shortcut icon" href="/favicon.ico">
     <%= csrf_meta_tags %>
@@ -15,13 +15,13 @@
     </script>
   </head>
   <body>
-    <%= render partial: "header" %>
+    <%= render partial: "application/header" %>
 
     <main>
       <%= yield %>
     </main>
 
-    <%= render partial: "footer" %>
+    <%= render partial: "application/footer" %>
 
     <%= javascript_include_tag "application" %>
   </body>

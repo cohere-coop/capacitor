@@ -21,6 +21,7 @@ class Account < ActiveRecord::Base
 
   validates :name, presence: true
 
+  has_many :oauth_applications, class_name: "Doorkeeper::Application", as: :owner
   serialize :features, Features
 
   def activities
