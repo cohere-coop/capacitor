@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 require "time_window"
 
@@ -34,22 +36,30 @@ RSpec.describe TimeWindow do
     end
 
     it "disallows multi-hour windows ending in 12AM" do
-      expect { TimeWindow("12:00AM", "12:00AM") }.to_not raise_error
-      expect { TimeWindow("11:00PM", "12:00AM") }.to raise_error(RangeError)
+      aggregate_failures do
+        expect { TimeWindow("12:00AM", "12:00AM") }.not_to raise_error
+        expect { TimeWindow("11:00PM", "12:00AM") }.to raise_error(RangeError)
+      end
     end
   end
 
   describe "constructor function" do
     it "has a shorthand for single-hour ranges" do
       window = TimeWindow("9:00AM")
-      expect(window.from).to eq(TimeOfDay("9:00AM"))
-      expect(window.to).to eq(TimeOfDay("9:00AM"))
+
+      aggregate_failures do
+        expect(window.from).to eq(TimeOfDay("9:00AM"))
+        expect(window.to).to eq(TimeOfDay("9:00AM"))
+      end
     end
 
     it "can consume ranges" do
       window = TimeWindow("9:00AM".."11:00AM")
-      expect(window.from).to eq(TimeOfDay("9:00AM"))
-      expect(window.to).to eq(TimeOfDay("11:00AM"))      
+
+      aggregate_failures do
+        expect(window.from).to eq(TimeOfDay("9:00AM"))
+        expect(window.to).to eq(TimeOfDay("11:00AM"))
+      end
     end
   end
 end

@@ -2,6 +2,8 @@
 
 require "time"
 
+# Time of any abstract day, represented hour-by-hour;
+# e.g. *any* 12 PM, not 12 PM, December 3, 2017
 class TimeOfDay
   include Comparable
 
@@ -21,7 +23,9 @@ class TimeOfDay
   end
 
   def self.hour_of_day_from_string(string)
+    # rubocop:disable Rails/TimeZone
     Time.parse(string).hour
+    # rubocop:enable Rails/TimeZone
   end
 
   def self.acceptable_values
@@ -35,7 +39,9 @@ class TimeOfDay
   end
 
   def as_string
+    # rubocop:disable Rails/TimeZone
     Time.new(1, 1, 1, hour_of_day).to_s(:hour_of_day)
+    # rubocop:enable Rails/TimeZone
   end
 
   def to_s
@@ -65,6 +71,7 @@ class TimeOfDay
   end
 end
 
+# rubocop:disable Style/MethodName
 def TimeOfDay(input)
   if input.respond_to?(:to_time_of_day)
     input.to_time_of_day
@@ -72,3 +79,4 @@ def TimeOfDay(input)
     TimeOfDay.from_string(input)
   end
 end
+# rubocop:enable Style/MethodName

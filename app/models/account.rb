@@ -55,9 +55,7 @@ class Account < ActiveRecord::Base
   end
 
   def check_in_reminder_time
-    time = TimeOfDay.from_hour_of_day(check_in_reminder_hour)
-    # time_relative_to_today = Date.today.beginning_of_day + check_in_reminder_hour.hours
-    # time_relative_to_today.strftime("%-l:00%p")
+    TimeOfDay.from_hour_of_day(check_in_reminder_hour)
   end
 
   def check_in_reminder_time=(value)

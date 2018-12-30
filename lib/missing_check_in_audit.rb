@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'time_of_day'
-require 'time_window'
+require "time_of_day"
+require "time_window"
 
 # Finds and notifies accounts of missing check in from one day ago
 class MissingCheckInAudit

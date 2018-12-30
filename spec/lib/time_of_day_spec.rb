@@ -27,11 +27,13 @@ RSpec.describe TimeOfDay do
   end
 
   it "blows up when given hours that are not hours of the day" do
-    expect { described_class.from_hour_of_day(-1) }.to raise_error(RangeError)
-    expect { described_class.from_hour_of_day(24) }.to raise_error(RangeError)
-    expect { described_class.from_hour_of_day(nil) }.to raise_error(TypeError)
-    expect { described_class.from_hour_of_day("zebras") }.to raise_error(ArgumentError)
-    expect { described_class.from_hour_of_day("11zebras") }.to raise_error(ArgumentError)
+    aggregate_failures do
+      expect { described_class.from_hour_of_day(-1) }.to raise_error(RangeError)
+      expect { described_class.from_hour_of_day(24) }.to raise_error(RangeError)
+      expect { described_class.from_hour_of_day(nil) }.to raise_error(TypeError)
+      expect { described_class.from_hour_of_day("zebras") }.to raise_error(ArgumentError)
+      expect { described_class.from_hour_of_day("11zebras") }.to raise_error(ArgumentError)
+    end
   end
 
   it "derives hour_of_day number from its value" do
@@ -56,31 +58,36 @@ RSpec.describe TimeOfDay do
   end
 
   it "can provide a list of acceptable values" do
-    expect(TimeOfDay.acceptable_values).to include(TimeOfDay.from_hour_of_day(0))
-    expect(TimeOfDay.acceptable_values).to include(TimeOfDay.from_hour_of_day(3))
-    expect(TimeOfDay.acceptable_values).to include(TimeOfDay.from_hour_of_day(14))
-    expect(TimeOfDay.acceptable_values).to include(TimeOfDay.from_hour_of_day(23))
+    aggregate_failures do
+      expect(described_class.acceptable_values).to include(described_class.from_hour_of_day(0))
+      expect(described_class.acceptable_values).to include(described_class.from_hour_of_day(3))
+      expect(described_class.acceptable_values).to include(described_class.from_hour_of_day(14))
+      expect(described_class.acceptable_values).to include(described_class.from_hour_of_day(23))
 
-    expect(TimeOfDay.acceptable_values.length).to eq(24)
-    expect(TimeOfDay.acceptable_values).to match_array(TimeOfDay.acceptable_values.uniq)
+      expect(described_class.acceptable_values.length).to eq(24)
+      expect(described_class.acceptable_values).to match_array(described_class.acceptable_values.uniq)
+    end
   end
 
   it "provides a human-readable string to to_s" do
-    expect(TimeOfDay.from_hour_of_day(3).to_s).to eq("3:00AM")
+    expect(described_class.from_hour_of_day(3).to_s).to eq("3:00AM")
   end
 
   describe "Range compatibility" do
     it "knows its successor" do
-      expect(TimeOfDay("9:00AM").succ).to eq(TimeOfDay("10:00AM"))
-      expect(TimeOfDay("11:00AM").succ).to eq(TimeOfDay("12:00PM"))
-      expect(TimeOfDay("12:00AM").succ).to eq(TimeOfDay("1:00AM"))
+      aggregate_failures do
+        expect(TimeOfDay("9:00AM").succ).to eq(TimeOfDay("10:00AM"))
+        expect(TimeOfDay("11:00AM").succ).to eq(TimeOfDay("12:00PM"))
+        expect(TimeOfDay("12:00AM").succ).to eq(TimeOfDay("1:00AM"))
+      end
     end
 
     it "is comparable" do
-      expect(TimeOfDay("9:00AM")).to be < TimeOfDay("10:00AM")
-      expect(TimeOfDay("12:00PM")).to be > TimeOfDay("11:00AM")
-      expect(TimeOfDay("12:00AM") <=> TimeOfDay("1:00AM")).to eq(-1)
+      aggregate_failures do
+        expect(TimeOfDay("9:00AM")).to be < TimeOfDay("10:00AM")
+        expect(TimeOfDay("12:00PM")).to be > TimeOfDay("11:00AM")
+        expect(TimeOfDay("12:00AM") <=> TimeOfDay("1:00AM")).to eq(-1)
+      end
     end
   end
-
 end

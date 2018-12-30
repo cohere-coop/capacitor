@@ -10,7 +10,7 @@ When(/^I set my check\-in reminder time to ([\d\w:]+)$/) do |desired_time|
   unless app.current_page.available_check_in_reminder_times.length > 1
     raise "no meaningful choice of reminder times"
   end
-  app.current_page.set_check_in_reminder_time(desired_time)
+  app.current_page.choose_check_in_reminder_time(desired_time)
   # TODO: When we have eliminated the UX issue of needing to supply
   # current password all over the place, this becomes unnecessary
   app.current_page.current_password_field.set(app.current_account.password)
@@ -26,20 +26,20 @@ end
 When(/^enough time passes that I should receive an email$/) do
   app.current_account.capture_and_tag_emails(email_client: email_client, rake_run: "9:00AM") do
     # March 13th is a Tuesday. Nothing happens on Tuesdays. It ought to be boring.
-    env = {"OVERRIDE_CURRENT_TIME" => "March 13 2018 9:00AM"}
+    env = { "OVERRIDE_CURRENT_TIME" => "March 13 2018 9:00AM" }
     # TODO: we got confused here because we weren't logging enough
     # we have fixed the confusion but should also fix its root cause
     success = system(env, "bin/rake capacitor:notify_accounts_of_missing_checkins")
-    fail "Rake task failed" unless success
+    raise "Rake task failed" unless success
   end
 
   app.current_account.capture_and_tag_emails(email_client: email_client, rake_run: "6:00PM") do
     # March 13th is a Tuesday. Nothing happens on Tuesdays. It ought to be boring.
-    env = {"OVERRIDE_CURRENT_TIME" => "March 13 2018 6:00PM"}
+    env = { "OVERRIDE_CURRENT_TIME" => "March 13 2018 6:00PM" }
     # TODO: we got confused here because we weren't logging enough
     # we have fixed the confusion but should also fix its root cause
     success = system(env, "bin/rake capacitor:notify_accounts_of_missing_checkins")
-    fail "Rake task failed" unless success
+    raise "Rake task failed" unless success
   end
 end
 

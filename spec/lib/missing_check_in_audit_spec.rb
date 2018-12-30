@@ -16,8 +16,8 @@ describe MissingCheckInAudit do
     ActionMailer::Base.deliveries.clear
   end
 
-  around(:each) do |example|
-    day_with_a_business_day_before_it = Time.parse("Tuesday, March 13, 2018")
+  around do |example|
+    day_with_a_business_day_before_it = Time.zone.parse("Tuesday, March 13, 2018")
     Timecop.freeze(day_with_a_business_day_before_it) do
       example.run
     end
@@ -30,27 +30,27 @@ describe MissingCheckInAudit do
     subject(:sent_email) { ActionMailer::Base.deliveries.last }
 
     Given!(:account_missing_check_in_on_day_audited) { FactoryGirl.create(:account) }
-    Given!(:account_with_check_in_on_day_audited) {
+    Given!(:account_with_check_in_on_day_audited) do
       account = FactoryGirl.create(:account)
       # create the check-in at noon to be very sure this is a normal case rather than an edge case
-      FactoryGirl.create(:check_in, account: account, worked_at: (Date.today.beginning_of_day + 12.hours))
+      FactoryGirl.create(:check_in, account: account, worked_at: (Time.zone.today.beginning_of_day + 12.hours))
       account
-    }
+    end
     # Accounts are up to date as of today
-    Given!(:accounts_are_up_to_date_as_of_today) {
+    Given!(:accounts_are_up_to_date_as_of_today) do
       FactoryGirl.create(:check_in,
-        account: account_missing_check_in_on_day_audited,
-        worked_at: (Date.yesterday.beginning_of_day + 12.hours))
+                         account: account_missing_check_in_on_day_audited,
+                         worked_at: (Date.yesterday.beginning_of_day + 12.hours))
       FactoryGirl.create(:check_in,
-        account: account_with_check_in_on_day_audited,
-        worked_at: (Date.yesterday.beginning_of_day + 12.hours))
-    }
+                         account: account_with_check_in_on_day_audited,
+                         worked_at: (Date.yesterday.beginning_of_day + 12.hours))
+    end
 
-    When {
-      audit = described_class.for_day(Date.today)
+    When do
+      audit = described_class.for_day(Time.zone.today)
 
       audit.proceed!
-    }
+    end
 
     context "when the accounts have check in enabled" do
       Given do
@@ -60,7 +60,7 @@ describe MissingCheckInAudit do
 
       Then { ActionMailer::Base.deliveries.length == 1 }
       Then { sent_email.to == [account_missing_check_in_on_day_audited.email] }
-      Then { sent_email.subject == "Let's check in your activities from #{Date.today.to_s(:long_ordinal)}" }
+      Then { sent_email.subject == "Let's check in your activities from #{Time.zone.today.to_s(:long_ordinal)}" }
       Then { sent_email.body.encoded.include? new_check_in_url }
     end
 
@@ -83,7 +83,7 @@ describe MissingCheckInAudit do
       default_url_options.merge!(Settings.url_options)
     end
 
-    it 'only sends reminders within the window' do
+    it "only sends reminders within the window" do
       account_with_earlier_reminder_time = FactoryGirl.create(:account, check_in_reminder_time: "5:00PM")
       account_with_reminder_time_in_window = FactoryGirl.create(:account, check_in_reminder_time: "6:00PM")
       up_to_date_account_with_reminder_time_in_window = FactoryGirl.create(:account, check_in_reminder_time: "6:00PM")
@@ -97,16 +97,19 @@ describe MissingCheckInAudit do
         FactoryGirl.attributes_for(:check_in, worked_at: noon_on_date_audited)
       )
 
-      audit = MissingCheckInAudit.for_day_and_reminder_window(date_audited, "6:00PM")
+      audit = described_class.for_day_and_reminder_window(date_audited, "6:00PM")
       audit.proceed!
 
-      expect(mailbox_for(account_with_earlier_reminder_time.email).size).to eq(0)
-      expect(mailbox_for(account_with_reminder_time_in_window.email).size).to eq(1)
-      expect(mailbox_for(up_to_date_account_with_reminder_time_in_window.email).size).to eq(0)
-      expect(mailbox_for(account_with_later_reminder_time.email).size).to eq(0)
-
       email = mailbox_for(account_with_reminder_time_in_window.email).first
-      expect(email).to have_subject("Let's check in your activities from #{Date.yesterday.to_s(:long_ordinal)}")
+      expected_subject_line = "Let's check in your activities from #{Date.yesterday.to_s(:long_ordinal)}"
+      aggregate_failures do
+        expect(mailbox_for(account_with_earlier_reminder_time.email).size).to eq(0)
+        expect(mailbox_for(account_with_reminder_time_in_window.email).size).to eq(1)
+        expect(mailbox_for(up_to_date_account_with_reminder_time_in_window.email).size).to eq(0)
+        expect(mailbox_for(account_with_later_reminder_time.email).size).to eq(0)
+
+        expect(email).to have_subject(expected_subject_line)
+      end
     end
   end
 
@@ -119,7 +122,7 @@ describe MissingCheckInAudit do
       default_url_options.merge!(Settings.url_options)
     end
 
-    it 'only sends reminders within the window' do
+    it "only sends reminders within the window" do
       account_with_earlier_reminder_time = FactoryGirl.create(:account, check_in_reminder_time: "5:00PM")
       account_with_reminder_time_in_window = FactoryGirl.create(:account, check_in_reminder_time: "6:00PM")
       up_to_date_account_with_reminder_time_in_window = FactoryGirl.create(:account, check_in_reminder_time: "6:00PM")
@@ -134,19 +137,22 @@ describe MissingCheckInAudit do
         FactoryGirl.attributes_for(:check_in, worked_at: noon_on_date_audited)
       )
 
-      audit = MissingCheckInAudit.for_day_and_reminder_window(Date.yesterday, "6:00PM".."7:00PM")
+      audit = described_class.for_day_and_reminder_window(Date.yesterday, "6:00PM".."7:00PM")
       audit.proceed!
 
-      expect(mailbox_for(account_with_earlier_reminder_time.email).size).to eq(0)
-      expect(mailbox_for(account_with_reminder_time_in_window.email).size).to eq(1)
-      expect(mailbox_for(account_with_other_reminder_time_in_window.email).size).to eq(1)
-      expect(mailbox_for(up_to_date_account_with_reminder_time_in_window.email).size).to eq(0)
-      expect(mailbox_for(account_with_later_reminder_time.email).size).to eq(0)
+      account_in_window_email = mailbox_for(account_with_reminder_time_in_window.email).first
+      other_account_in_window_email = mailbox_for(account_with_other_reminder_time_in_window.email).first
+      expected_subject_line = "Let's check in your activities from #{Date.yesterday.to_s(:long_ordinal)}"
+      aggregate_failures do
+        expect(mailbox_for(account_with_earlier_reminder_time.email).size).to eq(0)
+        expect(mailbox_for(account_with_reminder_time_in_window.email).size).to eq(1)
+        expect(mailbox_for(account_with_other_reminder_time_in_window.email).size).to eq(1)
+        expect(mailbox_for(up_to_date_account_with_reminder_time_in_window.email).size).to eq(0)
+        expect(mailbox_for(account_with_later_reminder_time.email).size).to eq(0)
 
-      email = mailbox_for(account_with_reminder_time_in_window.email).first
-      expect(email).to have_subject("Let's check in your activities from #{Date.yesterday.to_s(:long_ordinal)}")
-      email = mailbox_for(account_with_other_reminder_time_in_window.email).first
-      expect(email).to have_subject("Let's check in your activities from #{Date.yesterday.to_s(:long_ordinal)}")
+        expect(account_in_window_email).to have_subject(expected_subject_line)
+        expect(other_account_in_window_email).to have_subject(expected_subject_line)
+      end
     end
   end
 end

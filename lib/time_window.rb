@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require "time_of_day"
 
+# A a window of two `TimeOfDay`s.
 class TimeWindow
   attr_reader :range
 
@@ -35,6 +38,7 @@ class TimeWindow
   attr_writer :range
 end
 
+# rubocop:disable Style/MethodName
 def TimeWindow(from_or_range, to = nil)
   case from_or_range
   when Range
@@ -46,3 +50,4 @@ def TimeWindow(from_or_range, to = nil)
   end
   TimeWindow.new(from: TimeOfDay(from), to: TimeOfDay(to))
 end
+# rubocop:enable Style/MethodName

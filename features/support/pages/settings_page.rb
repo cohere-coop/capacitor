@@ -10,7 +10,7 @@ class SettingsPage < Page
   element :submit_button, "form#edit_account input[type=submit]"
   element :flash_notice, ".flash_notice"
 
-  def set_check_in_reminder_time(desired_time)
+  def choose_check_in_reminder_time(desired_time)
     check_in_reminder_time_dropdown.select(desired_time)
   end
 
