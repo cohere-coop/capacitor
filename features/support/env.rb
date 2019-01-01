@@ -11,6 +11,9 @@ require "active_support/core_ext"
 require "settings"
 require "dotenv"
 
+ENV.delete("RAILS_ENV")
+ENV.delete("RACK_ENV")
+
 root = Pathname.new(Dir.pwd)
 Dotenv.load(root.join(".env.development.local"), root.join(".env.development"),
             root.join(".env"))
