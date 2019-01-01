@@ -15,9 +15,12 @@ FactoryGirl.define do
     end
 
     trait :unique do
-      guid = SecureRandom.uuid
-      name "Unique #{guid}"
-      email "unique-#{guid}@example.com"
+      transient do
+        sequence(:guid) { SecureRandom.uuid }
+      end
+
+      name { "Unique #{guid}" }
+      email { "unique-#{guid}@example.com" }
     end
   end
 end

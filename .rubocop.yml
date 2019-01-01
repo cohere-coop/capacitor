@@ -46,3 +46,6 @@ RSpec/FilePath:
 
 RSpec/EmptyExampleGroup:
   Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false

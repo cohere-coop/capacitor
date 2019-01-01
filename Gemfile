@@ -50,6 +50,9 @@ gem "neat", "~> 1.7"
 # And some basic prettiness
 gem "bitters", "1.2.0"
 
+# time parsing
+gem "chronic"
+
 group :production do
   # A concurrent web server
   gem "puma", "~> 3.9"
@@ -104,4 +107,9 @@ group :test do
   gem "shoulda-matchers", "~> 3.1"
 
   gem "rspec_junit_formatter"
+
+  # wibbley wobbley timey wimey
+  gem "timecop"
+
+  gem "email_spec"
 end

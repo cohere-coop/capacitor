@@ -2,7 +2,7 @@
 
 # Allows us to retrieve emails for a particular person.
 class EmailClient
-  delegate :messages_where, to: :adapter
+  delegate :messages_where, :messages_for, to: :adapter
 
   def adapter
     @adapter ||= MailCatcherAdapter.new
@@ -19,6 +19,13 @@ class EmailClient
     def messages_where(to:, subject:)
       matching_messages = messages.select do |message|
         message[:recipients].include?(to) && message[:subject] == subject
+      end
+      matching_messages.map(&method(:merge_email_content))
+    end
+
+    def messages_for(to)
+      matching_messages = messages.select do |message|
+        message[:recipients].include?(to)
       end
       matching_messages.map(&method(:merge_email_content))
     end
