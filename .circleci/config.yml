@@ -71,7 +71,7 @@ jobs:
           destination: test-results
       - run:
           name: Mailcatcher
-          command: bin/mailcatcher
+          command: mailcatcher
           background: true
           when: always
       - run:
