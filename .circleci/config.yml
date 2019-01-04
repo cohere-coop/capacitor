@@ -33,7 +33,7 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+            bundle install --jobs=4 --retry=3 --path vendor/bundle && gem install mailcatcher
 
       - save_cache:
           paths:
@@ -71,7 +71,7 @@ jobs:
           destination: test-results
       - run:
           name: Mailcatcher
-          command: bin/mailcatcher
+          command: mailcatcher
           background: true
           when: always
       - run:

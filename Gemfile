@@ -89,9 +89,6 @@ group :test do
   # The rspec testing framework intergation for rails
   gem "rspec-rails", "~> 3.6"
 
-  # Mailcatcher!
-  gem "mailcatcher"
-
   # Feature testing!
   gem "cucumber"
   gem "site_prism"
